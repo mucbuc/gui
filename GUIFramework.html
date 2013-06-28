@@ -1,0 +1,147 @@
+<html>
+<head>
+<title>GUIFramework</title>
+
+<script>
+  var exports = this;
+</script>
+
+<script src = 'public/javascripts/node_modules/set.js'></script>
+<script src = 'public/javascripts/node_modules/eventstream.js'></script>
+<script src = 'public/javascripts/node_modules/controller.js'></script>
+<script src = 'public/javascripts/node_modules/factory.js'></script>
+<script src = 'public/javascripts/node_modules/builder.js'></script>
+<script src = 'public/javascripts/node_modules/utils.js'></script>
+<script src = 'public/javascripts/node_modules/vec.js'></script>
+<script src = 'public/javascripts/node_modules/rect.js'></script>
+<script src = 'public/javascripts/node_modules/element.js'></script>
+
+<script src = 'public/javascripts/elements/clickrect.js'></script>
+<script src = 'public/javascripts/elements/label.js'></script>
+<script src = 'public/javascripts/elements/icon.js'></script>
+<script src = 'public/javascripts/elements/frame.js'></script>
+
+<script src = 'public/javascripts/views/debug.js'></script>
+
+<script src = 'public/javascripts/button.js'></script>
+<script src = 'public/javascripts/checkbox.js'></script>
+<script src = 'public/javascripts/gui.js'></script>
+<script src = 'public/javascripts/logic.js'></script>
+<script src = 'public/javascripts/app.js'></script>
+<script src = 'public/javascripts/game.js'></script>
+
+<script type="text/javascript">
+
+var context = null;
+
+function MouseEvent(handler, ev)
+{
+	var x, y;
+	
+	// Get the mouse position relative to the canvas element.
+	if (ev.layerX || ev.layerX == 0) { // Firefox
+		x = ev.layerX;
+		y = ev.layerY;
+	} else if (ev.offsetX || ev.offsetX == 0) { // Opera
+		x = ev.offsetX;
+		y = ev.offsetY;
+	}
+	
+	handler(x, y);
+}
+
+function Init()
+{
+    var canvas = document.getElementById("maincanvas");
+    context = canvas.getContext("2d");
+	canvas.addEventListener('mousedown', 	MouseEvent.bind(null, OnMouseDown), false);	
+	canvas.addEventListener('mouseup',   	MouseEvent.bind(null, OnMouseUp), false);	
+	canvas.addEventListener('mousemove',   	MouseEvent.bind(null, OnMouseMove), false);	
+
+    app.gui = new Gui();
+    app.gui.factory = new DebugFactory();
+    Button.prototype.factory = app.gui.factory;
+    app.gui.canvas = canvas;
+    app.gui.context = context;
+
+	logic.init();
+}
+
+function DrawRect(x, y, width, height, filled, color)
+{
+    if (filled)
+    {
+        context.fillStyle = color;
+        context.fillRect(x, y, width, height);
+    }
+    else
+    {
+        context.strokeStyle = color;
+        context.strokeRect(x, y, width, height);
+    }
+}
+
+function ClearRect(x, y, width, height)
+{
+    context.clearRect(x, y, width, height);
+}
+
+function DrawText(x, y, color, text, size, bold)
+{
+    boldText = "";
+    if (bold)
+    {
+        boldText = "bold";
+    }
+    context.font = boldText + (size.toString() + "px Arial");
+    context.fillStyle = color;
+    context.fillText(text, x, y, 200);
+}
+
+function OnMouseDown(x, y)
+{
+  app.gui.onMouseDown( x, y );
+  Game.onMouseDown( x, y );
+}
+
+function OnMouseUp(x, y)
+{
+  app.gui.onMouseUp( x, y );
+  Game.onMouseUp( x, y );
+}
+
+function OnMouseMove(x, y)
+{
+  app.gui.onMouseMove( x, y );
+  Game.onMouseMove( x, y );
+}
+
+function Update()
+{
+    ClearRect(0, 0, 400, 400);
+    app.gui.render();
+    app.gui.tick();
+    
+    Game.render();
+}
+
+function DrawGUI()
+{
+    DrawRect(50, 100, 80, 20, true, "rgb(200, 20, 20)");
+    
+    ClearRect(60, 105, 60, 10);
+    
+    DrawRect(48, 98, 84, 24, false, "rgb(80, 100, 90)");
+    
+    DrawText(40, 70, "rgb(0, 0, 130)", "Hello", 20, false);
+    DrawText(40, 90, "rgb(0, 130, 0)", "World!", 25, true);
+}
+
+setInterval(Update, 20);
+
+</script>
+</head>
+<body onload="Init();">
+<canvas id="maincanvas" width="400" height="400"></canvas>
+</body>
+</html>
