@@ -1,8 +1,8 @@
 var assert = require( 'assert' )
   , lib = require( './config.json' ).lib
   , utils = require( lib + 'utils' )
-  , Vec = utils.Vec
-  , Rect = utils.Rect;
+  , Vec = require( lib + 'vec' ).Vec
+  , Rect = require( lib + 'rect' ).Rect;
   
 assert( utils != undefined );
 

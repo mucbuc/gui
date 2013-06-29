@@ -1,9 +1,5 @@
 (function(){
   
-  var GAP = 5
-    , GAP_DUB = 2 * GAP
-    , GAP_QUAD = 4 * GAP;
-  
   function Button( controller ) {
     
     var instance = this;
