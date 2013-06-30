@@ -31,19 +31,21 @@ function checkSnapLineRight() {
 
   assert( sl.displacement() == 10 );
   assert( sl.step( new Vec( 0, 0 ) ) == 10 );
+  assert( sl.step( new Vec( 0, 0 ), 3 ) == 19 );
 }
 
 function checkSnapLineUp() {
 
   var sl = new utils.SnapLine( utils.direction.UP );
 
-  sl.attach( { height: 1 } );
-  sl.attach( { height: 2 } );
-  sl.attach( { height: 3 } );
-  sl.attach( { height: 4 } );
+  sl.attach( { bottom: 0, height: 1 } );
+  sl.attach( { bottom: 0, height: 2 } );
+  sl.attach( { bottom: 0, height: 3 } );
+  sl.attach( { bottom: 0, height: 4 } );
 
   assert( sl.displacement() == 10 );
-  assert( sl.step( new Vec( 0, 10 ) ) == 0 );
+  assert( sl.step( new Vec( 0, 0 ) ) == -10 );
+  assert( sl.step( new Vec( 0, 0 ), 5 ) == -25 );
 }
 
 function checkVec() {
