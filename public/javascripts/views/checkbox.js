@@ -4,7 +4,7 @@
 
     var instance = this;
     
-    if (controller == undefined) {
+    if (controller == 'undefined') {
       return;
     }
     
@@ -26,7 +26,7 @@
   
     function toggle() {
       controller.model = !model;
-    };
+    }
   
     function render() {
       var GAP = 5

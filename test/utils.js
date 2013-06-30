@@ -4,14 +4,46 @@ var assert = require( 'assert' )
   , Vec = require( lib + 'vec' ).Vec
   , Rect = require( lib + 'rect' ).Rect;
   
-assert( utils != undefined );
+assert( utils !== 'undefined' );
 
 checkUtils();
 
 function checkUtils() {
   checkVec(); 
   checkRect();
+  checkSnapLine();
   console.log( 'utils ok' );
+}
+
+function checkSnapLine() {
+  checkSnapLineRight();
+  checkSnapLineUp();
+}
+
+function checkSnapLineRight() {
+
+  var sl = new utils.SnapLine( utils.direction.RIGHT );
+
+  sl.attach( { right: 0, width: 1 } );
+  sl.attach( { right: 0, width: 2 } );
+  sl.attach( { right: 0, width: 3 } );
+  sl.attach( { right: 0, width: 4 } );
+
+  assert( sl.displacement() == 10 );
+  assert( sl.step( new Vec( 0, 0 ) ) == 10 );
+}
+
+function checkSnapLineUp() {
+
+  var sl = new utils.SnapLine( utils.direction.UP );
+
+  sl.attach( { height: 1 } );
+  sl.attach( { height: 2 } );
+  sl.attach( { height: 3 } );
+  sl.attach( { height: 4 } );
+
+  assert( sl.displacement() == 10 );
+  assert( sl.step( new Vec( 0, 10 ) ) == 0 );
 }
 
 function checkVec() {

@@ -6,7 +6,7 @@
    
     Element.call( this, controller );
     
-    if (controller != undefined) {
+    if (controller !== 'undefined') {
     
       controller.once( 'unload', function() {
         controller.removeListener( 'mouseDown', mouseDown );

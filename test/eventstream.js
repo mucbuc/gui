@@ -5,9 +5,9 @@ var assert = require( 'assert' )
   , EventQueue = events.EventQueue
   , EventStream = events.EventStream;
 
-assert( Set != undefined );
-assert( EventQueue != undefined );
-assert( EventStream != undefined );
+assert( Set !== 'undefined' );
+assert( EventQueue !== 'undefined' );
+assert( EventStream !== 'undefined' );
 
 checkEvents();
 

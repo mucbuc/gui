@@ -20,7 +20,7 @@
     controller.once( 'load', function() {
     
       var builder = new Builder( controller );
-      elements = builder.makeElements( app.gui.factory ).product;
+      elements = builder.buildElements( app.gui.factory ).product;
     
       var n = 4 
         , size = new Vec( 400 / 4, 400 / 6 )

@@ -2,7 +2,7 @@ var assert = require( 'assert' )
   , lib = require( './config.json' ).lib
   , Factory = require( lib + 'factory.js' ).Factory;
   
-assert( Factory != undefined );  
+assert( Factory !== 'undefined' );  
 
 checkFactory();
 

@@ -4,36 +4,36 @@ var assert = require( 'assert' )
   , Builder = require( lib + 'builder' ).Builder
   , Controller = require( lib + 'controller' ).Controller;
   
-assert( Factory != undefined );
-assert( Builder != undefined ); 
+assert( Factory !== 'undefined' );
+assert( Builder !== 'undefined' ); 
 
 checkBuilder();
   
 function checkBuilder() {
   checkEmpty();
   checkSingle();
-  checkComposite();
+  //checkObject();
   
   console.log( 'builder ok' );
 }
 
-function checkComposite() {
+function checkObject() {
   var controller = {
         model: { 'label': 'abc', 'notLabel': 'cde' } }
     , factory = new Factory()
-    , builder = new Builder( controller )
+    , builder = new Builder( factory )
     , labeled = false
     , notLabeled = false
-    , elements = 0;
+    , composite = null;
 
   factory.register( 'label', Label );
   factory.register( 'notLabel', NoLabel );
 
-  elements = builder.makeElements( factory ).product;
+  composite = builder.buildComposite( controller );
 
   assert( labeled && notLabeled );
-  assert( elements.label );
-  assert( elements.notLabel );
+  assert( composite.label );
+  assert( composite.notLabel );
 
   function Label() {
     labeled = true;
@@ -48,12 +48,12 @@ function checkSingle() {
   var controller = {
         model: { 'Label': 'abc' } }
     , factory = new Factory()
-    , builder = new Builder( controller )
+    , builder = new Builder( factory )
     , gotHit = false;
     
   factory.register( 'Label', Label );
   
-  builder.makeElements( factory );
+  builder.buildComposite( controller );
   
   assert( gotHit );
   
@@ -65,11 +65,10 @@ function checkSingle() {
 function checkEmpty() {
   var controller = { model: {} }
     , factory = new Factory()
-    , builder = new Builder( controller );
-  
-  builder.makeElements( factory );
+    , builder = new Builder( factory )
+    , composite = builder.buildComposite( controller );
 
-  assert( !Object.keys( builder.product ).length );
+  assert( !Object.keys( composite ).length );
 }
   
 exports.checkBuilder = checkBuilder;

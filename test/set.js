@@ -2,7 +2,7 @@ var assert = require( 'assert' )
   , lib = require( './config.json' ).lib
   , Set = require( lib + 'set' ).Set;
 
-assert( Set != undefined );  
+assert( Set !== 'undefined' );  
 
 checkSet();
 
@@ -11,7 +11,7 @@ function checkSet() {
     , gotHit = false;
     
   // check resource
-  assert( Set != undefined );
+  assert( Set != 'undefined' );
   
   // check include|contains|length
   s.include( checkSet );
