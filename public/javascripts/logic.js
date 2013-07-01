@@ -1,13 +1,15 @@
 (function(){
 
-  var gui
+  var gui = null
     , logic = { 
         init: function() {
           gui = app.gui;
+
+          gui.on( 'menuUpdate', makeViews );
           pauseGame();
-        },
+        }
     };
-  
+
   function resetGame() {
     app.configuration.DEBUG = true;
     pauseGame();
@@ -17,51 +19,64 @@
   
     var buttonPlay = { text: 'play', onClick: 'resume', icon: 'public/images/icon.svg', frame: '' }
       , buttonReset = { text: 'reset', onClick: 'reset', frame: '' }
-      , buttonDebug = { box: app.configuration.DEBUG, text: '', frame: '' }
-      , menu = { button : [ buttonPlay, buttonReset, buttonDebug ] };
+      , buttonDebug = { onClick: 'toggle', frame: '' }
+      , menu = { 
+          button : [ buttonPlay, buttonReset, buttonDebug ],
+          text: ''
+      };
 
     syncElements();
-    
     gui.setMenu( menu );
     Game.pause();
     
     gui.once( 'load', function() {
+
       gui.once( 'unload', function() { 
         gui.removeListener( 'resume', resumeGame );
         gui.removeListener( 'reset', confirmReset );
+        gui.removeListener( 'toggle', toggleDebug );
         gui.removeListener( 'update', syncElements );
       } ); 
       
       gui.once( 'resume', resumeGame );
       gui.once( 'reset', confirmReset );
+      gui.on( 'toggle', toggleDebug );
       gui.on( 'update', syncElements );
     } );
 
+    function toggleDebug() {
+      app.configuration.DEBUG = !app.configuration.DEBUG;
+      syncElements();
+    }  
+
     function syncElements() {
-      app.configuration.DEBUG = buttonDebug.box;
-      buttonDebug.text = 'debug ' + (buttonDebug.box ? 'on' : 'off');
+      if (buttonDebug.box != app.configuration.DEBUG) {
+        buttonDebug.box = app.configuration.DEBUG;
+        menu.text = 'debug ' + (buttonDebug.box ? 'on' : 'off');
+        gui.onTickEmit( 'update' );
+      }
     }
   } 
   
   function resumeGame() {
     var pause = { button : [ { text: 'pause', onClick: 'pause', frame: '' } ] }; 
     
-    app.gui.setMenu( pause );
+    gui.setMenu( pause );
     Game.resume();
     
-    app.gui.once( 'load', function() {
+    gui.once( 'load', function() {
           
-      app.gui.once( 'unload', function() {
-        app.gui.removeListener( 'pause', pauseGame );
-        app.gui.removeListener( 'guiTouch', preventTouch );
-        app.gui.removeListener( 'mouseUp', Game.resume );
+      gui.once( 'unload', function() {
+        gui.removeListener( 'pause', pauseGame );
+        gui.removeListener( 'guiTouch', preventTouch );
+        gui.removeListener( 'mouseUp', Game.resume );
       } );
           
-      app.gui.once( 'pause', pauseGame );
-      app.gui.on( 'guiTouch', preventTouch );
+      gui.once( 'pause', pauseGame );
+      gui.on( 'guiTouch', preventTouch );
           
       function preventTouch() {
-        app.gui.once( 'mouseUp', Game.resume );
+        gui.once( 'mouseUp', Game.resume );
         Game.pause(); 
       }
     } );
@@ -77,8 +92,8 @@
           ]
       };
     
-    app.gui.setMenu( confirm );
-        
+    gui.setMenu( confirm );
+  
     gui.once( 'load', function() {
       gui.once( 'unload', function() {
         gui.removeListener( 'confirm', resetGame );
@@ -88,6 +103,18 @@
       gui.once( 'confirm' , resetGame );
       gui.once( 'cancel', pauseGame );
     } );
+  }
+
+  function makeViews() { 
+    
+    if (app.configuration.DEBUG) {
+      View.prototype.factory = new DebugFactory();
+    }
+    else {
+      View.prototype.factory = new PrettyFactory();
+    }
+    
+    View.prototype.factory.create( 'menuView', gui );
   }
 
   exports.logic = logic;

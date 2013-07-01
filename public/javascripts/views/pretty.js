@@ -1,38 +1,27 @@
 (function(){
 
- 
-  function DebugFactory() {
+  function PrettyFactory() {
   
     Factory.call( this );
-    this.register( 'menuView', DebugView );
+    this.register( 'menuView', PrettyView );
     this.register( 'onClick', ClickRect );
     this.register( 'text', Label );
-    this.register( 'icon', DebugElement );
+    this.register( 'icon', Icon );
     this.register( 'frame', Frame );
     this.register( 'button', Button );
     this.register( 'box', CheckBox );
   }
   
-  DebugFactory.prototype = new Factory();
+  PrettyFactory.prototype = new Factory();
 
-  function DebugElement( controller ) {
-    Element.call( this, controller );
-    
-    console.log( 'DebugElement Constructor: ', controller.model );
-  
-    controller.once( 'unload', function() { 
-      console.log( 'DebugElement unload:', controller.model );    
-    } );
-  }
-
-  DebugElement.prototype = new Element();
-  
-  function DebugView( controller ) {
+  function PrettyView( controller ) {
     
     var instance = this
       , elements = 0;
     
     controller.once( 'load', function() {
+
+      console.log( 'pretty view loaded' );
     
       var n = 4 
         , size = new Vec( 400 / 4, 400 / 6 )
@@ -64,8 +53,8 @@
     } );
   }
 
-  DebugView.prototype = new View();
+  PrettyView.prototype = new View();
   
-  exports.DebugFactory = DebugFactory;
+  exports.PrettyFactory = PrettyFactory;
   
 })();

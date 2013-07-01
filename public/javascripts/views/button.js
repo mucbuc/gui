@@ -2,10 +2,13 @@
   
   function Button( controller ) {
     
-    var instance = this;
+    var instance = this
+      , _bounds = null;
     View.call( this, controller, instance.factory );
     
     this.__defineSetter__( 'bounds', function( bounds ) {
+      this.setBounds( bounds );
+
       for (component in instance.composite) {
         if (component == 'box') {
           var width = bounds.width();

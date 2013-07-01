@@ -2,30 +2,28 @@
 
   function CheckBox( controller ) {
 
-    var instance = this;
-    
-    if (controller == 'undefined') {
-      return;
+    if (controller !== 'undefined') {
+      var instance = this
+        , model = controller.model;
+      
+      ClickRect.call( this, controller, toggle );
+
+      controller.once( 'unload', function() {
+        controller.removeListener( 'render', render );
+        controller.removeListener( 'update', update );
+      });
+      
+      controller.on( 'render', render );
+      controller.on( 'update', update );    
     }
     
-    var model = controller.model;
-    
-    ClickRect.call( this, controller, toggle );
-    
-    controller.once( 'unload', function() {
-      controller.removeListener( 'render', render );
-      controller.removeListener( 'update', update );
-    } );
-    
-    controller.on( 'render', render );
-    controller.on( 'update', update );
-  
     function update() {
       model = controller.model;
     }
-  
+
     function toggle() {
-      controller.model = !model;
+      controller.model != controller.model;
+      controller.onTickEmit( controller.model.onToggle );
     }
   
     function render() {

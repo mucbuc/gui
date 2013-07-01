@@ -23,10 +23,10 @@
 <script src = 'public/javascripts/elements/frame.js'></script>
 
 <script src = 'public/javascripts/views/button.js'></script>
+<script src = 'public/javascripts/views/checkbox.js'></script>
 <script src = 'public/javascripts/views/debug.js'></script>
+<script src = 'public/javascripts/views/pretty.js'></script>
 
-<script src = 'public/javascripts/button.js'></script>
-<script src = 'public/javascripts/checkbox.js'></script>
 <script src = 'public/javascripts/gui.js'></script>
 <script src = 'public/javascripts/logic.js'></script>
 <script src = 'public/javascripts/app.js'></script>
@@ -61,8 +61,6 @@ function Init()
 	canvas.addEventListener('mousemove',   	MouseEvent.bind(null, OnMouseMove), false);	
 
     app.gui = new Gui();
-    app.gui.factory = new DebugFactory();
-    Button.prototype.factory = app.gui.factory;
     app.gui.canvas = canvas;
     app.gui.context = context;
 
