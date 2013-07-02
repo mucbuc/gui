@@ -12,7 +12,8 @@
     controller.on( 'render', render );
   
     function render() {
-      DrawRect(instance.left, instance.top, instance.width, instance.height, false, instance.color );
+      var bounds = instance.bounds;
+      DrawRect(bounds.left, bounds.top, bounds.width(), bounds.height(), false, instance.color );
     };
   }
   

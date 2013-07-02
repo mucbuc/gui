@@ -32,7 +32,8 @@ objective:
     }
     
     function render() {
-      controller.context.drawImage( img, instance.left, instance.top, instance.width, instance.height );
+      var bounds = instance.bounds;
+      controller.context.drawImage( img, bounds.left, bounds.top, bounds.width(), bounds.height() );
     }
   }
   

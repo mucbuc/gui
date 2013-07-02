@@ -28,14 +28,16 @@
   
     function render() {
       var GAP = 5
-        , GAP_DUB = 2 * GAP;
-      DrawRect(instance.left, instance.top, instance.width, instance.height, true, "rgb(80, 100, 90)");
+        , GAP_DUB = 2 * GAP
+        , bounds = instance.bounds;
+        
+      DrawRect(bounds.left, bounds.top, bounds.width(), bounds.height(), true, "rgb(80, 100, 90)");
       
       if (model) {
-        DrawRect(instance.left + GAP, instance.top + GAP, instance.width - GAP_DUB, instance.height - GAP_DUB, true, "rgb(250, 250, 250)");
+        DrawRect(bounds.left + GAP, bounds.top + GAP, bounds.width() - GAP_DUB, bounds.height() - GAP_DUB, true, "rgb(250, 250, 250)");
       }
       else {
-        DrawRect(instance.left + GAP, instance.top + GAP, instance.width - GAP_DUB, instance.height - GAP_DUB, true, "rgb(50, 50, 50)");
+        DrawRect(bounds.left + GAP, bounds.top + GAP, bounds.width() - GAP_DUB, bounds.height() - GAP_DUB, true, "rgb(50, 50, 50)");
       }
     }
   }

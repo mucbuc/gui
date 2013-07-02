@@ -15,7 +15,7 @@
     configuration: {
       DEBUG: true,
     }, 
-    language: german, ///english,
+    language: english,
   };
 
   exports.app = app;
