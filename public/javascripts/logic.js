@@ -5,7 +5,7 @@
         init: function() {
           gui = app.gui;
 
-          gui.on( 'menuUpdate', makeViews );
+          gui.on( 'guiUpdate', makeViews );
           pauseGame();
         }
     };
@@ -17,11 +17,11 @@
 
   function pauseGame() {
   
-    var buttonPlay = { text: 'play', onClick: 'resume', icon: 'public/images/icon.svg', frame: '' }
-      , buttonReset = { text: 'reset', onClick: 'reset', frame: '' }
+    var buttonPlay = { text: app.language.play, onClick: 'resume', icon: 'public/images/icon.svg', frame: '' }
+      , buttonReset = { text: app.language.reset, onClick: 'reset', frame: '' }
       , buttonDebug = { onClick: 'toggle', frame: '' }
       , menu = { 
-          button : [ buttonPlay, buttonReset, buttonDebug ],
+          button: [ buttonPlay, buttonReset, buttonDebug ],
           text: ''
       };
 
@@ -59,7 +59,7 @@
   } 
   
   function resumeGame() {
-    var pause = { button : [ { text: 'pause', onClick: 'pause', frame: '' } ] }; 
+    var pause = { button : [ { text: app.language.pause, onClick: 'pause', frame: '' } ] }; 
     
     gui.setMenu( pause );
     Game.resume();
@@ -85,10 +85,10 @@
   function confirmReset() {
         
     var confirm = {
-          text: 'reset?',
+          text: app.language.resetQuestion,
           button: [ 
-            { text: 'yes', onClick: 'confirm' },
-            { text: 'no', onClick: 'cancel' },
+            { text: app.language.yes, onClick: 'confirm' },
+            { text: app.language.no, onClick: 'cancel' },
           ]
       };
     

@@ -5,7 +5,7 @@
     RootController.call( this );
     
     this.setMenu = function( model ) {
-      this.onTickEmit( 'menuUpdate' );
+      this.onTickEmit( 'guiUpdate' );
       this.model = model;
     };
     
