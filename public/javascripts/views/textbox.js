@@ -3,7 +3,7 @@
   function TextBox( controller ) {
     
     var instance = this
-      , lines = [];
+      , lines;
     
     //View.call( this, controller, instance.factory );
   
@@ -14,27 +14,54 @@
     function update() {
 
     	var words = controller.model.split( ' ' )
-    	  , lines = ['']
-    	  , back = ''
-    	  , lineWidth = 0;
+    	  , lineWidth = 0
+        , pass = '';
+
+      lines = [];
 
 			SetDrawTextContext( instance.color, instance.fontSize, false );
-    	while (words.length) {
-    		var test = lines[lines.length - 1] + words[0];
+    	
+      while (words.length) {
 
-    		lineWidth =+ getTextWidth( test, controller.context );
+        if (!pass) {
+          
+          var front = words[0]
+            , w = getTextWidth( front, controller.context );
 
-    		if (lineWidth < 100) {
-    			lines[lines.length - 1] = test;
-    			words = words.slice(1);
-    		}
-    		else {
-    			lines.push( '' );
-    			lineWidth = 0;
-    		}
-    	}
+          if (w > instance.width) { 
+            var i = front.length;
+            while (w > instance.width) { 
+              front = front.slice( 0, --i );
+              w = getTextWidth( front, controller.context );
+            }
+            lines.push( front );
+            words[0] = words[0].slice(i);
+          }
+          else {
+            pass = front;
+            lineWidth = w;
+            words = words.slice(1);
+          }
+        }
+        else {
+          var test = ' ' + words[0]
+          , w = getTextWidth( test, controller.context );
+
+          if (lineWidth + w < instance.width) {
+      			pass += test;
+            lineWidth += w;
+            words = words.slice(1);
+          }
+      		else {
+      		  lines.push( pass );
+            pass = '';
+            lineWidth = 0;
+          }
+        }
+      }
     
-    	console.log( lines );
+      lines.push( pass );
+      console.log( lines );
     }
   }
 
