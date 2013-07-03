@@ -17,7 +17,7 @@
 
   function pauseGame() {
   
-    var buttonPlay = { text: app.language.play, onClick: 'resume', icon: 'public/images/icon.svg', frame: '' }
+    var buttonPlay = { icon: 'public/images/icon.svg', text: app.language.play, onClick: 'resume', frame: '' }
       , buttonReset = { text: app.language.reset, onClick: 'reset', frame: '' }
       , buttonDebug = { onClick: 'toggle', frame: '' }
       , menu = { 

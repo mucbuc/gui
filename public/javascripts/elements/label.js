@@ -26,7 +26,8 @@ objective:
     } 
     
     function render() {
-      DrawText( instance.bounds.left, instance.bounds.bottom, instance.color, model, instance.fontSize, false);
+      var bounds = instance.bounds;
+      DrawText( bounds.left, bounds.bottom, instance.color, model, instance.fontSize, false);
     }      
   }
   
