@@ -9,7 +9,23 @@
   
     this.width = 100;
 
+    controller.once( 'unload', function() {
+      controller.removeListener( 'update', update ); 
+      controller.removeListener( 'render', render ); 
+    });
     controller.on( 'update', update ); 
+    controller.on( 'render', render );
+
+    function render() {
+      if (lines) {
+
+        var bounds = instance.bounds.clone();
+        lines.forEach( function( line ) {
+          DrawText( bounds.left, bounds.top, instance.color, line, instance.fontSize, false, instance.width );
+          bounds.top += instance.fontSize;
+        });
+      }
+    } 
 
     function update() {
 

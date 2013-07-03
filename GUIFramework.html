@@ -96,7 +96,8 @@ function SetDrawTextContext(color, size, bold) {
     {
         boldText = "bold";
     }
-    context.textBaseline = 'bottom';
+    context.textBaseline = 'top';
+    context.textAlign = 'center';
     context.font = boldText + (size.toString() + "px Arial");
     context.fillStyle = color;
 }
