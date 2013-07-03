@@ -1,7 +1,7 @@
 /* 
 objective: 
-	render text (one line, squeezed) 
-	cache model
+	render text
+  set elmement width to text width
 */ 
 
 (function(){
@@ -28,8 +28,10 @@ objective:
     // callbacks
     function update() {
       model = controller.model;
-      SetDrawTextContext( instance.color, instance.fontSize, false );
-      width = getTextWidth( model, controller.context );
+      if (model && model.length) {
+        SetDrawTextContext( instance.color, instance.fontSize, false );
+        width = getTextWidth( model, controller.context );
+      }
     } 
     function render() {
       var bounds = instance.bounds;

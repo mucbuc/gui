@@ -2,24 +2,7 @@
   
   function Button( controller ) {
     
-    var instance = this;
-    View.call( this, controller, instance.factory );
-    
-    this.layoutVertical = function( top ) {
-      var bottom = View.prototype.layoutVertical.call( this, top );
-      for (component in instance.composite) {
-        instance.composite[component].bounds = instance.bounds;
-      }
-      return bottom;
-    };
-
-    this.layoutHorizontal = function( left ) {
-      var right = View.prototype.layoutHorizontal.call( this, left );
-      for (component in instance.composite) {
-        instance.composite[component].bounds = instance.bounds;
-      }
-      return right;
-    };
+    View.call( this, controller, this.factory );
   }
   
   Button.prototype = new View();

@@ -18,7 +18,7 @@
   function pauseGame() {
   
     var buttonPlay = { icon: 'public/images/icon.svg', text: app.language.play, onClick: 'resume', frame: '' }
-      , buttonReset = { text: app.language.reset, onClick: 'reset', frame: '' }
+      , buttonReset = { textbox: app.language.reset + ' bla bla bak rask siok', onClick: 'reset', frame: '' }
       , buttonDebug = { onClick: 'toggle', frame: '' }
       , menu = { 
           button: [ buttonPlay, buttonReset, buttonDebug ],

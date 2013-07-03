@@ -10,6 +10,7 @@
     this.register( 'frame', Frame );
     this.register( 'button', Button );
     this.register( 'box', CheckBox );
+    this.register( 'textbox', TextBox );
   }
   
   PrettyFactory.prototype = new Factory();
