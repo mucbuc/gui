@@ -89,8 +89,7 @@ function ClearRect(x, y, width, height)
     context.clearRect(x, y, width, height);
 }
 
-function DrawText(x, y, color, text, size, bold)
-{
+function SetDrawTextContext(color, size, bold) {
     boldText = "";
     if (bold)
     {
@@ -99,7 +98,12 @@ function DrawText(x, y, color, text, size, bold)
     context.textBaseline = 'bottom';
     context.font = boldText + (size.toString() + "px Arial");
     context.fillStyle = color;
-    context.fillText(text, x, y, 200);
+}
+
+function DrawText(x, y, color, text, size, bold, width)
+{
+    SetDrawTextContext(color, size, bold);
+    context.fillText(text, x, y, width );
 }
 
 function OnMouseDown(x, y)
