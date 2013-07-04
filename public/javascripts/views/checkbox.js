@@ -6,7 +6,7 @@
       var instance = this
         , model = controller.model;
       
-      ClickRect.call( this, controller, toggle );
+      ClickRect.call( this, new Controller( controller, 'onClick' ) );
 
       controller.once( 'unload', function() {
         controller.removeListener( 'render', render );
@@ -20,11 +20,6 @@
     function update() {
       model = controller.model;
     }
-
-    function toggle() {
-      controller.model != controller.model;
-      controller.onTickEmit( controller.model.onToggle );
-    }
   
     function render() {
       var GAP = 5
@@ -33,7 +28,7 @@
         
       DrawRect(bounds.left, bounds.top, bounds.width(), bounds.height(), true, "rgb(80, 100, 90)");
       
-      if (model) {
+      if (model.state) {
         DrawRect(bounds.left + GAP, bounds.top + GAP, bounds.width() - GAP_DUB, bounds.height() - GAP_DUB, true, "rgb(250, 250, 250)");
       }
       else {

@@ -19,10 +19,11 @@
   
     var buttonPlay = { icon: 'public/images/icon.svg', text: app.language.play, onClick: 'resume', frame: '' }
       , buttonReset = { textbox: app.language.reset, onClick: 'reset', frame: '' }
-      , buttonDebug = { box: undefined, onClick: 'toggle' }
+      , checkDebug = { text: '', frame: '' }
+      , clickDebug = { box: { state: undefined, onClick: 'toggle' } }
       , menu = { 
-          button: [ buttonPlay, buttonReset, buttonDebug ],
-          text: ''
+          button: [ buttonPlay, buttonReset ],
+          segment: [ checkDebug, clickDebug ]
       };
 
     syncElements();
@@ -50,9 +51,9 @@
     }  
 
     function syncElements() {
-      if (buttonDebug.box != app.configuration.DEBUG) {
-        buttonDebug.box = app.configuration.DEBUG;
-        menu.text = 'debug ' + (buttonDebug.box ? 'on' : 'off');
+      if (clickDebug.box.state != app.configuration.DEBUG) {
+        clickDebug.box.state = app.configuration.DEBUG;
+        checkDebug.text = 'debug ' + (app.configuration.DEBUG ? 'on' : 'off');
         gui.onTickEmit( 'update' );
       }
     }

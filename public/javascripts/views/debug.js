@@ -9,9 +9,10 @@
     this.register( 'text', Label );
     this.register( 'icon', DebugElement );
     this.register( 'frame', Frame );
-    this.register( 'button', Button );
+    this.register( 'button', LayerView );
     this.register( 'box', CheckBox );
     this.register( 'textbox', TextBox );
+    this.register( 'segment', LayerView );
   }
   
   DebugFactory.prototype = new Factory();
@@ -43,7 +44,7 @@
         , delta = new Vec( size.x, 0 )
         , sl = new SnapLine( direction.DOWN );
 
-      View.call( instance, controller, instance.factory );
+      ColumnView.call( instance, controller, instance.factory );
       elements = instance.composite;
     
       for (var type in elements) {
@@ -64,7 +65,7 @@
     } );
   }
 
-  DebugView.prototype = new View();
+  DebugView.prototype = new ColumnView();
   
   exports.DebugFactory = DebugFactory;
   

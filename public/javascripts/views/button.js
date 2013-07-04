@@ -3,7 +3,7 @@
   function Button( controller ) {
 
     View.call( this, controller, this.factory );
- 
+ /*
   	this.layoutVertical = function( top ) {
 	
       for (component in this.composite) {
@@ -21,7 +21,7 @@
       }
       return View.prototype.layoutHorizontal.call( this, left );
     };
-
+*/
   }
   
   Button.prototype = new View();
