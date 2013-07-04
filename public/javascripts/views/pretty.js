@@ -34,8 +34,7 @@
         controller.removeListener( 'render)', preRender );
       });
 
-      //controller.on( 'render', preRender );
-      preRender();
+      controller.context.textAlign = 'center';
 
       View.call( instance, controller, instance.factory );
       elements = instance.composite;
@@ -58,7 +57,7 @@
       delta.y += sl.step( new Vec(100, 0) );
 
       function preRender() {
-        controller.context.textAlign = 'center';
+        
       }
     } );
    }

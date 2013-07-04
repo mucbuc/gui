@@ -33,6 +33,8 @@
     var instance = this
       , elements = 0;
     
+    controller.context.textAlign = 'left';
+
     controller.once( 'load', function() {
     
       var n = 4 

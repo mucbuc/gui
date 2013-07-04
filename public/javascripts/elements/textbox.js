@@ -13,22 +13,30 @@
 
       controller.once( 'unload', function() {
         controller.removeListener( 'update', update ); 
-        controller.removeListener( 'render', render ); 
       });
       controller.on( 'update', update ); 
-      controller.on( 'render', render );
     }
 
-    function render() {
+    this.layoutVertical = function( top ) {
+      this.offset = this.calcAlignOffset();
+      return TextBox.prototype.layoutVertical.call( this, top ); 
+    };
+
+    this.layoutHorizontal = function( left ) {
+      this.offset = this.calcAlignOffset();
+      return TextBox.prototype.layoutHorizontal.call( this, left );    
+    };
+
+    this.render = function() {
       if (lines) {
 
         var bounds = instance.bounds.clone();
         lines.forEach( function( line ) {
-          DrawText( bounds.left, bounds.top, instance.color, line, instance.fontSize, false, instance.width );
+          DrawText( bounds.left + instance.offset, bounds.top, instance.color, line, instance.fontSize, false, instance.width );
           bounds.top += instance.fontSize;
         });
       }
-    } 
+    }; 
 
     function update() {
 

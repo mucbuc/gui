@@ -10,8 +10,9 @@ objective:
     
     var instance = this
       , model
-      , width = 0
-      , offset = 0; 
+      , width = 0;
+
+    this.offset = 0; 
 
     Element.call( this, controller );
 
@@ -30,24 +31,19 @@ objective:
     }
 
     this.layoutVertical = function( top ) {
-      offset = calcAlignOffset();
+      this.offset = this.calcAlignOffset();
       return Label.prototype.layoutVertical.call( this, top ); 
     };
 
     this.layoutHorizontal = function( left ) {
-      offset = calcAlignOffset();
+      this.offset = this.calcAlignOffset();
       return Label.prototype.layoutHorizontal.call( this, left );    
     };
 
-    function calcAlignOffset() {
-      switch (controller.context.textAlign) {
-        case 'center':
-          return instance.bounds.width() * 0.5;
-        case 'right': 
-          return instance.bounds.width();
-      }
-      return 0;
-    }
+    this.render = function() {
+      var bounds = instance.bounds;
+      DrawText( bounds.left + this.offset, bounds.top, instance.color, model, instance.fontSize, false, width );
+    };     
 
     function update() {
       model = controller.model;
@@ -56,11 +52,10 @@ objective:
         width = getTextWidth( model, controller.context );
       }
     }
-  
+
     function render() {
-      var bounds = instance.bounds;
-      DrawText( bounds.left + offset, bounds.top, instance.color, model, instance.fontSize, false, width );
-    }      
+      instance.render();
+    }
   }
   
   Label.prototype = new Element();
