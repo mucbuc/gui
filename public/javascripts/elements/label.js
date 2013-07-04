@@ -11,55 +11,54 @@ objective:
     var instance = this
       , model
       , width = 0
-      , align = ''
-      , offset = 0
-      , aligned = false;
-    
+      , offset = 0; 
+
     Element.call( this, controller );
 
-    // set model 
-    update();
-    
-    // listeners
-    controller.once( 'unload', function() { 
-      controller.removeListener( 'render', render );
-      controller.removeListener( 'update', update );
-    } );
-    controller.on( 'render', render );
-    controller.on( 'update', update );
-
-    function alignOffset( left ) {
-      switch (controller.context.textAlign) {
-        case 'center':
-          offset = instance.bounds.width() * 0.5;
-          break;
-        case 'right': 
-          offset = instance.bounds.width();
-          break;
-        case 'left':
-        default:
-          offset = 0;
-      }
-      aligned = true;
+    if (typeof controller !== 'undefined') {
+      
+      // set model 
+      update();
+      
+      // listeners
+      controller.once( 'unload', function() { 
+        controller.removeListener( 'render', render );
+        controller.removeListener( 'update', update );
+      } );
+      controller.on( 'render', render );
+      controller.on( 'update', update );
     }
 
-    // callbacks
+    this.layoutVertical = function( top ) {
+      offset = calcAlignOffset();
+      return Label.prototype.layoutVertical.call( this, top ); 
+    };
+
+    this.layoutHorizontal = function( left ) {
+      offset = calcAlignOffset();
+      return Label.prototype.layoutHorizontal.call( this, left );    
+    };
+
+    function calcAlignOffset() {
+      switch (controller.context.textAlign) {
+        case 'center':
+          return instance.bounds.width() * 0.5;
+        case 'right': 
+          return instance.bounds.width();
+      }
+      return 0;
+    }
+
     function update() {
       model = controller.model;
       if (model && model.length) {
         SetDrawTextContext( instance.color, instance.fontSize, false );
         width = getTextWidth( model, controller.context );
-        align = controller.context.textAlign;
-        aligned = false;
       }
-    } 
+    }
+  
     function render() {
       var bounds = instance.bounds;
-      
-      if (!aligned) {
-        alignOffset();
-      }
-    
       DrawText( bounds.left + offset, bounds.top, instance.color, model, instance.fontSize, false, width );
     }      
   }

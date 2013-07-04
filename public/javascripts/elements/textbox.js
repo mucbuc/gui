@@ -5,16 +5,19 @@
     var instance = this
       , lines;
     
-    //View.call( this, controller, instance.factory );
-  
-    this.width = 100;
+    Label.call( this, controller );
+    
+    if (typeof controller !== 'undefined') {
 
-    controller.once( 'unload', function() {
-      controller.removeListener( 'update', update ); 
-      controller.removeListener( 'render', render ); 
-    });
-    controller.on( 'update', update ); 
-    controller.on( 'render', render );
+      this.width = 100;
+
+      controller.once( 'unload', function() {
+        controller.removeListener( 'update', update ); 
+        controller.removeListener( 'render', render ); 
+      });
+      controller.on( 'update', update ); 
+      controller.on( 'render', render );
+    }
 
     function render() {
       if (lines) {
@@ -77,12 +80,10 @@
       }
     
       lines.push( pass );
-      console.log( lines );
     }
   }
 
-  TextBox.prototype.fontSize = 20;
-  TextBox.prototype.color = "rgb(0, 0, 130)";
+  TextBox.prototype = new Label();
 
   exports.TextBox = TextBox;
 

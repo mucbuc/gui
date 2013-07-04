@@ -19,40 +19,49 @@
     
     var instance = this
       , elements = 0;
-    
+   
     controller.once( 'load', function() {
-
-      console.log( 'pretty view loaded' );
     
       var n = 4 
         , size = new Vec( 400 / 4, 400 / 6 )
         , p = new Vec( 0, 0 )
-        , delta = new Vec( size.x, 0 );
+        , delta = new Vec( size.x, 0 )
+        , sl = new SnapLine( direction.DOWN );
+
+      console.log( 'pretty view loaded' );
+
+      controller.once( 'unload', function() {
+        controller.removeListener( 'render)', preRender );
+      });
+
+      //controller.on( 'render', preRender );
+      preRender();
 
       View.call( instance, controller, instance.factory );
       elements = instance.composite;
-          
+    
       for (var type in elements) {
         var kind = elements[type];
-        
-        if (kind instanceof Array) {
-          
-          var sl = new SnapLine( direction.DOWN );
 
+        if (kind instanceof Array) {
           kind.forEach( function( element ) {
-            element.bounds = new Rect( p, size );
+            element.bounds.size = size;
             sl.attach( element );
           } );
-          delta.y += sl.step( new Vec(100, 0) );
-          p = p.add( delta )
         } 
         else {
-           kind.bounds = new Rect( p, size );
-           p = p.add( delta );
+          kind.bounds.size = size;
+          sl.attach( kind ); 
         }
       }
+
+      delta.y += sl.step( new Vec(100, 0) );
+
+      function preRender() {
+        controller.context.textAlign = 'center';
+      }
     } );
-  }
+   }
 
   PrettyView.prototype = new View();
   

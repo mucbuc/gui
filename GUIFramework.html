@@ -23,9 +23,9 @@
 <script src = 'public/javascripts/elements/label.js'></script>
 <script src = 'public/javascripts/elements/icon.js'></script>
 <script src = 'public/javascripts/elements/frame.js'></script>
+<script src = 'public/javascripts/elements/textbox.js'></script>
 
 <script src = 'public/javascripts/views/button.js'></script>
-<script src = 'public/javascripts/views/textbox.js'></script>
 <script src = 'public/javascripts/views/checkbox.js'></script>
 <script src = 'public/javascripts/views/debug.js'></script>
 <script src = 'public/javascripts/views/pretty.js'></script>
@@ -90,21 +90,20 @@ function ClearRect(x, y, width, height)
     context.clearRect(x, y, width, height);
 }
 
-function SetDrawTextContext(color, size, bold) {
+function SetDrawTextContext(color, size, bold ) {  
     boldText = "";
     if (bold)
     {
         boldText = "bold";
     }
     context.textBaseline = 'top';
-    context.textAlign = 'center';
     context.font = boldText + (size.toString() + "px Arial");
     context.fillStyle = color;
 }
 
-function DrawText(x, y, color, text, size, bold, width)
+function DrawText(x, y, color, text, size, bold, width)     
 {
-    SetDrawTextContext(color, size, bold);
+    SetDrawTextContext(color, size, bold );
     context.fillText(text, x, y, width );
 }
 
