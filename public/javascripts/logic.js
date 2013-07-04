@@ -19,7 +19,7 @@
   
     var buttonPlay = { icon: 'public/images/icon.svg', text: app.language.play, onClick: 'resume', frame: '' }
       , buttonReset = { textbox: app.language.reset, onClick: 'reset', frame: '' }
-      , buttonDebug = { onClick: 'toggle', frame: '' }
+      , buttonDebug = { box: undefined, onClick: 'toggle' }
       , menu = { 
           button: [ buttonPlay, buttonReset, buttonDebug ],
           text: ''
