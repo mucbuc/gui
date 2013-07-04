@@ -4,35 +4,40 @@
     
     var instance = this
       , lines;
+
+    this.offset = new Vec();
     
-    Label.call( this, controller );
+    Element.call( this, controller );
     
     if (typeof controller !== 'undefined') {
 
-      this.width = 100;
+      update();
 
       controller.once( 'unload', function() {
-        controller.removeListener( 'update', update ); 
+        controller.removeListener( 'update', update );
+        controller.removeListener( 'render', render ); 
       });
       controller.on( 'update', update ); 
+      controller.on( 'render', render );
     }
 
     this.layoutVertical = function( top ) {
-      this.offset = this.calcAlignOffset();
+      this.offset.x = this.calcAlignOffset();
+      this.offset.y = (this.bounds.height() - lines.length * this.fontSize) / 2;
       return TextBox.prototype.layoutVertical.call( this, top ); 
     };
 
     this.layoutHorizontal = function( left ) {
-      this.offset = this.calcAlignOffset();
+      this.offset.x = this.calcAlignOffset();
+      this.offset.y = (this.bounds.height() - lines.length * this.fontSize) / 2;
       return TextBox.prototype.layoutHorizontal.call( this, left );    
     };
 
-    this.render = function() {
+    function render() {
       if (lines) {
-
         var bounds = instance.bounds.clone();
         lines.forEach( function( line ) {
-          DrawText( bounds.left + instance.offset, bounds.top, instance.color, line, instance.fontSize, false, instance.width );
+          DrawText( bounds.left + instance.offset.x, bounds.top + instance.offset.y, instance.color, line, instance.fontSize, false, bounds.width() );
           bounds.top += instance.fontSize;
         });
       }
@@ -91,7 +96,9 @@
     }
   }
 
-  TextBox.prototype = new Label();
+  TextBox.prototype = new Element();
+  TextBox.prototype.fontSize = 20;
+  TextBox.prototype.color = "rgb(0, 0, 130)";
 
   exports.TextBox = TextBox;
 

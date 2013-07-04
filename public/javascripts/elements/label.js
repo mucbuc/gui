@@ -12,7 +12,7 @@ objective:
       , model
       , width = 0;
 
-    this.offset = 0; 
+    this.offset = new Vec(); 
 
     Element.call( this, controller );
 
@@ -31,19 +31,16 @@ objective:
     }
 
     this.layoutVertical = function( top ) {
-      this.offset = this.calcAlignOffset();
+      this.offset.x = this.calcAlignOffset();
+      this.offset.y = (this.bounds.height() - this.fontSize) / 2;
       return Label.prototype.layoutVertical.call( this, top ); 
     };
 
     this.layoutHorizontal = function( left ) {
-      this.offset = this.calcAlignOffset();
+      this.offset.x = this.calcAlignOffset();
+      this.offset.y = (this.bounds.height() - this.fontSize) / 2;
       return Label.prototype.layoutHorizontal.call( this, left );    
     };
-
-    this.render = function() {
-      var bounds = instance.bounds;
-      DrawText( bounds.left + this.offset, bounds.top, instance.color, model, instance.fontSize, false, width );
-    };     
 
     function update() {
       model = controller.model;
@@ -54,7 +51,8 @@ objective:
     }
 
     function render() {
-      instance.render();
+      var bounds = instance.bounds;
+      DrawText( bounds.left + instance.offset.x, bounds.top + instance.offset.y, instance.color, model, instance.fontSize, false, width );
     }
   }
   

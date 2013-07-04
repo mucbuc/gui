@@ -23,7 +23,7 @@
     controller.once( 'load', function() {
     
       var n = 4 
-        , size = new Vec( 400 / 4, 400 / 6 )
+        , size = new Vec( 400 / 3, 400 / 8 )
         , p = new Vec( 0, 0 )
         , delta = new Vec( size.x, 0 )
         , sl = new SnapLine( direction.DOWN );
