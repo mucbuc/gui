@@ -12,7 +12,8 @@
     this.register( 'button', LayerView );
     this.register( 'box', CheckBox );
     this.register( 'textbox', TextBox );
-    this.register( 'segment', LayerView );
+    this.register( 'row', RowView );
+    this.register( 'layer', LayerView );
   }
   
   DebugFactory.prototype = new Factory();
