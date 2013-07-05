@@ -18,8 +18,11 @@
       if (controller.model.textbox) {
         this.composite.textbox = builder.buildComposite( new Controller( controller, 'textbox' ), 'textbox' ); 
       }
-      
-      this.composite.text = builder.buildComposite( new Controller( controller, 'text' ), 'text' ); 
+
+      if (controller.model.text) {
+        this.composite.text = builder.buildComposite( new Controller( controller, 'text' ), 'text' ); 
+      }
+
       this.composite.onClick = builder.buildComposite( new Controller( controller, 'onClick' ), 'onClick' ); 
     }
   }
