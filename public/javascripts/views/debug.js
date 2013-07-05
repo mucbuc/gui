@@ -10,10 +10,11 @@
     this.register( 'icon', DebugElement );
     this.register( 'frame', Frame );
     this.register( 'button', LayerView );
-    this.register( 'box', CheckBox );
+    this.register( 'checkbox', CheckBox );
     this.register( 'textbox', TextBox );
     this.register( 'row', RowView );
     this.register( 'layer', LayerView );
+    this.register( 'checkbox', CheckBox );
   }
   
   DebugFactory.prototype = new Factory();
@@ -40,7 +41,7 @@
     controller.once( 'load', function() {
     
       var n = 4 
-        , size = new Vec( 400 / 4, 400 / 6 )
+        , size = new Vec( 400 / 4, 400 / 8 )
         , p = new Vec( 0, 0 )
         , delta = new Vec( size.x, 0 )
         , sl = new SnapLine( direction.DOWN );

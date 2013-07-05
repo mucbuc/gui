@@ -22,14 +22,12 @@
     }
 
     this.layoutVertical = function( top ) {
-      this.offset.x = this.calcAlignOffset();
-      this.offset.y = (this.bounds.height() - lines.length * this.fontSize) / 2;
+      this.offset.y = this.fontSize + (this.bounds.height() - lines.length * this.fontSize) / 2;
       return TextBox.prototype.layoutVertical.call( this, top ); 
     };
 
     this.layoutHorizontal = function( left ) {
       this.offset.x = this.calcAlignOffset();
-      this.offset.y = (this.bounds.height() - lines.length * this.fontSize) / 2;
       return TextBox.prototype.layoutHorizontal.call( this, left );    
     };
 

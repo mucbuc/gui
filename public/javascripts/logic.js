@@ -19,7 +19,7 @@
   
     var buttonPlay = { icon: 'public/images/icon.svg', text: app.language.play, onClick: 'resume', frame: '' }
       , buttonReset = { textbox: app.language.reset, onClick: 'reset', frame: '' }
-      , checkDebug = {  box: { state: undefined, onClick: 'toggle' }, 
+      , checkDebug = {  checkbox: { state: undefined, onClick: 'toggle' }, 
                         text: '',
                      }
       , menu = { 
@@ -52,8 +52,8 @@
     }  
 
     function syncElements() {
-      if (checkDebug.box.state != app.configuration.DEBUG) {
-        checkDebug.box.state = app.configuration.DEBUG;
+      if (checkDebug.checkbox.state != app.configuration.DEBUG) {
+        checkDebug.checkbox.state = app.configuration.DEBUG;
         checkDebug.text = 'debug ' + (app.configuration.DEBUG ? 'on' : 'off');
         gui.onTickEmit( 'update' );
       }

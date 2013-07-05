@@ -31,14 +31,12 @@ objective:
     }
 
     this.layoutVertical = function( top ) {
-      this.offset.x = this.calcAlignOffset();
       this.offset.y = (this.bounds.height() - this.fontSize) / 2;
       return Label.prototype.layoutVertical.call( this, top ); 
     };
 
     this.layoutHorizontal = function( left ) {
       this.offset.x = this.calcAlignOffset();
-      this.offset.y = (this.bounds.height() - this.fontSize) / 2;
       return Label.prototype.layoutHorizontal.call( this, left );    
     };
 
@@ -52,7 +50,7 @@ objective:
 
     function render() {
       var bounds = instance.bounds;
-      DrawText( bounds.left + instance.offset.x, bounds.top + instance.offset.y, instance.color, model, instance.fontSize, false, width );
+      DrawText( bounds.left + instance.offset.x, bounds.bottom - instance.offset.y, instance.color, model, instance.fontSize, false, width );
     }
   }
   
