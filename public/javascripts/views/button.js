@@ -13,7 +13,12 @@
         this.composite.icon = builder.buildComposite( new Controller( controller, 'icon' ), 'icon' ); 
       }
 
-      this.composite.frame = builder.buildComponent( 'frame', controller ); 
+      this.composite.frame = builder.buildComponent( 'frame', controller );
+
+      if (controller.model.textbox) {
+        this.composite.textbox = builder.buildComposite( new Controller( controller, 'textbox' ), 'textbox' ); 
+      }
+      
       this.composite.text = builder.buildComposite( new Controller( controller, 'text' ), 'text' ); 
       this.composite.onClick = builder.buildComposite( new Controller( controller, 'onClick' ), 'onClick' ); 
     }
