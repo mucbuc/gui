@@ -38,10 +38,12 @@
 <script src = 'public/javascripts/game.js'></script>
 <script type="text/javascript">
 
-var context = null;
+var context = null
+  , clientBounds = null;
 
 function MouseEvent(handler, ev)
 {
+/*
 	var x, y;
 	
 	// Get the mouse position relative to the canvas element.
@@ -52,8 +54,8 @@ function MouseEvent(handler, ev)
 		x = ev.offsetX;
 		y = ev.offsetY;
 	}
-	
-	handler(x, y);
+*/	
+	handler(ev.x - clientBounds.left + window.scrollX, ev.y - clientBounds.top + window.scrollY );
 }
 
 function Init()
@@ -64,6 +66,8 @@ function Init()
 	canvas.addEventListener('mouseup',   	MouseEvent.bind(null, OnMouseUp), false);	
 	canvas.addEventListener('mousemove',   	MouseEvent.bind(null, OnMouseMove), false);	
 
+    clientBounds = canvas.getBoundingClientRect();
+
     app.gui = new Gui();
     app.gui.canvas = canvas;
     app.gui.context = context;
@@ -71,6 +75,8 @@ function Init()
     app.gui.click = document.getElementById("click");
 
 	logic.init();
+
+    setInterval(Update, 20);
 }
 
 function DrawRect(x, y, width, height, filled, color)
