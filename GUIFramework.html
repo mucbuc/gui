@@ -43,19 +43,21 @@ var context = null
 
 function MouseEvent(handler, ev)
 {
-/*
 	var x, y;
 	
 	// Get the mouse position relative to the canvas element.
-	if (ev.layerX || ev.layerX == 0) { // Firefox
-		x = ev.layerX;
-		y = ev.layerY;
-	} else if (ev.offsetX || ev.offsetX == 0) { // Opera
-		x = ev.offsetX;
-		y = ev.offsetY;
+	if (typeof ev.x === 'undefined') { // Firefox
+		x = ev.pageX;
+		y = ev.pageY;
+	} else 
+    { 
+    	x = ev.x + window.scrollX;
+        y = ev.y + window.scrollY;
 	}
-*/	
-	handler(ev.x - clientBounds.left + window.scrollX, ev.y - clientBounds.top + window.scrollY );
+    //handler( x - clientBounds.left , y - clientBounds.top + window.scrollY );
+
+	
+    handler( x - clientBounds.left, y - clientBounds.top );
 }
 
 function Init()
