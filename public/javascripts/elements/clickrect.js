@@ -31,6 +31,9 @@
         else {
           controller.onTickEmit( controller.model );
         }
+        if (controller.click) {
+          controller.click.play();
+        }
       }
     }
   }

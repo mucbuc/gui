@@ -14,6 +14,7 @@
     },
     configuration: {
       DEBUG: true,
+      sound: true,
     }, 
     language: german,
   };

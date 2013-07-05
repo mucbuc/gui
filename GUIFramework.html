@@ -68,6 +68,8 @@ function Init()
     app.gui.canvas = canvas;
     app.gui.context = context;
 
+    app.gui.click = document.getElementById("click");
+
 	logic.init();
 }
 
@@ -152,5 +154,6 @@ setInterval(Update, 20);
 </head>
 <body onload="Init();">
 <canvas id="maincanvas" width="400" height="400"></canvas>
+<audio src='public/audio/click02.wav' id="click"></audio>
 </body>
 </html>

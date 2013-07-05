@@ -19,13 +19,14 @@
   
     var buttonPlay = { icon: 'public/images/icon.svg', text: app.language.play, onClick: 'resume', frame: '' }
       , buttonReset = { textbox: app.language.reset, onClick: 'reset', frame: '' }
-      , checkDebug = {  checkbox: { state: undefined, onClick: 'toggle' }, 
-                        text: '',
-                     }
+      , checkDebug = { checkbox: { state: undefined, onClick: 'toggleDebug' }, text: '' }
+      , checkSound = { checkbox: { state: undefined, onClick: 'toggleSound' }, text: '' }
       , menu = { 
           button: [ buttonPlay, buttonReset ],
-          layer: { row: checkDebug, frame: '' }, 
-      };
+          layer: [ { row: checkSound, frame: '' }, 
+                   { row: checkDebug, frame: '' }, 
+          ] }
+      , click = app.gui.click;
 
     syncElements();
     gui.setMenu( menu );
@@ -36,15 +37,22 @@
       gui.once( 'unload', function() { 
         gui.removeListener( 'resume', resumeGame );
         gui.removeListener( 'reset', confirmReset );
-        gui.removeListener( 'toggle', toggleDebug );
+        gui.removeListener( 'toggleDebug', toggleDebug );
+        gui.removeListener( 'toggleSound', toggleSound );
         gui.removeListener( 'update', syncElements );
       } ); 
       
       gui.once( 'resume', resumeGame );
       gui.once( 'reset', confirmReset );
-      gui.on( 'toggle', toggleDebug );
+      gui.on( 'toggleDebug', toggleDebug );
+      gui.on( 'toggleSound', toggleSound );
       gui.on( 'update', syncElements );
     } );
+
+    function toggleSound() {
+      app.configuration.sound = !app.configuration.sound;
+      syncElements();
+    }
 
     function toggleDebug() {
       app.configuration.DEBUG = !app.configuration.DEBUG;
@@ -52,9 +60,33 @@
     }  
 
     function syncElements() {
+
+      var update = false;
+      
       if (checkDebug.checkbox.state != app.configuration.DEBUG) {
         checkDebug.checkbox.state = app.configuration.DEBUG;
         checkDebug.text = 'debug ' + (app.configuration.DEBUG ? 'on' : 'off');
+        update = true;
+      }
+
+      if (checkSound.checkbox.state != app.configuration.sound) {
+        checkSound.checkbox.state = app.configuration.sound;
+        checkSound.text = 'sound ' + (app.configuration.sound ? 'on' : 'off' );
+        
+        if (!app.configuration.sound) {
+          click = app.gui.click;
+          app.gui.click = null;
+        }
+        else
+        {
+          app.gui.click = click;
+        }
+      
+
+        update = true;
+      }
+    
+      if (update) {
         gui.onTickEmit( 'update' );
       }
     }
