@@ -9,9 +9,10 @@ objective:
   function Icon( controller ) {
 
     var img = new Image()
-	  , instance = this;
+	  , instance = this
+    , loaded = false;
 	  
-	Element.call( this, controller );  
+	  Element.call( this, controller );  
 
     controller.once( 'unload', function() {
       controller.removeListener( 'render', render );
@@ -19,21 +20,28 @@ objective:
       delete instance;
     } );
     
-	img.src = controller.model;
+    controller.on( 'render', render );
+    
+  	img.src = controller.model;
+    
     img.onload = function() {
-      controller.on( 'render', render );
       controller.on( 'update', update );
+      loaded = true;
     };
     
     function update() { 
       if (img.src != controller.model) {
         img.src = controller.model;
+        loaded = false;
       }
     }
     
     function render() {
-      var bounds = instance.bounds;
-      controller.context.drawImage( img, bounds.left, bounds.top, bounds.width(), bounds.height() );
+      if (loaded) {
+        var bounds = instance.bounds;
+        controller.context.drawImage( img, bounds.left, bounds.top, bounds.width(), bounds.height() );
+      }
+      // console.log( 'render icon' );
     }
   }
   

@@ -1,30 +1,25 @@
 (function(){
   
-  function Button( controller ) {
+  function Button( controller, factory ) {
 
-    View.call( this, controller, this.factory );
- /*
-  	this.layoutVertical = function( top ) {
-	
-      for (component in this.composite) {
-        this.composite[component].bounds.size = this.bounds.size;
-        this.composite[component].layoutVertical( top );
-      }
-      return View.prototype.layoutVertical.call( this, top );
-    };
+    LayerView.call( this, 'undefined'/*controller*/, factory );
 
-    this.layoutHorizontal = function( left ) {
-	
-      for (component in this.composite) {
-        //this.composite[component].bounds.size = this.bounds.size;
-        this.composite[component].layoutHorizontal( left );
+    if (typeof controller !== 'undefined') {
+         
+      var builder = new Builder( factory ); 
+      this.composite = {};
+
+      if (controller.model.icon) {
+        this.composite.icon = builder.buildComposite( new Controller( controller, 'icon' ), 'icon' ); 
       }
-      return View.prototype.layoutHorizontal.call( this, left );
-    };
-*/
+
+      this.composite.frame = builder.buildComponent( 'frame', controller ); 
+      this.composite.text = builder.buildComposite( new Controller( controller, 'text' ), 'text' ); 
+      this.composite.onClick = builder.buildComposite( new Controller( controller, 'onClick' ), 'onClick' ); 
+    }
   }
   
-  Button.prototype = new View();
+  Button.prototype = new LayerView();
   
   exports.Button = Button;
 
