@@ -17,6 +17,7 @@
       sound: true,
     }, 
     language: german,
+    lang: 'en'
   };
 
   exports.app = app;

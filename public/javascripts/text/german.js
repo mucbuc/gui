@@ -7,6 +7,10 @@
 		resetQuestion: 'Bist du sicher?',
 		yes: 'Ja',
 		no: 'Nein',
+		language: 'Sprache',
+		english: 'Englisch',
+		german: 'Deutsch',
+		back: 'zur\u00FCck'
 	};
 
 	exports.german = german;
