@@ -97,7 +97,9 @@ function DrawRect(x, y, width, height, filled, color)
 
 function ClearRect(x, y, width, height)
 {
-    context.clearRect(x, y, width, height);
+    if (context) {
+        context.clearRect(x, y, width, height);
+    }
 }
 
 function SetDrawTextContext(color, size, bold ) {  

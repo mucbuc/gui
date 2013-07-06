@@ -13,6 +13,8 @@
 
   function resetGame() {
     app.configuration.DEBUG = true;
+    app.language = 'en';
+    strings = english;
     pauseGame();
   }
 
