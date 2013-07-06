@@ -8,10 +8,10 @@
     this.register( 'text', Label );
     this.register( 'frame', Frame );
     this.register( 'button', Button );
-    this.register( 'checkbox', CheckBox );
-    this.register( 'textbox', TextBox );
+    this.register( 'checkBox', CheckBox );
+    this.register( 'textBox', TextBox );
     this.register( 'row', RowView );
-    this.register( 'layer', LayerView );
+    this.register( 'layer', Panel );
     this.register( 'icon', Icon );
   }
   PrettyFactory.prototype = new Factory();

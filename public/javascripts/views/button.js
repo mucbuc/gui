@@ -9,21 +9,29 @@
       var builder = new Builder( factory ); 
       this.composite = {};
 
-      if (controller.model.icon) {
+      if (typeof controller.model.frame !== 'undefined') {
+        this.composite.frame = builder.buildComponent( 'frame', controller );
+      }
+
+      if (typeof controller.model.icon !== 'undefined') {
         this.composite.icon = builder.buildComposite( new Controller( controller, 'icon' ), 'icon' ); 
       }
 
-      this.composite.frame = builder.buildComponent( 'frame', controller );
-
-      if (controller.model.textbox) {
-        this.composite.textbox = builder.buildComposite( new Controller( controller, 'textbox' ), 'textbox' ); 
+      if (typeof controller.model.textBox !== 'undefined') {
+        this.composite.textBox = builder.buildComposite( new Controller( controller, 'textBox' ), 'textBox' ); 
       }
 
-      if (controller.model.text) {
+      if (typeof controller.model.text !== 'undefined') {
         this.composite.text = builder.buildComposite( new Controller( controller, 'text' ), 'text' ); 
       }
 
-      this.composite.onClick = builder.buildComposite( new Controller( controller, 'onClick' ), 'onClick' ); 
+      if (typeof controller.model.checkBox !== 'undefined') {
+        this.composite.checkBox = builder.buildComposite( new Controller( controller, 'checkBox' ), 'checkBox' ); 
+      }
+
+      if (typeof controller.model.onClick !== 'undefined') {
+        this.composite.onClick = builder.buildComposite( new Controller( controller, 'onClick' ), 'onClick' ); 
+      }
     }
   }
   

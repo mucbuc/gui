@@ -10,10 +10,10 @@
     this.register( 'icon', DebugElement );
     this.register( 'frame', Frame );
     this.register( 'button', Button );
-    this.register( 'textbox', TextBox );
+    this.register( 'textBox', TextBox );
     this.register( 'row', RowView );
     this.register( 'layer', LayerView );
-    this.register( 'checkbox', CheckBox );
+    this.register( 'checkBox', CheckBox );
   }
   
   DebugFactory.prototype = new Factory();

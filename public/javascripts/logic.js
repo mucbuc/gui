@@ -21,10 +21,10 @@
   function pauseGame() {
   
     var buttonPlay = { icon: 'public/images/icon.svg', text: strings.play, onClick: 'resumeGame', frame: '' }
-      , buttonReset = { textbox: strings.reset, onClick: 'resetGame', frame: '' }
-      , buttonLanguage = { text: strings.language, onClick: 'setLanguage' }
-      , checkDebug = { checkbox: { onClick: 'toggleDebug' }, text: '' }
-      , checkSound = { checkbox: { onClick: 'toggleSound' }, text: '' }
+      , buttonReset = { textBox: strings.reset, onClick: 'resetGame', frame: '' }
+      , buttonLanguage = { text: strings.language, onClick: 'setLanguage', frame:'' }
+      , checkDebug = { checkBox: { onClick: 'toggleDebug' }, text: 'debug' }
+      , checkSound = { checkBox: { onClick: 'toggleSound' }, text: 'sound' }
       , menu = { 
           button: [ buttonPlay, buttonReset, buttonLanguage ],
           layer: [ { row: checkSound, frame: '' }, 
@@ -68,22 +68,19 @@
 
       var update = false;
       
-      if (checkDebug.checkbox.state != app.configuration.DEBUG) {
-        checkDebug.checkbox.state = app.configuration.DEBUG;
-        checkDebug.text = 'debug ' + (app.configuration.DEBUG ? 'on' : 'off');
+      if (checkDebug.checkBox.state != app.configuration.DEBUG) {
+        checkDebug.checkBox.state = app.configuration.DEBUG;
         update = true;
       }
 
-      if (checkSound.checkbox.state != app.configuration.sound) {
-        checkSound.checkbox.state = app.configuration.sound;
-        checkSound.text = 'sound ' + (app.configuration.sound ? 'on' : 'off' );
+      if (checkSound.checkBox.state != app.configuration.sound) {
+        checkSound.checkBox.state = app.configuration.sound;
         
         if (!app.configuration.sound) {
           click = app.gui.click;
           app.gui.click = null;
         }
-        else
-        {
+        else {
           app.gui.click = click;
         }
       
@@ -99,8 +96,8 @@
   function setLanguage() {
 
     var buttonCancel = { text: strings.back, onClick: 'back', frame: '' }
-      , checkEnglish = { checkbox: { onClick: 'toggleEnglish'}, text: strings.english }
-      , checkGerman = { checkbox: { onClick:'toggleGerman'}, text: strings.german }
+      , checkEnglish = { checkBox: { onClick: 'toggleEnglish'}, text: strings.english }
+      , checkGerman = { checkBox: { onClick:'toggleGerman'}, text: strings.german }
       , menu = { 
           button: [ buttonCancel ], 
           layer: [ { row: checkEnglish, frame: '' },
@@ -128,12 +125,12 @@
     function syncLanguages() {
       switch( app.lang ) {
         case 'en':
-          checkEnglish.checkbox.state = true;
-          checkGerman.checkbox.state = false;
+          checkEnglish.checkBox.state = true;
+          checkGerman.checkBox.state = false;
           break;
         case 'de':
-          checkEnglish.checkbox.state = false;
-          checkGerman.checkbox.state = true;
+          checkEnglish.checkBox.state = false;
+          checkGerman.checkBox.state = true;
           break;
       }
     }
