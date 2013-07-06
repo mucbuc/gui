@@ -154,7 +154,7 @@
   }
 
   function resumeGame() {
-    var pause = { button : [ { text: strings.pause, onClick: 'pause', frame: '' } ] }; 
+    var pause = { button : [ { text: strings.pause, onClick: 'pauseGame', frame: '' } ] }; 
     
     gui.setMenu( pause );
     Game.resume();
