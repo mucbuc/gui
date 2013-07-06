@@ -8,7 +8,8 @@
           gui.on( 'guiUpdate', makeViews );
           pauseGame();
         }
-    };
+      }
+    , strings = english;
 
   function resetGame() {
     app.configuration.DEBUG = true;
@@ -17,11 +18,11 @@
 
   function pauseGame() {
   
-    var buttonPlay = { icon: 'public/images/icon.svg', text: app.language.play, onClick: 'resume', frame: '' }
-      , buttonReset = { textbox: app.language.reset, onClick: 'reset', frame: '' }
-      , buttonLanguage = { text: app.language.language, onClick: 'language' }
-      , checkDebug = { checkbox: { state: undefined, onClick: 'toggleDebug' }, text: '' }
-      , checkSound = { checkbox: { state: undefined, onClick: 'toggleSound' }, text: '' }
+    var buttonPlay = { icon: 'public/images/icon.svg', text: strings.play, onClick: 'resumeGame', frame: '' }
+      , buttonReset = { textbox: strings.reset, onClick: 'resetGame', frame: '' }
+      , buttonLanguage = { text: strings.language, onClick: 'setLanguage' }
+      , checkDebug = { checkbox: { onClick: 'toggleDebug' }, text: '' }
+      , checkSound = { checkbox: { onClick: 'toggleSound' }, text: '' }
       , menu = { 
           button: [ buttonPlay, buttonReset, buttonLanguage ],
           layer: [ { row: checkSound, frame: '' }, 
@@ -35,22 +36,20 @@
     gui.setMenu( menu );
 
     gui.once( 'load', function() {
-
       gui.once( 'unload', function() { 
         gui.removeListener( 'resumeGame', resumeGame );
-        gui.removeListener( 'reset', confirmReset );
+        gui.removeListener( 'resetGame', confirmReset );
+        gui.removeListener( 'setLanguage', setLanguage );
         gui.removeListener( 'toggleDebug', toggleDebug );
         gui.removeListener( 'toggleSound', toggleSound );
         gui.removeListener( 'update', syncElements );
-        gui.removeListener( 'language', setLanguage );
       } ); 
-      
       gui.once( 'resumeGame', resumeGame );
-      gui.once( 'reset', confirmReset );
+      gui.once( 'resetGame', confirmReset );
+      gui.once( 'setLanguage', setLanguage );
       gui.on( 'toggleDebug', toggleDebug );
       gui.on( 'toggleSound', toggleSound );
       gui.on( 'update', syncElements );
-      gui.on( 'language', setLanguage )
     } );
 
     function toggleSound() {
@@ -97,9 +96,9 @@
   
   function setLanguage() {
 
-    var buttonCancel = { text: app.language.back, onClick: 'back', frame: '' }
-      , checkEnglish = { checkbox: { state: undefined, onClick: 'toggleEnglish' }, text: app.language.english }
-      , checkGerman = { checkbox: { state: undefined, onClick: 'toggleGerman' }, text: app.language.german }
+    var buttonCancel = { text: strings.back, onClick: 'back', frame: '' }
+      , checkEnglish = { checkbox: { onClick: 'toggleEnglish'}, text: strings.english }
+      , checkGerman = { checkbox: { onClick:'toggleGerman'}, text: strings.german }
       , menu = { 
           button: [ buttonCancel ], 
           layer: [ { row: checkEnglish, frame: '' },
@@ -129,12 +128,10 @@
         case 'en':
           checkEnglish.checkbox.state = true;
           checkGerman.checkbox.state = false;
-          app.language = english;
           break;
         case 'de':
           checkEnglish.checkbox.state = false;
           checkGerman.checkbox.state = true;
-          app.language = german;
           break;
       }
     }
@@ -142,6 +139,7 @@
     function toggleEnglish() {
       if (app.lang != 'en') {
         app.lang = 'en';
+        strings = english;
         syncLanguages();
       }
     }
@@ -149,13 +147,14 @@
     function toggleGerman() {
       if (app.lang != 'de') {
         app.lang = 'de';
+        strings = german;
         syncLanguages();
       }
     }
   }
 
   function resumeGame() {
-    var pause = { button : [ { text: app.language.pause, onClick: 'pause', frame: '' } ] }; 
+    var pause = { button : [ { text: strings.pause, onClick: 'pause', frame: '' } ] }; 
     
     gui.setMenu( pause );
     Game.resume();
@@ -181,10 +180,10 @@
   function confirmReset() {
         
     var confirm = {
-          text: app.language.resetQuestion,
+          text: strings.resetQuestion,
           button: [ 
-            { text: app.language.yes, onClick: 'confirm' },
-            { text: app.language.no, onClick: 'cancel' },
+            { text: strings.yes, onClick: 'confirm' },
+            { text: strings.no, onClick: 'cancel' },
           ]
       };
     
