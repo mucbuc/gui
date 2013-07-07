@@ -13,22 +13,22 @@
 
   function resetGame() {
     app.configuration.DEBUG = true;
-    app.language = 'en';
+    app.settings.language = 'en';
     strings = english;
     pauseGame();
   }
 
   function pauseGame() {
   
-    var buttonPlay = { icon: 'public/images/icon.svg', text: strings.play, onClick: 'resumeGame', frame: '' }
-      , buttonReset = { textBox: strings.reset, onClick: 'resetGame', frame: '' }
-      , buttonLanguage = { text: strings.language, onClick: 'setLanguage', frame:'' }
-      , checkDebug = { checkBox: { onClick: 'toggleDebug' }, text: 'debug' }
-      , checkSound = { checkBox: { onClick: 'toggleSound' }, text: 'sound' }
+    var play = { onClick: 'resumeGame', text: strings.play, icon: 'public/images/icon.svg', frame: '' }
+      , reset = { onClick: 'resetGame', textBox: strings.reset, frame: '' }
+      , language = { onClick: 'setLanguage', text: strings.language, frame:'' }
+      , debug = { checkBox: { onClick: 'toggleDebug' }, text: 'debug' }
+      , sound = { checkBox: { onClick: 'toggleSound' }, text: 'sound' }
       , menu = { 
-          button: [ buttonPlay, buttonReset, buttonLanguage ],
-          layer: [ { row: checkSound, frame: '' }, 
-                   { row: checkDebug, frame: '' }, 
+          button: [ play, reset, language ],
+          layer: [ { row: sound, frame: '' }, 
+                   { row: debug, frame: '' } 
           ] }
       , click = app.gui.click;
 
@@ -55,7 +55,7 @@
     } );
 
     function toggleSound() {
-      app.configuration.sound = !app.configuration.sound;
+      app.settings.sound = !app.settings.sound;
       syncElements();
     }
 
@@ -68,15 +68,15 @@
 
       var update = false;
       
-      if (checkDebug.checkBox.state != app.configuration.DEBUG) {
-        checkDebug.checkBox.state = app.configuration.DEBUG;
+      if (debug.checkBox.state != app.configuration.DEBUG) {
+        debug.checkBox.state = app.configuration.DEBUG;
         update = true;
       }
 
-      if (checkSound.checkBox.state != app.configuration.sound) {
-        checkSound.checkBox.state = app.configuration.sound;
+      if (sound.checkBox.state != app.settings.sound) {
+        sound.checkBox.state = app.settings.sound;
         
-        if (!app.configuration.sound) {
+        if (!app.settings.sound) {
           click = app.gui.click;
           app.gui.click = null;
         }
@@ -95,13 +95,13 @@
   
   function setLanguage() {
 
-    var buttonCancel = { text: strings.back, onClick: 'back', frame: '' }
-      , checkEnglish = { checkBox: { onClick: 'toggleEnglish'}, text: strings.english }
-      , checkGerman = { checkBox: { onClick:'toggleGerman'}, text: strings.german }
+    var english = { checkBox: { onClick: 'toggleEnglish'}, text: strings.english }
+      , german = { checkBox: { onClick:'toggleGerman'}, text: strings.german }
       , menu = { 
-          button: [ buttonCancel ], 
-          layer: [ { row: checkEnglish, frame: '' },
-                   { row: checkGerman, frame: '' }, 
+          button: { onClick: 'back', text: strings.back, frame: '' }, 
+          layer: [ 
+            { row: english, frame: '' },
+            { row: german, frame: '' }, 
           ] 
         };
 
@@ -123,29 +123,29 @@
     });
 
     function syncLanguages() {
-      switch( app.lang ) {
+      switch (app.settings.language) {
         case 'en':
-          checkEnglish.checkBox.state = true;
-          checkGerman.checkBox.state = false;
+          english.checkBox.state = true;
+          german.checkBox.state = false;
           break;
         case 'de':
-          checkEnglish.checkBox.state = false;
-          checkGerman.checkBox.state = true;
+          english.checkBox.state = false;
+          german.checkBox.state = true;
           break;
       }
     }
 
     function toggleEnglish() {
-      if (app.lang != 'en') {
-        app.lang = 'en';
+      if (app.settings.language != 'en') {
+        app.settings.language = 'en';
         strings = english;
         syncLanguages();
       }
     }
 
     function toggleGerman() {
-      if (app.lang != 'de') {
-        app.lang = 'de';
+      if (app.settings.language != 'de') {
+        app.settings.language = 'de';
         strings = german;
         syncLanguages();
       }
@@ -153,7 +153,7 @@
   }
 
   function resumeGame() {
-    var pause = { button : [ { text: strings.pause, onClick: 'pauseGame', frame: '' } ] }; 
+    var pause = { button: [ { onClick: 'pauseGame', text: strings.pause, frame: '' } ] }; 
     
     gui.setMenu( pause );
     Game.resume();
@@ -181,8 +181,8 @@
     var confirm = {
           text: strings.resetQuestion,
           button: [ 
-            { text: strings.yes, onClick: 'confirm' },
-            { text: strings.no, onClick: 'cancel' },
+            { onClick: 'confirm', text: strings.yes },
+            { onClick: 'cancel', text: strings.no },
           ]
       };
     

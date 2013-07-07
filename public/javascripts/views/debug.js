@@ -14,6 +14,7 @@
     this.register( 'row', RowView );
     this.register( 'layer', LayerView );
     this.register( 'checkBox', CheckBox );
+    this.register( 'panel', ColumnView )
   }
   
   DebugFactory.prototype = new Factory();

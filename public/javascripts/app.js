@@ -14,10 +14,11 @@
     },
     configuration: {
       DEBUG: true,
-      sound: true,
     }, 
-    language: german,
-    lang: 'en'
+    settings: {
+      sound: true,
+      language: 'en'
+    },
   };
 
   exports.app = app;

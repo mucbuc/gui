@@ -11,9 +11,10 @@
     this.register( 'checkBox', CheckBox );
     this.register( 'textBox', TextBox );
     this.register( 'row', RowView );
-    this.register( 'layer', Panel );
+    this.register( 'panel', Panel )
     this.register( 'icon', Icon );
   }
+
   PrettyFactory.prototype = new Factory();
   
   function PrettyView( controller ) {

@@ -2,7 +2,7 @@
 
   function Panel( controller, factory ) {
     
-    LayerView.call( this, undefined, factory );
+    ColumnView.call( this, undefined, factory );
 
     if (typeof controller !== 'undefined') {
          
@@ -27,10 +27,19 @@
         this.composite.row = builder.buildComposite( new Controller( controller, 'row' ), 'row' ); 
       }
     }
+/*
+    this.layoutVertical = function( top ) {
+      return ColumnView.prototype.layoutVertical.call( this, top );
+    };
+
+    this.layoutHorizontal = function( left ) {
+      return ColumnView.prototype.layoutHorizontal.call( this, left );
+    };
+ */  
 
   }
 
-  Panel.prototype = new LayerView();
+  Panel.prototype = new ColumnView();
 
   exports.Panel = Panel;
 
