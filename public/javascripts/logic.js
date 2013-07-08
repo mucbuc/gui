@@ -3,14 +3,12 @@
   var gui = null
     , click = null
     , logic = { 
-        init: function( clickElement ) {
-          gui = app.gui;
+        init: function( root ) {
+          gui = root;
 
           gui.on( 'guiUpdate', makeViews );
           pauseGame();
-        
-          click = clickElement;
-          gui.click = click;
+          click = root.click;
         }
       }
     , strings = english; 
@@ -66,7 +64,7 @@
 
     function toggleDebug() {
       app.configuration.DEBUG = !app.configuration.DEBUG;
-      syncElements();
+      pauseGame();
     }  
 
     function syncElements() {
@@ -146,7 +144,7 @@
       if (app.setting.language != 'en') {
         app.setting.language = 'en';
         strings = english;
-        syncLanguages();
+        setLanguage();
       }
     }
 
@@ -154,7 +152,7 @@
       if (app.setting.language != 'de') {
         app.setting.language = 'de';
         strings = german;
-        syncLanguages();
+        setLanguage();
       }
     }
   }

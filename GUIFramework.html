@@ -2,10 +2,7 @@
 <head>
 <title>GUIFramework</title>
 
-<script>
-  var exports = this
-    , loc = null;
-</script>
+<script> var exports = this; </script>
 
 <script src = 'public/javascripts/node_modules/set.js'></script>
 <script src = 'public/javascripts/node_modules/eventstream.js'></script>
@@ -76,7 +73,9 @@ function Init()
     app.gui.canvas = canvas;
     app.gui.context = context;
 
-	logic.init( document.getElementById("click") );
+    app.gui.click = document.getElementById("click");
+
+	logic.init(app.gui);
 
     setInterval(Update, 20);
 }
