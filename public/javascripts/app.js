@@ -15,7 +15,7 @@
     configuration: {
       DEBUG: true,
     }, 
-    settings: {
+    setting: {
       sound: true,
       language: 'en'
     },

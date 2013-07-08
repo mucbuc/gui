@@ -25,7 +25,7 @@
     console.log( 'DebugElement Constructor: ', controller.model );
   
     controller.once( 'unload', function() { 
-      console.log( 'DebugElement unload:', controller.model );    
+      console.log( 'DebugElement unload' );    
     } );
   }
 

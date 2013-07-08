@@ -65,7 +65,8 @@ function Init()
 {
     var canvas = document.getElementById("maincanvas");
     context = canvas.getContext("2d");
-	canvas.addEventListener('mousedown', 	MouseEvent.bind(null, OnMouseDown), false);	
+	
+    canvas.addEventListener('mousedown', 	MouseEvent.bind(null, OnMouseDown), false);	
 	canvas.addEventListener('mouseup',   	MouseEvent.bind(null, OnMouseUp), false);	
 	canvas.addEventListener('mousemove',   	MouseEvent.bind(null, OnMouseMove), false);	
 
@@ -75,9 +76,7 @@ function Init()
     app.gui.canvas = canvas;
     app.gui.context = context;
 
-    app.gui.click = document.getElementById("click");
-
-	logic.init();
+	logic.init( document.getElementById("click") );
 
     setInterval(Update, 20);
 }

@@ -1,20 +1,26 @@
 (function(){
 
   var gui = null
+    , click = null
     , logic = { 
-        init: function() {
+        init: function( clickElement ) {
           gui = app.gui;
 
           gui.on( 'guiUpdate', makeViews );
           pauseGame();
+        
+          click = clickElement;
+          gui.click = click;
         }
       }
-    , strings = english;
-
+    , strings = english; 
+    
   function resetGame() {
     app.configuration.DEBUG = true;
-    app.settings.language = 'en';
+    app.setting.language = 'en';
     strings = english;
+    app.setting.sound = true;
+    gui.click = click;
     pauseGame();
   }
 
@@ -22,15 +28,14 @@
   
     var play = { onClick: 'resumeGame', text: strings.play, icon: 'public/images/icon.svg', frame: '' }
       , reset = { onClick: 'resetGame', textBox: strings.reset, frame: '' }
-      , language = { onClick: 'setLanguage', text: strings.language, frame:'' }
+      , language = { onClick: 'setLanguage', text: strings.language, frame: '' }
       , sound = { checkBox: { onClick: 'toggleSound' }, text: 'sound' }
       , debug = { checkBox: { onClick: 'toggleDebug' }, text: 'debug' }
       , menu = { 
           button: [ play, reset, language ],
           layer: [ { row: sound, frame: '' }, 
                    { row: debug, frame: '' } 
-          ] }
-      , click = app.gui.click;
+          ] };
 
     syncElements();
     Game.pause();
@@ -55,7 +60,7 @@
     } );
 
     function toggleSound() {
-      app.settings.sound = !app.settings.sound;
+      app.setting.sound = !app.setting.sound;
       syncElements();
     }
 
@@ -73,15 +78,17 @@
         update = true;
       }
 
-      if (sound.checkBox.state != app.settings.sound) {
-        sound.checkBox.state = app.settings.sound;
+      if (sound.checkBox.state != app.setting.sound) {
+        sound.checkBox.state = app.setting.sound;
         
-        if (!app.settings.sound) {
-          click = app.gui.click;
-          app.gui.click = null;
+        if (!app.setting.sound) {
+          if (gui.click) {
+            click = gui.click;
+          }
+          gui.click = null;
         }
         else {
-          app.gui.click = click;
+          gui.click = click;
         }
       
         update = true;
@@ -123,7 +130,7 @@
     });
 
     function syncLanguages() {
-      switch (app.settings.language) {
+      switch (app.setting.language) {
         case 'en':
           engl.checkBox.state = true;
           germ.checkBox.state = false;
@@ -136,16 +143,16 @@
     }
 
     function toggleEnglish() {
-      if (app.settings.language != 'en') {
-        app.settings.language = 'en';
+      if (app.setting.language != 'en') {
+        app.setting.language = 'en';
         strings = english;
         syncLanguages();
       }
     }
 
     function toggleGerman() {
-      if (app.settings.language != 'de') {
-        app.settings.language = 'de';
+      if (app.setting.language != 'de') {
+        app.setting.language = 'de';
         strings = german;
         syncLanguages();
       }

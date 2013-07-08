@@ -8,10 +8,11 @@
     this.register( 'text', Label );
     this.register( 'frame', Frame );
     this.register( 'button', Button );
-    this.register( 'checkBox', CheckBox );
     this.register( 'textBox', TextBox );
     this.register( 'row', RowView );
-    this.register( 'panel', Panel )
+    this.register( 'layer', LayerView );
+    this.register( 'checkBox', CheckBox );
+    this.register( 'panel', ColumnView )
     this.register( 'icon', Icon );
   }
 
