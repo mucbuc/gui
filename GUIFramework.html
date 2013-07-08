@@ -52,9 +52,6 @@ function MouseEvent(handler, ev)
     	x = ev.x + window.scrollX;
         y = ev.y + window.scrollY;
 	}
-    //handler( x - clientBounds.left , y - clientBounds.top + window.scrollY );
-
-	
     handler( x - clientBounds.left, y - clientBounds.top );
 }
 
@@ -69,12 +66,8 @@ function Init()
 
     clientBounds = canvas.getBoundingClientRect();
 
-    app.gui = new Gui();
-    app.gui.canvas = canvas;
-    app.gui.context = context;
-
-    app.gui.click = document.getElementById("click");
-
+    app.gui = new Gui( document.getElementById("click"), canvas, context );
+    
 	logic.init(app.gui);
 
     setInterval(Update, 20);

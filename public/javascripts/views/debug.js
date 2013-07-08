@@ -40,10 +40,10 @@
 
     controller.once( 'load', function() {
     
-      var n = 4 
-        , size = new Vec( 400 / 4, 400 / 8 )
+      var n = 4
+        , buttonSize = new Vec( controller.clientSize.x / 4, controller.clientSize.y / 8 )
         , p = new Vec( 0, 0 )
-        , delta = new Vec( size.x, 0 )
+        , delta = new Vec( buttonSize.x, 0 )
         , sl = new SnapLine( direction.DOWN );
 
       ColumnView.call( instance, controller, instance.factory );
@@ -54,16 +54,17 @@
 
         if (kind instanceof Array) {
           kind.forEach( function( element ) {
-            element.bounds.size = size;
+            element.bounds.size = buttonSize;
             sl.attach( element );
           } );
         } 
         else {
-          kind.bounds.size = size;
+          kind.bounds.size = buttonSize;
           sl.attach( kind ); 
         }
       }
       delta.y += sl.step( new Vec(100, 0) );
+  
     } );
   }
 

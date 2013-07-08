@@ -184,7 +184,7 @@
   function confirmReset() {
         
     var confirm = {
-          text: strings.resetQuestion,
+          textBox: strings.resetQuestion,
           button: [ 
             { onClick: 'confirm', text: strings.yes },
             { onClick: 'cancel', text: strings.no },
