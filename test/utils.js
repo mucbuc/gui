@@ -6,7 +6,7 @@ var assert = require( 'assert' )
   
 assert( utils !== 'undefined' );
 
-checkUtils();
+//checkUtils();
 
 function checkUtils() {
   checkVec(); 
