@@ -23,8 +23,8 @@
     var play = { onClick: 'resumeGame', text: strings.play, icon: 'public/images/icon.svg', frame: '' }
       , reset = { onClick: 'resetGame', textBox: strings.reset, frame: '' }
       , language = { onClick: 'setLanguage', text: strings.language, frame:'' }
-      , debug = { checkBox: { onClick: 'toggleDebug' }, text: 'debug' }
       , sound = { checkBox: { onClick: 'toggleSound' }, text: 'sound' }
+      , debug = { checkBox: { onClick: 'toggleDebug' }, text: 'debug' }
       , menu = { 
           button: [ play, reset, language ],
           layer: [ { row: sound, frame: '' }, 
@@ -95,13 +95,13 @@
   
   function setLanguage() {
 
-    var english = { checkBox: { onClick: 'toggleEnglish'}, text: strings.english }
-      , german = { checkBox: { onClick:'toggleGerman'}, text: strings.german }
+    var engl = { checkBox: { onClick: 'toggleEnglish'}, text: strings.english }
+      , germ = { checkBox: { onClick:'toggleGerman'}, text: strings.german }
       , menu = { 
           button: { onClick: 'back', text: strings.back, frame: '' }, 
           layer: [ 
-            { row: english, frame: '' },
-            { row: german, frame: '' }, 
+            { row: engl, frame: '' },
+            { row: germ, frame: '' }, 
           ] 
         };
 
@@ -125,12 +125,12 @@
     function syncLanguages() {
       switch (app.settings.language) {
         case 'en':
-          english.checkBox.state = true;
-          german.checkBox.state = false;
+          engl.checkBox.state = true;
+          germ.checkBox.state = false;
           break;
         case 'de':
-          english.checkBox.state = false;
-          german.checkBox.state = true;
+          engl.checkBox.state = false;
+          germ.checkBox.state = true;
           break;
       }
     }
@@ -153,7 +153,7 @@
   }
 
   function resumeGame() {
-    var pause = { button: [ { onClick: 'pauseGame', text: strings.pause, frame: '' } ] }; 
+    var pause = { button: { onClick: 'pauseGame', text: strings.pause, frame: '' } }; 
     
     gui.setMenu( pause );
     Game.resume();
