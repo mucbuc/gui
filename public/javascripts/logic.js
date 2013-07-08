@@ -5,10 +5,10 @@
     , logic = { 
         init: function( root ) {
           gui = root;
+          click = root.click;
 
           gui.on( 'guiUpdate', makeViews );
           pauseGame();
-          click = root.click;
         }
       }
     , strings = english; 
@@ -184,7 +184,7 @@
   function confirmReset() {
         
     var confirm = {
-          textBox: strings.resetQuestion,
+          text: strings.resetQuestion,
           button: [ 
             { onClick: 'confirm', text: strings.yes },
             { onClick: 'cancel', text: strings.no },

@@ -9,7 +9,7 @@
     this.register( 'text', Label );
     this.register( 'icon', DebugElement );
     this.register( 'frame', Frame );
-    this.register( 'button', Button );
+    this.register( 'button', LayerView );
     this.register( 'textBox', TextBox );
     this.register( 'row', RowView );
     this.register( 'layer', LayerView );
