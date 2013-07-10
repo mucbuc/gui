@@ -30,10 +30,16 @@
       , sound = { checkBox: { onClick: 'toggleSound' }, text: 'sound' }
       , debug = { checkBox: { onClick: 'toggleDebug' }, text: 'debug' }
       , menu = { 
-          button: [ play, reset, language ],
-          layer: [ { row: sound, frame: '' }, 
-                   { row: debug, frame: '' } 
-          ] };
+          button: [ 
+            play, 
+            reset, 
+            language
+          ], 
+          row: [ 
+            sound, 
+            debug 
+          ]
+        };
 
     syncElements();
     Game.pause();

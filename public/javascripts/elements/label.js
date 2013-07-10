@@ -88,7 +88,7 @@ objective:
 
     this.floatLeft = function( right ) {
       Label.prototype.pinRight( right );
-      Label.prototype.pinLeft( left - width )
+      Label.prototype.pinLeft( right - width )
       return width;
     };
 

@@ -11,7 +11,7 @@
     this.register( 'frame', Frame );
     this.register( 'button', Button );
     this.register( 'textBox', TextBox );
-    this.register( 'row', View );
+    this.register( 'row', Row );
     this.register( 'layer', View );
     this.register( 'checkBox', CheckBox );
     this.register( 'panel', View )

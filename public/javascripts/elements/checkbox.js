@@ -2,6 +2,8 @@
 
   function CheckBox( controller ) {
 
+    var DIM = 20;
+
     if (controller !== 'undefined') {
       var instance = this
         , model = controller.model;
@@ -15,21 +17,27 @@
       
       controller.on( 'render', render );
       controller.on( 'update', update );    
+
+      this.floatWidth = DIM; 
     }
-    
-    this.layoutVertical = function( top ) {
-      var height = this.bounds.height()
-        , boxHeight = height * 0.2;
 
-      this.bounds.setHeight( boxHeight );
-      return CheckBox.prototype.layoutVertical.call( this, top + boxHeight * 2 ); 
+    this.pinTop = function( top ) {
+      CheckBox.prototype.pinTop.call( this, top );
+      centerVertical( this );
     };
 
-    this.layoutHorizontal = function( left ) {
-      var width = this.bounds.height();
-      this.bounds.setWidth( width );
-      return CheckBox.prototype.layoutHorizontal.call( this, left );    
+    this.pinBottom = function( bottom ) {
+      CheckBox.prototype.pinBottom.call( this, bottom );
+      centerVertical( this );
     };
+
+    function centerVertical( box ) {
+      if (box.bounds.bottom > box.bounds.top) {
+        var diff = (box.bounds.height() - DIM) / 2;
+        CheckBox.prototype.pinTop.call( box, box.bounds.top + diff );
+        CheckBox.prototype.pinBottom.call( box, box.bounds.bottom - diff );
+      }
+    }
 
     function update() {
       model = controller.model;
