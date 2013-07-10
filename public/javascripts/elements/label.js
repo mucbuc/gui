@@ -81,14 +81,16 @@ objective:
     };
 
     this.floatRight = function( left ) {
-      Label.prototype.pinLeft( left );
-      Label.prototype.pinRight( left + width )
+      Label.prototype.pinLeft.call( this, left );
+      Label.prototype.pinRight.call( this, left + width )
+      this.offset.x = this.calcAlignOffset();
       return width;
     };
 
     this.floatLeft = function( right ) {
-      Label.prototype.pinRight( right );
-      Label.prototype.pinLeft( right - width )
+      Label.prototype.pinRight.call( this, right );
+      Label.prototype.pinLeft.call( this, right - width )
+      this.offset.x = this.calcAlignOffset();
       return width;
     };
 

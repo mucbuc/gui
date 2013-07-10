@@ -10,7 +10,7 @@
       Row.prototype.pinLeft.call( this, left );
 
       if (this.bounds.width() > 0) {
-        this.floatRight( left, this.bound.width() );
+        this.floatLeft( this.bounds.right );
       }
     };
 
@@ -18,7 +18,7 @@
       Row.prototype.pinRight.call( this, right );
       
       if (this.bounds.width() > 0) {
-        this.floatLeft( right, this.bounds.width() )
+        this.floatRight( this.bounds.left ); 
       }
     };
   }

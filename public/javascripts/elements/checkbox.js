@@ -31,6 +31,11 @@
       centerVertical( this );
     };
 
+    this.floatRight = function( left ) {
+      CheckBox.prototype.floatRight.call( this, left );
+      return DIM;
+    };
+
     function centerVertical( box ) {
       if (box.bounds.bottom > box.bounds.top) {
         var diff = (box.bounds.height() - DIM) / 2;
