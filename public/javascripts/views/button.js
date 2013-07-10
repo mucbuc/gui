@@ -2,11 +2,12 @@
   
   function Button( controller, factory ) {
 
-    LayerView.call( this, 'undefined'/*controller*/, factory );
+    View.call( this, controller );
 
     if (typeof controller !== 'undefined') {
-         
-      var builder = new Builder( factory ); 
+  
+      var builder = new Builder( factory );
+      
       this.composite = {};
 
       if (typeof controller.model.frame !== 'undefined') {
@@ -33,9 +34,38 @@
         this.composite.onClick = builder.buildComposite( new Controller( controller, 'onClick' ), 'onClick' ); 
       }
     }
+
+/*
+      //this.layoutStack( 0, 0 );
+      //this.fillStack( 0, 0, 100, 100 );
+
+
+    this.fill = function( left, top, right, bottom ) {
+      this.elements.forEach( function( element ) {
+         element.fill( left, top, right, bottom );
+      } );
+
+      //Button.prototype.fill.call( this, left, top, right, bottom );
+    };
+*/
+    this.fillDown = function( top, height ) {
+      this.elements.forEach( function( element ) {
+        element.fillDown( top, height );
+      } );
+    
+      View.prototype.fillDown.call( this, top, height );
+    };
+
+    this.fillRight = function( left, width ) {
+      this.elements.forEach( function( element ) {
+        element.fillRight( left, width );
+      } );
+
+      View.prototype.fillRight.call( this, left, width );
+    };
   }
   
-  Button.prototype = new LayerView();
+  Button.prototype = new View();
   
   exports.Button = Button;
 

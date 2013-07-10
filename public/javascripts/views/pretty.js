@@ -54,7 +54,7 @@
     } );
   }
 
-  PrettyView.prototype = new ColumnView();
+ // PrettyView.prototype = new ColumnView();
 
 
   exports.PrettyFactory = PrettyFactory;

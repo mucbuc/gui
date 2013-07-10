@@ -39,7 +39,7 @@
 
   }
 
-  Panel.prototype = new ColumnView();
+ // Panel.prototype = new ColumnView();
 
   exports.Panel = Panel;
 

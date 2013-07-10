@@ -9,12 +9,12 @@
     this.register( 'text', Label );
     this.register( 'icon', DebugElement );
     this.register( 'frame', Frame );
-    this.register( 'button', LayerView );
+    this.register( 'button', Button );
     this.register( 'textBox', TextBox );
-    this.register( 'row', RowView );
-    this.register( 'layer', LayerView );
+    this.register( 'row', View );
+    this.register( 'layer', View );
     this.register( 'checkBox', CheckBox );
-    this.register( 'panel', ColumnView )
+    this.register( 'panel', View )
   }
   
   DebugFactory.prototype = new Factory();
@@ -39,37 +39,18 @@
     controller.context.textAlign = 'left';
 
     controller.once( 'load', function() {
-    
-      var n = 4
-        , buttonSize = new Vec( controller.clientSize.x / 4, controller.clientSize.y / 8 )
-        , p = new Vec( 0, 0 )
-        , delta = new Vec( buttonSize.x, 0 )
-        , sl = new SnapLine( direction.DOWN );
-
-      ColumnView.call( instance, controller, instance.factory );
-      elements = instance.composite;
-    
-      for (var type in elements) {
-        var kind = elements[type];
-
-        if (kind instanceof Array) {
-          kind.forEach( function( element ) {
-            element.bounds.size = buttonSize;
-            sl.attach( element );
-          } );
-        } 
-        else {
-          kind.bounds.size = buttonSize;
-          sl.attach( kind ); 
-        }
-      }
-      delta.y += sl.step( new Vec(100, 0) );
   
+      var view = new View( controller );
+      view.buildComposite( instance.factory );
+
+      view.pinLeft( 0 ); 
+      view.pinRight( controller.clientSize.x * 0.5 );
+      view.fillDown( 0, controller.clientSize.y * 0.5 );
     } );
   }
 
-  DebugView.prototype = new ColumnView();
-  
+  DebugView.prototype.factory = new DebugFactory();
+
   exports.DebugFactory = DebugFactory;
   
 })();

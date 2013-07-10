@@ -30,16 +30,72 @@ objective:
       controller.on( 'update', update );
     }
 
-    this.layoutVertical = function( top ) {
-      this.offset.y = (this.bounds.height() - this.fontSize) / 2;
-      return Label.prototype.layoutVertical.call( this, top ); 
+    this.pinLeft = function( left ) {
+      Label.prototype.pinLeft.call( this, left );
+
+      if (this.bounds.width() > 0) {
+        this.offset.x = this.calcAlignOffset();
+      }
     };
 
-    this.layoutHorizontal = function( left ) {
+    this.pinRight = function( right ) {
+      Label.prototype.pinRight.call( this, right );
+      
+      if (this.bounds.width() > 0) {
+        this.offset.x = this.calcAlignOffset();
+      }
+    };
+
+    this.pinTop = function( top ) {
+      Label.prototype.pinTop.call( this, top );
+      if (this.bounds.height() > 0) {
+        this.offset.y = calcOffsetY( this.bounds.height() );
+      }
+    };  
+
+    this.pinBottom = function( bottom ) {
+      Label.prototype.pinBottom.call( this, bottom );
+      if (this.bounds.height() > 0) {
+        this.offset.y = calcOffsetY( this.bounds.height() );
+      }
+    };  
+
+    this.fillDown = function( top, height ) {
+      Label.prototype.fillDown.call( this, top, height );
+      this.offset.y = calcOffsetY( height );
+    };
+
+    this.fillUp = function( bottom, height ) {
+      Label.prototype.fillUp.call( this, bottom, height ); 
+      this.offset.y = calcOffsetY( height );
+    };
+
+    this.fillRight = function( left, width ) {
+      Label.prototype.fillRight.call( this, left, width );
       this.offset.x = this.calcAlignOffset();
-      return Label.prototype.layoutHorizontal.call( this, left );    
     };
 
+    this.fillLeft = function( left, width ) {
+      Label.prototype.fillRight.call( this, left, width );
+      this.offset.x = this.calcAlignOffset();
+    };
+
+    this.floatRight = function( left ) {
+      Label.prototype.pinLeft( left );
+      Label.prototype.pinRight( left + width )
+      return width;
+    };
+
+    this.floatLeft = function( right ) {
+      Label.prototype.pinRight( right );
+      Label.prototype.pinLeft( left - width )
+      return width;
+    };
+
+    function calcOffsetY( height ) {
+      return (height - instance.fontSize) / 2;
+    }
+    
     function update() {
       model = controller.model;
       if (model && model.length) {
