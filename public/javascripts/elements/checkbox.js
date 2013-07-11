@@ -18,8 +18,6 @@
       controller.on( 'render', render );
       controller.on( 'update', update );    
 
-      this.floatWidth = DIM; 
-
       // a bit hacky: this will give the element a width for fillRight called by row/view
       this.bounds.right = DIM;
     }

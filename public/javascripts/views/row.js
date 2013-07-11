@@ -2,9 +2,10 @@
   
   function Row( controller ) {
     
-    View.call( this, controller );
-
-    this.buildComposite( this.factory );
+    if (typeof controller !== 'undefined') {
+      View.call( this, controller );
+      this.buildComposite( this.factory );
+    }
 
     this.pinLeft = function( left ) {
       View.prototype.pinLeft.call( this, left );
