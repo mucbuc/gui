@@ -7,16 +7,14 @@
     this.buildComposite( this.factory );
 
     this.pinLeft = function( left ) {
-      Row.prototype.pinLeft.call( this, left );
+      View.prototype.pinLeft.call( this, left );
       if (this.bounds.right > this.bounds.left) {
         this.fillRight( this.bounds.left, this.bounds.width() );
       }
     };
 
     this.pinRight = function( right ) {
-      
       View.prototype.pinRight.call( this, right );
-  
       if (this.bounds.right > this.bounds.left) {
         this.fillRight( this.bounds.left, this.bounds.width() ); 
       }

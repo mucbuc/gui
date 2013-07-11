@@ -2,10 +2,11 @@
   
   function Stack( controller ) {
     
-    View.call( this, controller );
-    this.buildComposite( this.factory );
-    
-    this.floatHeight = 50;
+    if (typeof controller !== 'undefined') {
+      View.call( this, controller );
+      this.buildComposite( this.factory );
+      this.floatHeight = 50;
+    }
 
     this.floatDown = function( top ) {
       Stack.prototype.pinTop.call( this, top );
