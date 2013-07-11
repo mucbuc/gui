@@ -19,6 +19,9 @@
       controller.on( 'update', update );    
 
       this.floatWidth = DIM; 
+
+      // hacky (this will give the element a width for fillRight called by row/view)
+      this.bounds.right = DIM;
     }
 
     this.pinTop = function( top ) {

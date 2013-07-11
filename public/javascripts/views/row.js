@@ -9,16 +9,17 @@
     this.pinLeft = function( left ) {
       Row.prototype.pinLeft.call( this, left );
 
-      if (this.bounds.width() > 0) {
-        this.floatLeft( this.bounds.right );
+      if (this.bounds.right > this.bounds.left) {
+        this.fillRight( this.bounds.right, this.bounds.width() );
       }
     };
 
     this.pinRight = function( right ) {
-      Row.prototype.pinRight.call( this, right );
       
-      if (this.bounds.width() > 0) {
-        this.floatRight( this.bounds.left ); 
+      View.prototype.pinRight.call( this, right );
+  
+      if (this.bounds.right > this.bounds.left) {
+        this.fillRight( this.bounds.left, this.bounds.width() ); 
       }
     };
   }
