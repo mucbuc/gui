@@ -14,8 +14,6 @@ objective:
 
     this.offset = new Vec(); 
 
-    this.floatHeight = 80;
-
     Element.call( this, controller );
 
     if (typeof controller !== 'undefined') {
@@ -34,57 +32,31 @@ objective:
 
     this.pinLeft = function( left ) {
       Label.prototype.pinLeft.call( this, left );
-
-      if (this.bounds.width() > 0) {
+      if (this.bounds.right > this.bounds.left)  {
         this.offset.x = this.calcAlignOffset();
       }
     };
 
     this.pinRight = function( right ) {
       Label.prototype.pinRight.call( this, right );
-      
-      if (this.bounds.width() > 0) {
+      if (this.bounds.right > this.bounds.left) {
         this.offset.x = this.calcAlignOffset();
       }
     };
 
     this.pinTop = function( top ) {
       Label.prototype.pinTop.call( this, top );
-      if (this.bounds.height() > 0) {
+      if (this.bounds.bottom > this.bounds.top) {
         this.offset.y = calcOffsetY( this.bounds.height() );
       }
     };  
 
     this.pinBottom = function( bottom ) {
       Label.prototype.pinBottom.call( this, bottom );
-      if (this.bounds.height() > 0) {
+      if (this.bounds.bottom > this.bounds.top) {
         this.offset.y = calcOffsetY( this.bounds.height() );
       }
     };  
-
-    this.fillDown = function( top, height ) {
-      Label.prototype.fillDown.call( this, top, height );
-      this.offset.y = calcOffsetY( height );
-    };
-
-    this.fillRight = function( left, width ) {
-      Label.prototype.fillRight.call( this, left, width );
-      this.offset.x = this.calcAlignOffset();
-    };
-
-    this.floatRight = function( left ) {
-      Label.prototype.pinLeft.call( this, left );
-      Label.prototype.pinRight.call( this, left + width )
-      this.offset.x = this.calcAlignOffset();
-      return width;
-    };
-
-    this.floatDown = function( top, height ) {
-      Label.prototype.pinTop.call( this, top );
-      Label.prototype.pinBottom.call( this, top + height );
-      this.offset.y = calcOffsetY( height );
-      return height;
-    };
 
     function calcOffsetY( height ) {
       return (height - instance.fontSize) / 2;

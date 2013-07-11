@@ -20,7 +20,7 @@
 
       this.floatWidth = DIM; 
 
-      // hacky (this will give the element a width for fillRight called by row/view)
+      // a bit hacky: this will give the element a width for fillRight called by row/view
       this.bounds.right = DIM;
     }
 
@@ -32,11 +32,6 @@
     this.pinBottom = function( bottom ) {
       CheckBox.prototype.pinBottom.call( this, bottom );
       centerVertical( this );
-    };
-
-    this.floatRight = function( left ) {
-      CheckBox.prototype.floatRight.call( this, left );
-      return DIM;
     };
 
     function centerVertical( box ) {

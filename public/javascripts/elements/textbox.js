@@ -24,26 +24,33 @@
     this.pinLeft = function( left ) {
       TextBox.prototype.pinLeft.call( this, left );
 
-      if (this.bounds.width()) {
+      if (this.bounds.right > this.bounds.left) {
         update();
+        this.offset.x = this.calcAlignOffset();
       }
     };
 
     this.pinRight = function( right ) {
       TextBox.prototype.pinRight.call( this, right );
-      update();
+      
+      if (this.bounds.right > this.bounds.left) {
+        update();
+        this.offset.x = this.calcAlignOffset();
+      }
     };
 
     this.pinTop = function( top ) {
       TextBox.prototype.pinTop.call( this, top );
-      update();
-      this.offset.y = calcOffsetY( this.bounds.height() );
+      if (this.bounds.bottom > this.bounds.top) {
+        this.offset.y = calcOffsetY( this.bounds.height() );
+      }
     };
 
     this.pinBottom = function( bottom ) {
       TextBox.prototype.pinBottom.call( this, bottom );
-      update();
-      this.offset.y = calcOffsetY( this.bounds.height() );
+      if (this.bounds.bottom > this.bounds.top) {
+        this.offset.y = calcOffsetY( this.bounds.height() );
+      }
     };
 
     function calcOffsetY(height) {

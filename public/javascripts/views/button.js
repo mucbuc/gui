@@ -10,7 +10,7 @@
       View.call( this, controller );
 
       this.composite = {};
-      this.floatHeight = 80;
+      this.floatHeight = 50;
 
       if (typeof controller.model.frame !== 'undefined') {
         this.composite.frame = builder.buildComponent( 'frame', controller );
@@ -35,10 +35,6 @@
       if (typeof controller.model.onClick !== 'undefined') {
         this.composite.onClick = builder.buildComposite( new Controller( controller, 'onClick' ), 'onClick' ); 
       }
-
-      this.forEach( function( element ) {
-        element.floatHeight = instance.floatHeight;
-      });
     }
 
     this.floatDown = function( top ) {

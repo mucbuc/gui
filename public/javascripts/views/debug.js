@@ -4,9 +4,9 @@
   function DebugFactory() {
     Factory.call( this );
     this.register( 'menuView', DebugView );
+    this.register( 'icon', DebugElement );
     this.register( 'onClick', ClickRect );
     this.register( 'text', Label );
-    this.register( 'icon', DebugElement );
     this.register( 'frame', Frame );
     this.register( 'button', Button );
     this.register( 'textBox', TextBox );
@@ -43,9 +43,9 @@
 
       view.pinLeft( 0 ); 
       view.pinRight( controller.clientSize.x * 0.5 );
-      view.fillDown( 0, controller.clientSize.y * 0.5 );
-     
-   //  view.floatDown( 0 );
+      
+      //view.fillDown( 0, 200 );
+      view.floatDown( 0 );
     } );
   }
 

@@ -22,21 +22,20 @@
     var instance = this
       , elements = 0;
     
-    controller.context.textAlign = 'left';
+    controller.context.textAlign = 'center';
 
     controller.once( 'load', function() {
   
       var view = new View( controller );
       view.buildComposite( instance.factory );
 
-      view.pinLeft( 0 ); 
-      view.pinRight( controller.clientSize.x * 0.5 );
-      view.fillDown( 0, controller.clientSize.y * 0.5 );
+      view.pinLeft( controller.clientSize.x * 0.25 ); 
+      view.pinRight( controller.clientSize.x * 0.75 );
+      view.floatDown( controller.clientSize.y * 0.1 );
+
     } );
 
   }
-
- // PrettyView.prototype = new ColumnView();
 
   PrettyView.prototype.factory = new PrettyFactory();
   
