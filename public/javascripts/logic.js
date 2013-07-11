@@ -34,10 +34,10 @@
             play, 
             reset, 
             language
-          ], 
-          row: [ 
-            sound, 
-            debug 
+          ],
+          layer: [ 
+            { row: sound, frame: '' },
+            { row: debug, frame: '' } 
           ]
         };
 
@@ -110,7 +110,10 @@
       , germ = { checkBox: { onClick:'toggleGerman'}, text: strings.german }
       , menu = { 
           button: { onClick: 'back', text: strings.back, frame: '' }, 
-          row: [ engl, germ ] 
+          layer: [ 
+            { row: engl, frame: '' }, 
+            { row: germ, frame: '' } 
+          ] 
         };
 
     syncLanguages();
