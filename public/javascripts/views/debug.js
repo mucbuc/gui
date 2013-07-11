@@ -43,7 +43,8 @@
 
       view.pinLeft( 0 ); 
       view.pinRight( controller.clientSize.x * 0.5 );
-      view.fillDown( 0, controller.clientSize.y * 0.5 );
+      //view.fillDown( 0, controller.clientSize.y * 0.5 );
+      view.floatDown( 0 );
     } );
   }
 

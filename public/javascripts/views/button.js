@@ -1,14 +1,16 @@
 (function(){
   
   function Button( controller, factory ) {
-
-    View.call( this, controller );
-
+    
+    var instance = this;
     if (typeof controller !== 'undefined') {
   
       var builder = new Builder( factory );
-      
+    
+      View.call( this, controller );
+
       this.composite = {};
+      this.floatHeight = 80;
 
       if (typeof controller.model.frame !== 'undefined') {
         this.composite.frame = builder.buildComponent( 'frame', controller );
@@ -33,7 +35,17 @@
       if (typeof controller.model.onClick !== 'undefined') {
         this.composite.onClick = builder.buildComposite( new Controller( controller, 'onClick' ), 'onClick' ); 
       }
+
+      this.forEach( function( element ) {
+        element.floatHeight = instance.floatHeight;
+      });
     }
+
+    this.floatDown = function( top ) {
+      Button.prototype.pinTop.call( this, top );
+      Button.prototype.pinBottom.call( this, top + this.floatHeight );
+      return this.floatHeight;
+    };
   }
   
   Button.prototype = new View();
