@@ -110,10 +110,7 @@
       , germ = { checkBox: { onClick:'toggleGerman'}, text: strings.german }
       , menu = { 
           button: { onClick: 'back', text: strings.back, frame: '' }, 
-          layer: [ 
-            { row: engl, frame: '' },
-            { row: germ, frame: '' }, 
-          ] 
+          row: [ engl, germ ] 
         };
 
     syncLanguages();
