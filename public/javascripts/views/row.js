@@ -9,7 +9,7 @@
     this.pinLeft = function( left ) {
       Row.prototype.pinLeft.call( this, left );
       if (this.bounds.right > this.bounds.left) {
-        this.fillLeft( this.bounds.right, this.bounds.width() );
+        this.fillRight( this.bounds.left, this.bounds.width() );
       }
     };
 

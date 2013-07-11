@@ -12,6 +12,12 @@
       Stack.prototype.pinBottom.call( this, top + this.floatHeight );
       return this.floatHeight;
     };
+
+    this.floatRight = function( left ) {
+      Stack.prototype.pinLeft.call( this, left );
+      Stack.prototype.pinRight.call( this, left + this.floatWidth );
+      return this.floatWidth;
+    };
   }
 
   Stack.prototype = new View();

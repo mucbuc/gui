@@ -46,6 +46,12 @@
       Button.prototype.pinBottom.call( this, top + this.floatHeight );
       return this.floatHeight;
     };
+
+    this.floatRight = function( left ) {
+      Button.prototype.pinLeft.call( this, left );
+      Button.prototype.pinRight.call( this, top + this.floatWidth );
+      return this.floatWidth;
+    };
   }
   
   Button.prototype = new View();

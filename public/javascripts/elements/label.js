@@ -67,17 +67,7 @@ objective:
       this.offset.y = calcOffsetY( height );
     };
 
-    this.fillUp = function( bottom, height ) {
-      Label.prototype.fillUp.call( this, bottom, height ); 
-      this.offset.y = calcOffsetY( height );
-    };
-
     this.fillRight = function( left, width ) {
-      Label.prototype.fillRight.call( this, left, width );
-      this.offset.x = this.calcAlignOffset();
-    };
-
-    this.fillLeft = function( left, width ) {
       Label.prototype.fillRight.call( this, left, width );
       this.offset.x = this.calcAlignOffset();
     };
@@ -89,11 +79,11 @@ objective:
       return width;
     };
 
-    this.floatLeft = function( right ) {
-      Label.prototype.pinRight.call( this, right );
-      Label.prototype.pinLeft.call( this, right - width )
-      this.offset.x = this.calcAlignOffset();
-      return width;
+    this.floatDown = function( top, height ) {
+      Label.prototype.pinTop.call( this, top );
+      Label.prototype.pinBottom.call( this, top + height );
+      this.offset.y = calcOffsetY( height );
+      return height;
     };
 
     function calcOffsetY( height ) {
