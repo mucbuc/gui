@@ -2,7 +2,7 @@
 
   function CheckBox( controller ) {
 
-    var DIM = 20;
+    var DIM = 12;
 
     if (controller !== 'undefined') {
       var instance = this

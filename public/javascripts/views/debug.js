@@ -2,7 +2,6 @@
 
  
   function DebugFactory() {
-  
     Factory.call( this );
     this.register( 'menuView', DebugView );
     this.register( 'onClick', ClickRect );
@@ -14,7 +13,6 @@
     this.register( 'row', Row );
     this.register( 'layer', View );
     this.register( 'checkBox', CheckBox );
-    this.register( 'panel', View )
   }
   
   DebugFactory.prototype = new Factory();

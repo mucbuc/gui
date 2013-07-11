@@ -4,16 +4,15 @@
    function PrettyFactory() {
     Factory.call( this );
     this.register( 'menuView', PrettyView );
+    this.register( 'icon', Icon );
     this.register( 'onClick', ClickRect );
     this.register( 'text', Label );
     this.register( 'frame', Frame );
     this.register( 'button', Button );
     this.register( 'textBox', TextBox );
-    this.register( 'row', RowView );
-    this.register( 'layer', LayerView );
+    this.register( 'row', Row );
+    this.register( 'layer', View );
     this.register( 'checkBox', CheckBox );
-    this.register( 'panel', ColumnView )
-    this.register( 'icon', Icon );
   }
 
   PrettyFactory.prototype = new Factory();
@@ -23,40 +22,24 @@
     var instance = this
       , elements = 0;
     
-    controller.context.textAlign = 'center';
+    controller.context.textAlign = 'left';
 
     controller.once( 'load', function() {
-    
-      var n = 4 
-        , size = new Vec( controller.clientSize.x / 4, controller.clientSize.y / 8 )
-        , p = new Vec( 0, 0 )
-        , delta = new Vec( size.x, 0 )
-        , sl = new SnapLine( direction.DOWN );
+  
+      var view = new View( controller );
+      view.buildComposite( instance.factory );
 
-      ColumnView.call( instance, controller, instance.factory );
-      elements = instance.composite;
-    
-      for (var type in elements) {
-        var kind = elements[type];
-
-        if (kind instanceof Array) {
-          kind.forEach( function( element ) {
-            element.bounds.size = size;
-            sl.attach( element );
-          } );
-        } 
-        else {
-          kind.bounds.size = size;
-          sl.attach( kind ); 
-        }
-      }
-      delta.y += sl.step( new Vec(100, 0) );
+      view.pinLeft( 0 ); 
+      view.pinRight( controller.clientSize.x * 0.5 );
+      view.fillDown( 0, controller.clientSize.y * 0.5 );
     } );
+
   }
 
  // PrettyView.prototype = new ColumnView();
 
-
+  PrettyView.prototype.factory = new PrettyFactory();
+  
   exports.PrettyFactory = PrettyFactory;
   
 })();
