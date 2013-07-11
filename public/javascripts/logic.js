@@ -192,8 +192,8 @@
     var confirm = {
           text: strings.resetQuestion,
           button: [ 
-            { onClick: 'confirm', text: strings.yes },
-            { onClick: 'cancel', text: strings.no },
+            { onClick: 'confirm', text: strings.yes, frame: '' },
+            { onClick: 'cancel', text: strings.no, frame: '' },
           ]
       };
     

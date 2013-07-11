@@ -14,6 +14,8 @@ objective:
 
     this.offset = new Vec(); 
 
+    this.floatHeight = 80;
+
     Element.call( this, controller );
 
     if (typeof controller !== 'undefined') {
