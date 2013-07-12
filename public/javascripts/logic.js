@@ -31,9 +31,9 @@
 
   function pauseGame() {
   
-    var play = { onClick: 'resumeGame', text: strings.play, icon: 'public/images/icon.svg', frame: '' }
-      , reset = { onClick: 'resetGame', textBox: strings.reset, frame: '' }
-      , language = { onClick: 'setLanguage', text: strings.language, frame: '' }
+    var play = { onClick: 'resumeGame', text: strings.play, icon: 'public/images/icon.svg' }
+      , reset = { onClick: 'resetGame', textBox: strings.reset }
+      , language = { onClick: 'setLanguage', text: strings.language }
       , sound = { checkBox: { onClick: 'toggleSound' }, text: 'sound' }
       , debug = { checkBox: { onClick: 'toggleDebug' }, text: 'debug' }
       , menu = { 
@@ -41,8 +41,8 @@
             play, 
             reset, 
             language,
-            { row: sound, frame: '' },
-            { row: debug, frame: '' } 
+            { row: sound },
+            { row: debug } 
           ]
         };
 

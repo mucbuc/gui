@@ -1,5 +1,18 @@
 (function(){
 
+  function DebugButton(controller, factory) {
+    
+    if (typeof controller !== 'undefined') {
+      
+      var frame = factory.create( 'frame', controller );
+
+      Button.call( this, controller, factory );
+    
+      this.composite.frame = frame;
+    }
+  }
+
+  DebugButton.prototype = new Button();
  
   function DebugFactory() {
     Factory.call( this );
@@ -8,7 +21,7 @@
     this.register( 'onClick', ClickRect );
     this.register( 'text', Label );
     this.register( 'frame', Frame );
-    this.register( 'button', Button );
+    this.register( 'button', DebugButton );
     this.register( 'textBox', TextBox );
     this.register( 'row', Row );
     this.register( 'checkBox', CheckBox );
@@ -39,7 +52,6 @@
   
       var view = new View( controller );
       view.buildComposite( instance.factory );
-
       view.pinLeft( 0 ); 
       view.pinRight( controller.clientSize.x * 0.5 );
       
