@@ -6,46 +6,12 @@ var assert = require( 'assert' )
   
 assert( utils !== 'undefined' );
 
-//checkUtils();
+checkUtils();
 
 function checkUtils() {
   checkVec(); 
   checkRect();
-  checkSnapLine();
   console.log( 'utils ok' );
-}
-
-function checkSnapLine() {
-  checkSnapLineRight();
-  checkSnapLineUp();
-}
-
-function checkSnapLineRight() {
-
-  var sl = new utils.SnapLine( utils.direction.RIGHT );
-
-  sl.attach( { right: 0, width: 1 } );
-  sl.attach( { right: 0, width: 2 } );
-  sl.attach( { right: 0, width: 3 } );
-  sl.attach( { right: 0, width: 4 } );
-
-  assert( sl.displacement() == 10 );
-  assert( sl.step( new Vec( 0, 0 ) ) == 10 );
-  assert( sl.step( new Vec( 0, 0 ), 3 ) == 19 );
-}
-
-function checkSnapLineUp() {
-
-  var sl = new utils.SnapLine( utils.direction.UP );
-
-  sl.attach( { bottom: 0, height: 1 } );
-  sl.attach( { bottom: 0, height: 2 } );
-  sl.attach( { bottom: 0, height: 3 } );
-  sl.attach( { bottom: 0, height: 4 } );
-
-  assert( sl.displacement() == 10 );
-  assert( sl.step( new Vec( 0, 0 ) ) == -10 );
-  assert( sl.step( new Vec( 0, 0 ), 5 ) == -25 );
 }
 
 function checkVec() {
@@ -61,10 +27,10 @@ function checkRect() {
   
   assert( a.width() == 2 );
   assert( a.height() == 3 ); 
-  assert( a.left() == -1 );
-  assert( a.top() == 2 );
-  assert( a.right() == 1 );
-  assert( a.bottom() == 5 );
+  assert( a.left == 1 );
+  assert( a.top == 2 );
+  assert( a.right == 3 );
+  assert( a.bottom == 5 );
 }
 
 exports.checkUtils = checkUtils;
