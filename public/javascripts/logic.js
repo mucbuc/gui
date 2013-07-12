@@ -8,7 +8,7 @@
           click = root.click;
 
           gui.on( 'guiUpdate', makeViews );
-          pauseGame();
+          gui.once( 'pauseGame', pauseGame );
         }
       }
     , strings = english; 
@@ -115,9 +115,9 @@
       , germ = { checkBox: { onClick:'toggleGerman'}, text: strings.german }
       , menu = { 
           button: [
-            { onClick: 'back', text: strings.back, frame: '' }, 
-            { row: engl, frame: '' }, 
-            { row: germ, frame: '' } 
+            { onClick: 'back', text: strings.back }, 
+            { row: engl }, 
+            { row: germ } 
           ] 
         };
 
@@ -169,7 +169,7 @@
   }
 
   function resumeGame() {
-    var pause = { button: { onClick: 'pauseGame', text: strings.pause, frame: '' } }; 
+    var pause = { button: { onClick: 'pauseGame', text: strings.pause } }; 
     
     gui.setMenu( pause );
     Game.resume();
@@ -197,8 +197,8 @@
     var confirm = {
           text: strings.resetQuestion,
           button: [ 
-            { onClick: 'confirm', text: strings.yes, frame: '' },
-            { onClick: 'cancel', text: strings.no, frame: '' },
+            { onClick: 'confirm', text: strings.yes },
+            { onClick: 'cancel', text: strings.no },
           ]
       };
     

@@ -10,10 +10,6 @@
       Stack.call( this, controller );
 
       this.composite = {};
-  
-      if (typeof model.frame !== 'undefined') {
-        this.composite.frame = builder.buildComponent( 'frame', controller );
-      }
 
       if (typeof model.icon !== 'undefined') {
         this.composite.icon = builder.buildComposite( new Controller( controller, 'icon' ), 'icon' ); 

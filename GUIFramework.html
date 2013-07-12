@@ -32,9 +32,9 @@
 <script src = 'public/strings/english.js'></script>
 <script src = 'public/strings/german.js'></script>
 
+<script src = 'public/javascripts/game.js'></script>
 <script src = 'public/javascripts/logic.js'></script>
 <script src = 'public/javascripts/app.js'></script>
-<script src = 'public/javascripts/game.js'></script>
 <script type="text/javascript">
 
 var context = null
@@ -68,9 +68,9 @@ function Init()
     clientBounds = canvas.getBoundingClientRect();
 
     app.init();
-
     app.gui = new Gui( document.getElementById("click"), canvas, context );
-    
+    app.gui.onTickEmit( 'pauseGame' );
+
 	logic.init(app.gui);
 
     setInterval(Update, 20);
