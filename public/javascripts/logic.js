@@ -33,9 +33,7 @@
           button: [ 
             play, 
             reset, 
-            language
-          ],
-          layer: [ 
+            language,
             { row: sound, frame: '' },
             { row: debug, frame: '' } 
           ]
@@ -109,8 +107,8 @@
     var engl = { checkBox: { onClick: 'toggleEnglish'}, text: strings.english }
       , germ = { checkBox: { onClick:'toggleGerman'}, text: strings.german }
       , menu = { 
-          button: { onClick: 'back', text: strings.back, frame: '' }, 
-          layer: [ 
+          button: [
+            { onClick: 'back', text: strings.back, frame: '' }, 
             { row: engl, frame: '' }, 
             { row: germ, frame: '' } 
           ] 
@@ -190,8 +188,8 @@
   function confirmReset() {
         
     var confirm = {
-          text: strings.resetQuestion,
           button: [ 
+            { text: strings.resetQuestion, frame: '' },
             { onClick: 'confirm', text: strings.yes, frame: '' },
             { onClick: 'cancel', text: strings.no, frame: '' },
           ]

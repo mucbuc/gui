@@ -13,7 +13,7 @@
       AUTHOR: 'Mark Busenitz',
     },
     configuration: {
-      DEBUG: true,
+      DEBUG: false,
     }, 
     setting: {
       sound: true,

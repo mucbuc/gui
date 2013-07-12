@@ -4,7 +4,6 @@
     
     if (typeof controller !== 'undefined') {
       View.call( this, controller );
-      this.buildComposite( this.factory );
     }
 
     this.floatDown = function( top ) {

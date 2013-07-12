@@ -11,7 +11,6 @@
     this.register( 'button', Button );
     this.register( 'textBox', TextBox );
     this.register( 'row', Row );
-    this.register( 'layer', Stack );
     this.register( 'checkBox', CheckBox );
   }
   

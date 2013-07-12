@@ -27,12 +27,12 @@
         this.composite.text = builder.buildComposite( new Controller( controller, 'text' ), 'text' ); 
       }
 
-      if (typeof model.checkBox !== 'undefined') {
-        this.composite.checkBox = builder.buildComposite( new Controller( controller, 'checkBox' ), 'checkBox' ); 
-      }
-
       if (typeof model.onClick !== 'undefined') {
         this.composite.onClick = builder.buildComposite( new Controller( controller, 'onClick' ), 'onClick' ); 
+      }
+
+      if (typeof model.row !== 'undefined') {
+        this.composite.row = builder.buildComposite( new Controller( controller, 'row' ), 'row' ); 
       }
     }
   }

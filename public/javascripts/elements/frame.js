@@ -3,17 +3,24 @@
   function Frame( controller ) {
 
     var instance = this;
-    Element.call( this, controller );
-    
-    controller.once( 'unload', function() {
-      controller.removeListener( 'render', render );
-    } );
-    
-    controller.on( 'render', render );
-  
-    function render() {
+
+    if (typeof controller !== 'undefined') {
+      Element.call( this, controller );
+
+      controller.once( 'unload', function() {
+        controller.removeListener( 'render', render );
+      } );
+      
+      controller.on( 'render', render );
+    }
+
+    this.render = function() {
       var bounds = instance.bounds;
       DrawRect(bounds.left, bounds.top, bounds.width(), bounds.height(), false, instance.color );
+    }
+  
+    function render() { 
+      instance.render();
     };
   }
   

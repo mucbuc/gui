@@ -12,12 +12,12 @@ objective:
       , model
       , width = 0;
 
-    this.offset = new Vec(); 
-
-    Element.call( this, controller );
-
     if (typeof controller !== 'undefined') {
       
+      this.offset = new Vec(); 
+
+      Element.call( this, controller );
+
       // set model 
       update();
       
