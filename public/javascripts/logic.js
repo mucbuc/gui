@@ -14,10 +14,17 @@
     , strings = english; 
     
   function resetGame() {
-    app.configuration.DEBUG = true;
-    app.setting.language = 'en';
-    strings = english;
-    app.setting.sound = true;
+    app.init();
+
+    switch(app.setting.language) {
+      case 'en':
+        strings = english;
+        break;
+      case 'de':
+        strings = german;
+        break;
+    }
+
     gui.click = click;
     pauseGame();
   }

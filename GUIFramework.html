@@ -67,6 +67,8 @@ function Init()
 
     clientBounds = canvas.getBoundingClientRect();
 
+    app.init();
+
     app.gui = new Gui( document.getElementById("click"), canvas, context );
     
 	logic.init(app.gui);
