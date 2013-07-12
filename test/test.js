@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /* 
 objective: 
 	- main test module
@@ -13,6 +15,8 @@ todo:
 var assert = require( 'assert' )
   , app = require( '../public/javascripts/app' ).app
   , test = '../test/';
+
+app.init();
 
 check();
 

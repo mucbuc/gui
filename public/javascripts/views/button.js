@@ -11,10 +11,6 @@
 
       this.composite = {};
 
-      if (typeof model.icon !== 'undefined') {
-        this.composite.icon = builder.buildComposite( new Controller( controller, 'icon' ), 'icon' ); 
-      }
-
       if (typeof model.textBox !== 'undefined') {
         this.composite.textBox = builder.buildComposite( new Controller( controller, 'textBox' ), 'textBox' ); 
       }

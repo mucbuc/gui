@@ -2,7 +2,7 @@
 
   function CheckBox( controller ) {
 
-    var DIM = 12;
+    var DIM = 15, MARGIN = 5;
 
     if (controller !== 'undefined') {
       var instance = this
@@ -10,7 +10,7 @@
       
       ClickRect.call( this, new Controller( controller, 'onClick' ) );
 
-      this.floatWidth = DIM;
+      this.floatWidth = DIM + MARGIN;
 
       controller.once( 'unload', function() {
         controller.removeListener( 'render', render );
@@ -19,9 +19,6 @@
       
       controller.on( 'render', render );
       controller.on( 'update', update );    
-
-      // a bit hacky: this will give the element a width for fillRight called by row/view
-      //this.bounds.right = DIM;
     }
 
     this.pinTop = function( top ) {
@@ -32,6 +29,10 @@
     this.pinBottom = function( bottom ) {
       CheckBox.prototype.pinBottom.call( this, bottom );
       centerVertical( this );
+    };
+
+    this.pinLeft = function( left ) {
+      CheckBox.prototype.pinLeft.call( this, left + MARGIN );
     };
 
     function centerVertical( box ) {

@@ -21,9 +21,33 @@
 
   function PrettyButton(controller, factory) {
 
-    var frame = factory.create( 'frame', controller );
+    var frame = factory.create( 'frame', controller )
+      , icon;
+    
+    if (typeof controller.model.icon !== 'undefined') {
+      icon = factory.create( 'icon', new Controller( controller, 'icon' ) ); 
+    }
+
     Button.call( this, controller, factory );
     this.composite.frame = frame;
+
+    this.pinLeft = function( left ) {
+      
+      if (icon) {
+        icon.pinLeft( left - icon.bounds.width() * 0.5 );
+        icon.pinRight( left + icon.bounds.width() * 0.1 );
+      }
+      PrettyButton.prototype.pinLeft.call( this, left );
+    };
+
+    this.floatDown = function( top ) {
+        
+      if (icon) {
+        icon.pinTop( top - icon.bounds.height() );
+        icon.pinBottom( top + icon.bounds.height() * 0.1 );
+      }
+      return PrettyButton.prototype.floatDown.call( this, top );
+    };
   }
   PrettyButton.prototype = new Button();
 
@@ -55,14 +79,14 @@
     controller.once( 'load', function() {
   
       var view = new View( controller )
-        , width = controller.clientSize.x * 0.4;
+        , width = controller.clientSize.x * 0.3
+        , top = Game.active ? 0 : controller.clientSize.y * 0.1
+        , left = Game.active ? 0 : (controller.clientSize.x - width) * 0.5;
 
       view.buildComposite( instance.factory );
-
-
-      view.pinLeft( (controller.clientSize.x - width) * 0.5 ); 
-      view.pinRight( (controller.clientSize.x + width) * 0.5 );
-      view.floatDown( controller.clientSize.y * instance.topRelative );
+      view.pinLeft( left ); 
+      view.pinRight( left + width );
+      view.floatDown( top );
     } );
   }
 
