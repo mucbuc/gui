@@ -10,7 +10,8 @@
 		language: 'Sprache',
 		english: 'Englisch',
 		german: 'Deutsch',
-		back: 'Zur\u00FCck'
+		back: 'Zur\u00FCck',
+		sound: 'Sound',
 	};
 
 	exports.german = german;

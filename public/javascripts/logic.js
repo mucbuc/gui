@@ -34,7 +34,7 @@
     var play = { onClick: 'resumeGame', text: strings.play, icon: 'public/images/icon.svg' }
       , reset = { onClick: 'resetGame', textBox: strings.reset }
       , language = { onClick: 'setLanguage', text: strings.language }
-      , sound = { checkBox: { onClick: 'toggleSound' }, text: 'sound' }
+      , sound = { checkBox: { onClick: 'toggleSound' }, text: strings.sound }
       , debug = { checkBox: { onClick: 'toggleDebug' }, text: 'debug' }
       , menu = { 
           button: [ 

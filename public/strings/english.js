@@ -10,7 +10,8 @@
 		language: 'Language',
 		english: 'English',
 		german: 'German',
-		back: 'Back'
+		back: 'Back',
+		sound: 'Sound',
 	};
 
 	exports.english = english;
