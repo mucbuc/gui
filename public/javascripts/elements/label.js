@@ -58,6 +58,19 @@ objective:
       }
     };  
 
+    this.floatRight = function( left ) {
+      Label.prototype.pinRight.call( this, left );
+      Label.prototype.pinLeft.call( this, left + width );
+      return width;
+    };
+
+    this.floatDown = function( top ) {
+      Label.prototype.pinTop.call( this, top );
+      Label.prototype.pinBottom.call( this, top + this.floatHeight );
+      this.offset.y = calcOffsetY( this.floatHeight );
+      return this.floatHeight;
+    };
+
     function calcOffsetY( height ) {
       return (height - instance.fontSize) / 2;
     }
@@ -78,6 +91,7 @@ objective:
   
   Label.prototype = new Element();
   Label.prototype.fontSize = 20;
+  Label.prototype.floatHeight = Label.prototype.fontSize * 2;
   Label.prototype.color = "rgb(0, 0, 130)";
   
   exports.Label = Label;

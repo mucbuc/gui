@@ -10,6 +10,8 @@
       
       ClickRect.call( this, new Controller( controller, 'onClick' ) );
 
+      this.floatWidth = DIM;
+
       controller.once( 'unload', function() {
         controller.removeListener( 'render', render );
         controller.removeListener( 'update', update );
@@ -19,7 +21,7 @@
       controller.on( 'update', update );    
 
       // a bit hacky: this will give the element a width for fillRight called by row/view
-      this.bounds.right = DIM;
+      //this.bounds.right = DIM;
     }
 
     this.pinTop = function( top ) {

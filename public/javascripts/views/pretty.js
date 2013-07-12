@@ -39,10 +39,12 @@
 
     controller.once( 'load', function() {
   
-      var view = new View( controller );
+      var view = new View( controller )
+        , width = controller.clientSize.x * 0.4;
+
       view.buildComposite( instance.factory );
-      view.pinLeft( controller.clientSize.x * 0.25 ); 
-      view.pinRight( controller.clientSize.x * 0.75 );
+      view.pinLeft( (controller.clientSize.x - width) * 0.5 ); 
+      view.pinRight( (controller.clientSize.x + width) * 0.5 );
       view.floatDown( controller.clientSize.y * 0.1 );
     } );
 
