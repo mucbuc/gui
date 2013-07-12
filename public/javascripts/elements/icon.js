@@ -25,6 +25,10 @@ objective:
     
     img.onload = function() {
       loaded = true;
+      
+      if (instance.onload) {
+        instance.onload( img );
+      }
     };
     
     function render() {

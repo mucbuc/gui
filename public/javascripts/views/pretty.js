@@ -18,7 +18,6 @@
   PrettyFrame.prototype.fillColor = "rgb(0, 100, 200)";
   PrettyFrame.prototype.frameColor = "rgb(100, 200, 0)";
 
-
   function PrettyButton(controller, factory) {
 
     var frame = factory.create( 'frame', controller )
@@ -34,8 +33,7 @@
     this.pinLeft = function( left ) {
       
       if (icon) {
-        icon.pinLeft( left - icon.bounds.width() * 0.5 );
-        icon.pinRight( left + icon.bounds.width() * 0.1 );
+        icon.pinLeft( left - 25 ); // icon.bounds.width() );
       }
       PrettyButton.prototype.pinLeft.call( this, left );
     };
@@ -43,8 +41,12 @@
     this.floatDown = function( top ) {
         
       if (icon) {
-        icon.pinTop( top - icon.bounds.height() );
-        icon.pinBottom( top + icon.bounds.height() * 0.1 );
+        icon.pinTop( top - 25 ); // icon.bounds.height() );
+        
+        icon.onload = function( img ) {
+          icon.pinRight( icon.bounds.left + img.width * 0.1 );
+          icon.pinBottom( icon.bounds.top + img.height * 0.1 );
+        };
       }
       return PrettyButton.prototype.floatDown.call( this, top );
     };
