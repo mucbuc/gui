@@ -2,7 +2,7 @@
 
 /* 
 Written by: Mark Busenitz, mbusenitz@gmail.com
-This is the test result for the Unknown Worlds GUIFramework design challenge.
+This is the result for the Unknown Worlds GUIFramework design test.
 
 objective: 
 	- main test module

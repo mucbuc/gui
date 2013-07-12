@@ -1,12 +1,11 @@
 notes:
-
 - consider this a rough prototype to demonstrate design only
-- this framework is aiming to implement a "GOF" style MVC pattern
-- this is the result of my desing process, not my ideal dream design 
+- aiming to implement a "GOF" style MVC pattern
+- result of my desing process, not my ideal dream design 
 - the EventStream is inspired by node.js's EventEmitter with following differences: 
 	1) events are queued 
 	2) listeners added while notifications do not get the current notification
-- all client side assets and code (except for the GUIFramework.html) are is in the public directory
+- all client side assets and code (except GUIFramework.html) are is in the public directory
 - the code inside node_modules is intended to be shared by client and server (if that model applies)
 - very rough and brute force testing inplace (requires node.js)
 - run test by command line: "node test.js"
@@ -18,7 +17,4 @@ todo:
 - remove constants littering the code 
 - document 
 - more unit and recursion tests
-- profiling, i'm sure i missed some resource hogs bejond the string files. 
-
-
-
+- profiling, i'm sure i missed some resource hogs on my mission to avoid the maintnance ones
