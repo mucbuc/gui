@@ -74,7 +74,7 @@
     var instance = this
       , elements;
 
-    PrettyView.prototype.topRelative = Game.active ? 0 : 0.1;
+    CheckBox.prototype.frameColor = PrettyFrame.prototype.frameColor;
 
     controller.context.textAlign = 'center';
 

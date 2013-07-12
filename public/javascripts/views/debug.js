@@ -45,6 +45,8 @@
     
     var instance = this
       , elements = 0;
+
+    CheckBox.prototype.frameColor = Frame.prototype.color;
     
     controller.context.textAlign = 'left';
 

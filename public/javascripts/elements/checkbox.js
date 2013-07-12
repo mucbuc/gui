@@ -2,11 +2,12 @@
 
   function CheckBox( controller ) {
 
-    var DIM = 15, MARGIN = 5;
+    var DIM = 15
+      , MARGIN = 5
+      , instance = this;
 
     if (controller !== 'undefined') {
-      var instance = this
-        , model = controller.model;
+      var model = controller.model;
       
       ClickRect.call( this, new Controller( controller, 'onClick' ) );
 
@@ -52,7 +53,7 @@
         , GAP_DUB = 2 * GAP
         , bounds = instance.bounds;
         
-      DrawRect(bounds.left, bounds.top, bounds.width(), bounds.height(), true, "rgb(80, 100, 90)");
+      DrawRect(bounds.left, bounds.top, bounds.width(), bounds.height(), true, instance.frameColor );  
       
       if (model.state) {
         DrawRect(bounds.left + GAP, bounds.top + GAP, bounds.width() - GAP_DUB, bounds.height() - GAP_DUB, true, "rgb(50, 50, 50)");
@@ -64,6 +65,7 @@
   }
   
   CheckBox.prototype = new ClickRect();
+  CheckBox.prototype.frameColor = "rgb(0, 0, 0)";
   
   exports.CheckBox = CheckBox;
 
