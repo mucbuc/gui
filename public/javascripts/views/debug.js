@@ -1,3 +1,9 @@
+/* 
+Written by: Mark Busenitz, mbusenitz@gmail.com
+This is the test result for the Unknown Worlds GUIFramework design challenge.
+*/ 
+
+
 (function(){
 
   function DebugButton(controller, factory) {

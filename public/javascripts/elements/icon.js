@@ -1,4 +1,7 @@
 /* 
+Written by: Mark Busenitz, mbusenitz@gmail.com
+This is the test result for the Unknown Worlds GUIFramework design challenge.
+
 objective: 
   render image 
   handle image loading 

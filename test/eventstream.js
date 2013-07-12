@@ -1,3 +1,8 @@
+/* 
+Written by: Mark Busenitz, mbusenitz@gmail.com
+This is the test result for the Unknown Worlds GUIFramework design challenge.
+*/ 
+
 var assert = require( 'assert' )
   , lib = require( './config.json' ).lib
   , Set = require( lib + 'set' ).Set

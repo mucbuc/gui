@@ -1,0 +1,23 @@
+notes:
+
+- consider this a rough prototype to demonstrate design only
+- this framework is aiming to implement a "GOF" style MVC pattern
+- the EventStream is inspired by node.js's EventEmitter with following differences: 
+	1) events are queued 
+	2) listeners added while notifications do not get the current notification
+- all client side assets and code (except for the GUIFramework.html) are is in the public directory
+- the code inside node_modules is intended to be shared by client and server (if that model applies)
+- very rough and brute force framwork tests inplace (requires node.js)
+- run test by command line: "node test.js"
+- current loading of localized strings is a major bottleneck
+- the string files should probably be JSON files
+- seems to be working for Chrome, Firefox, Opera and Safari (Mac OSX)
+
+todo: 
+- remove constants littering the code 
+- document 
+- more unit and recursion tests
+
+
+
+
