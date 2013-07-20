@@ -2,7 +2,7 @@
 
 /* 
 Written by: Mark Busenitz, mbusenitz@gmail.com
-This is the result for the Unknown Worlds GUIFramework design test.
+<om636/lib/
 
 objective: 
 	- main test module

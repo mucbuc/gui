@@ -61,9 +61,9 @@ function Init()
     var canvas = document.getElementById("maincanvas");
     context = canvas.getContext("2d");
 	
-    canvas.addEventListener('mousedown', 	MouseEvent.bind(null, OnMouseDown), false);	
-	canvas.addEventListener('mouseup',   	MouseEvent.bind(null, OnMouseUp), false);	
-	canvas.addEventListener('mousemove',   	MouseEvent.bind(null, OnMouseMove), false);	
+    canvas.addEventListener('mousedown', 	MouseEvent.bind(null, app.onMouseDown), false);	
+	  canvas.addEventListener('mouseup',   	MouseEvent.bind(null, app.onMouseUp), false);	
+	  canvas.addEventListener('mousemove',   	MouseEvent.bind(null, app.onMouseDown), false);	
 
     clientBounds = canvas.getBoundingClientRect();
 
@@ -71,9 +71,9 @@ function Init()
     app.gui = new Gui( document.getElementById("click"), canvas, context );
     app.gui.onTickEmit( 'pauseGame' );
 
-	logic.init(app.gui);
+	  logic.init(app.gui);
 
-    setInterval(Update, 20);
+    setInterval( app.update, 20);
 }
 
 function SetDrawTextContext(color, size, bold ) {  
@@ -91,33 +91,6 @@ function DrawText(x, y, color, text, size, bold, width)
 {
     SetDrawTextContext(color, size, bold );
     context.fillText(text, x, y, width );
-}
-
-function OnMouseDown(x, y)
-{
-  app.gui.onMouseDown( x, y );
-  Game.onMouseDown( x, y );
-}
-
-function OnMouseUp(x, y)
-{
-  app.gui.onMouseUp( x, y );
-  Game.onMouseUp( x, y );
-}
-
-function OnMouseMove(x, y)
-{
-  app.gui.onMouseMove( x, y );
-  Game.onMouseMove( x, y );
-}
-
-function Update()
-{
-    app.gui.context.clearRect( 0, 0, app.gui.canvas.width, app.gui.canvas.height );
-    app.gui.render();
-    app.gui.tick();
-    
-    Game.render();
 }
 
 </script>
