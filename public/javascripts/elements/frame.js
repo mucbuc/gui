@@ -22,7 +22,8 @@ This is the result for the Unknown Worlds GUIFramework design test.
 
     this.render = function() {
       var bounds = instance.bounds;
-      DrawRect(bounds.left, bounds.top, bounds.width(), bounds.height(), false, instance.color );
+      controller.context.strokeStyle = instance.color;
+      controller.context.strokeRect(bounds.left, bounds.top, bounds.width(), bounds.height());
     }
   
     function render() { 

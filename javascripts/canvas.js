@@ -29,9 +29,9 @@ var Canvas = function( docElement ) {
     var result; 
     
     if (e.x == undefined || e.y == undefined) {
-	  // firefox
-	  result = $V( [ e.pageX, e.pageY] );
-	}
+  	  // firefox
+  	  result = $V( [ e.pageX, e.pageY] );
+	  }  
     else {
       result = $V( [ e.x + window.scrollX, e.y + window.scrollY ] );
     }

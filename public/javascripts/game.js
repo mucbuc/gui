@@ -11,6 +11,7 @@ This is the result for the Unknown Worlds GUIFramework design test.
     pos: 0,
     resume: function() {
       Game.active = true;
+      Game.context = document.getElementById( 'canvas' ).getContext( '2d' );
     }, 
     pause: function() {
       Game.active = false;
@@ -19,7 +20,9 @@ This is the result for the Unknown Worlds GUIFramework design test.
     render: function() {
       if (Game.pos) {
         var SIZE = 20;
-        DrawRect(Game.pos.x, Game.pos.y, SIZE, SIZE, true, "rgb(150, 0, 50)");
+        
+        Game.context.fillStyle = "rgb(150, 0, 50)";
+        Game.context.fillRect(Game.pos.x, Game.pos.y, SIZE, SIZE);
       }
     },
     onMouseDown: function( x, y ) {

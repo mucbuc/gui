@@ -57,15 +57,18 @@ This is the result for the Unknown Worlds GUIFramework design test.
       var GAP = 2
         , GAP_DUB = 2 * GAP
         , bounds = instance.bounds;
-        
-      DrawRect(bounds.left, bounds.top, bounds.width(), bounds.height(), true, instance.frameColor );  
+    
+      controller.context.fillStyle = instance.frameColor;
+      controller.context.fillRect(bounds.left, bounds.top, bounds.width(), bounds.height());        
       
       if (model.state) {
-        DrawRect(bounds.left + GAP, bounds.top + GAP, bounds.width() - GAP_DUB, bounds.height() - GAP_DUB, true, "rgb(50, 50, 50)");
+        controller.context.fillStyle = "rgb(50, 50, 50)";
       }
       else {
-        DrawRect(bounds.left + GAP, bounds.top + GAP, bounds.width() - GAP_DUB, bounds.height() - GAP_DUB, true, "rgb(250, 250, 250)");
+        controller.context.fillStyle = "rgb(250, 250, 250)";
       }
+
+      controller.context.fillRect(bounds.left + GAP, bounds.top + GAP, bounds.width() - GAP_DUB, bounds.height() - GAP_DUB);  
     }
   }
   

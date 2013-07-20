@@ -15,8 +15,11 @@ This is the result for the Unknown Worlds GUIFramework design test.
         , width = bounds.width()
         , height = bounds.height(); 
 
-      DrawRect(bounds.left, bounds.top, width, height, true, this.fillColor );
-      DrawRect(bounds.left, bounds.top, width, height, false, this.frameColor );
+      controller.context.fillStyle = this.fillColor;
+      controller.context.fillRect(bounds.left, bounds.top, width, height);
+    
+      controller.context.strokeStyle = this.frameColor;
+      controller.context.strokeRect(bounds.left, bounds.top, width, height);
     };
   }
   PrettyFrame.prototype = new Frame();
