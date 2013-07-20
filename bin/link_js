@@ -1,0 +1,3 @@
+cd ../public/javascripts
+ln -f -s ../../javascripts/canvas.js
+
