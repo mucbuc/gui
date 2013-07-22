@@ -32,6 +32,7 @@
 <script src = 'public/strings/english.js'></script>
 <script src = 'public/strings/german.js'></script>
 
+<script src = 'public/javascripts/canvas.js'></script>
 <script src = 'public/javascripts/game.js'></script>
 <script src = 'public/javascripts/logic.js'></script>
 <script src = 'public/javascripts/app.js'></script>
@@ -61,9 +62,9 @@ function Init()
     var canvas = document.getElementById("maincanvas");
     context = canvas.getContext("2d");
 	
-    canvas.addEventListener('mousedown', 	MouseEvent.bind(null, app.onMouseDown), false);	
-	  canvas.addEventListener('mouseup',   	MouseEvent.bind(null, app.onMouseUp), false);	
-	  canvas.addEventListener('mousemove',   	MouseEvent.bind(null, app.onMouseDown), false);	
+    canvas.addEventListener('mousedown', app.onMouseDown, false );    //	MouseEvent.bind(null, app.onMouseDown), false);	
+	  canvas.addEventListener('mouseup', app.onMouseUp, false );       // 	MouseEvent.bind(null, app.onMouseUp), false);	
+	  canvas.addEventListener('mousemove', app.onMouseMove, false );   // MouseEvent.bind(null, app.onMouseMove), false);	
 
     clientBounds = canvas.getBoundingClientRect();
 

@@ -30,12 +30,12 @@ var Canvas = function( docElement ) {
     
     if (e.x == undefined || e.y == undefined) {
   	  // firefox
-  	  result = $V( [ e.pageX, e.pageY] );
+  	  result = { x: e.pageX, y: e.pageY };
 	  }  
     else {
-      result = $V( [ e.x + window.scrollX, e.y + window.scrollY ] );
+      result = { x: e.x + window.scrollX, y: e.y + window.scrollY };
     }
-    return result.subtract( $V( [ bounds.left, bounds.top ] ) );
+    return { x: result.x - bounds.left, y: result.y - bounds.top };
   };
  
   this.__defineGetter__( 'width', function() {

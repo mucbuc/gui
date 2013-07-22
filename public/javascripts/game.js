@@ -11,7 +11,6 @@ Written by: Mark Busenitz, mbusenitz@gmail.com
     pos: 0,
     resume: function() {
       Game.active = true;
-      Game.context = document.getElementById( 'canvas' ).getContext( '2d' );
     }, 
     pause: function() {
       Game.active = false;
@@ -25,14 +24,14 @@ Written by: Mark Busenitz, mbusenitz@gmail.com
         Game.context.fillRect(Game.pos.x, Game.pos.y, SIZE, SIZE);
       }
     },
-    onMouseDown: function( x, y ) {
+    onMouseDown: function( p ) {
       if (Game.active) {
-        Game.pos = { x: x, y: y };
+        Game.pos = p;
       }
     }, 
-    onMouseMove: function( x, y ) {
+    onMouseMove: function( p ) {
       if (Game.pos) {
-          Game.pos = { x: x, y: y };
+          Game.pos = p;
       }
     }, 
     onMouseUp: function( x, y ) {

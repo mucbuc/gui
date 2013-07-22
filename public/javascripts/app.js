@@ -9,6 +9,8 @@ Written by: Mark Busenitz, mbusenitz@gmail.com
   var app = {
       init: function() {
         
+        var canvas = document.getElementById( 'maincanvas' );
+
         app.metaData = {
           NAME: 'GUIFramework',
           VERSION: '0.0.0',
@@ -23,6 +25,9 @@ Written by: Mark Busenitz, mbusenitz@gmail.com
           sound: true,
           language: 'en'
         };
+
+        Game.context = canvas.getContext( '2d' );
+        Game.canvas = new Canvas( canvas );
       }, 
       update: function() {
         app.gui.context.clearRect( 0, 0, app.gui.canvas.width, app.gui.canvas.height );
@@ -30,17 +35,20 @@ Written by: Mark Busenitz, mbusenitz@gmail.com
         app.gui.tick();
         Game.render();
       },
-      onMouseDown: function( x , y ) {
-        app.gui.onMouseDown( x, y );
-        Game.onMouseDown( x, y );
+      onMouseDown: function( e ) {
+        var p = Game.canvas.positionOnCanvas( e );
+        app.gui.onMouseDown( p );
+        Game.onMouseDown( p ); 
       },
-      onMouseUp: function( x, y ) {
-        app.gui.onMouseUp( x, y );
-        Game.onMouseUp( x, y );
+      onMouseUp: function( e ) {
+        var p = Game.canvas.positionOnCanvas( e );
+        app.gui.onMouseUp( p );
+        Game.onMouseUp( p );
       }, 
-      onMouseMove: function(x, y) {
-        app.gui.onMouseMove( x, y );
-        Game.onMouseMove( x, y );
+      onMouseMove: function( e ) {
+        var p = Game.canvas.positionOnCanvas( e );
+        app.gui.onMouseMove( p );
+        Game.onMouseMove( p );
       }, 
   };
 
