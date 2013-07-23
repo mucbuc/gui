@@ -1,9 +1,10 @@
 cd ../public/javascripts
-ln -f -s ../../javascripts/canvas.js
+ln -f -s ../../jsbag/canvas.js
+
 cd node_modules
-ln -f -s ../../../javascripts/vec.js
-ln -f -s ../../../javascripts/rect.js
-ln -f -s ../../../javascripts/set.js
+ln -f -s ../../../jsbag/vec.js
+ln -f -s ../../../jsbag/rect.js
+ln -f -s ../../../jsbag/set.js
 
 
 

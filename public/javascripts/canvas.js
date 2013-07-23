@@ -1,1 +1,1 @@
-../../javascripts/canvas.js
+../../jsbag/canvas.js
