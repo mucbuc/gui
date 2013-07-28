@@ -5,12 +5,11 @@ Written by: Mark Busenitz, mbusenitz@gmail.com
 
 
 (function() {
-  
   var app = {
+      initialized: false, 
       init: function() {
         
-        var canvas = document.getElementById( 'maincanvas' );
-    
+
         app.metaData = {
           NAME: 'GUIFramework',
           VERSION: '0.0.0',
@@ -25,20 +24,25 @@ Written by: Mark Busenitz, mbusenitz@gmail.com
           sound: true,
           language: 'en'
         };
+ 
+        if (!app.initialized) {
+          app.initialized = true;
 
-        canvas.addEventListener('mousedown', app.onMouseDown, false );
-        canvas.addEventListener('mouseup', app.onMouseUp, false );  
-        canvas.addEventListener('mousemove', app.onMouseMove, false );
+          var canvas = document.getElementById( 'maincanvas' );
+          canvas.addEventListener('mousedown', app.onMouseDown, false );
+          canvas.addEventListener('mouseup', app.onMouseUp, false );  
+          canvas.addEventListener('mousemove', app.onMouseMove, false );
 
-        Game.context = canvas.getContext( '2d' );
-        Game.canvas = new Canvas( canvas );
+          Game.context = canvas.getContext( '2d' );
+          Game.canvas = new Canvas( canvas );
 
-        app.gui = new Gui( document.getElementById("click"), canvas, Game.context );
-        app.gui.onTickEmit( 'pauseGame' );
-    
-        logic.init(app.gui);
+          app.gui = new Gui( document.getElementById("click"), canvas, Game.context );
+          app.gui.onTickEmit( 'pauseGame' );
+      
+          logic.init(app.gui);
 
-        setInterval( app.update, 20);
+          setInterval( app.update, 20);
+        }
       }, 
       update: function() {
         app.gui.context.clearRect( 0, 0, app.gui.canvas.width, app.gui.canvas.height );
