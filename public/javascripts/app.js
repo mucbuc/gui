@@ -10,7 +10,7 @@ Written by: Mark Busenitz, mbusenitz@gmail.com
       init: function() {
         
         var canvas = document.getElementById( 'maincanvas' );
-
+    
         app.metaData = {
           NAME: 'GUIFramework',
           VERSION: '0.0.0',
@@ -26,8 +26,19 @@ Written by: Mark Busenitz, mbusenitz@gmail.com
           language: 'en'
         };
 
+        canvas.addEventListener('mousedown', app.onMouseDown, false );
+        canvas.addEventListener('mouseup', app.onMouseUp, false );  
+        canvas.addEventListener('mousemove', app.onMouseMove, false );
+
         Game.context = canvas.getContext( '2d' );
         Game.canvas = new Canvas( canvas );
+
+        app.gui = new Gui( document.getElementById("click"), canvas, Game.context );
+        app.gui.onTickEmit( 'pauseGame' );
+    
+        logic.init(app.gui);
+
+        setInterval( app.update, 20);
       }, 
       update: function() {
         app.gui.context.clearRect( 0, 0, app.gui.canvas.width, app.gui.canvas.height );
@@ -51,6 +62,8 @@ Written by: Mark Busenitz, mbusenitz@gmail.com
         Game.onMouseMove( p );
       }, 
   };
+
+  window.addEventListener( 'load', app.init );
 
   exports.app = app;
 

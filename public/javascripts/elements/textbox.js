@@ -67,7 +67,7 @@ Written by: Mark Busenitz, mbusenitz@gmail.com
       if (lines) {
         var bounds = instance.bounds.clone();
         lines.forEach( function( line ) {
-          DrawText( bounds.left + instance.offset.x, bounds.top + instance.offset.y, instance.color, line, instance.fontSize, false, bounds.width() );
+          Game.canvas.drawText( bounds.left + instance.offset.x, bounds.top + instance.offset.y, instance.color, line, instance.fontSize, false, bounds.width() );
           bounds.top += instance.fontSize;
         });
       }
@@ -84,7 +84,7 @@ Written by: Mark Busenitz, mbusenitz@gmail.com
 
       lines = [];
 
-			SetDrawTextContext( instance.color, instance.fontSize, false );
+			Game.canvas.setDrawTextContext( instance.color, instance.fontSize, false );
     	
       while (words.length) {
 

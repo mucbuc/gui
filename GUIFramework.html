@@ -36,65 +36,8 @@
 <script src = 'public/javascripts/app.js'></script>
 <script type="text/javascript">
 
-var context = null
-  , clientBounds = null;
-
-function MouseEvent(handler, ev)
-{
-	var x, y;
-	
-	// Get the mouse position relative to the canvas element.
-	if (typeof ev.x === 'undefined') { // Firefox
-		x = ev.pageX;
-		y = ev.pageY;
-	} else 
-    { 
-    	x = ev.x + window.scrollX;
-        y = ev.y + window.scrollY;
-	}
-    handler( x - clientBounds.left, y - clientBounds.top );
-}
-
-function Init()
-{
-    var canvas = document.getElementById("maincanvas");
-    context = canvas.getContext("2d");
-	
-    canvas.addEventListener('mousedown', app.onMouseDown, false );    //	MouseEvent.bind(null, app.onMouseDown), false);	
-	  canvas.addEventListener('mouseup', app.onMouseUp, false );       // 	MouseEvent.bind(null, app.onMouseUp), false);	
-	  canvas.addEventListener('mousemove', app.onMouseMove, false );   // MouseEvent.bind(null, app.onMouseMove), false);	
-
-    clientBounds = canvas.getBoundingClientRect();
-
-    app.init();
-    app.gui = new Gui( document.getElementById("click"), canvas, context );
-    app.gui.onTickEmit( 'pauseGame' );
-
-	  logic.init(app.gui);
-
-    setInterval( app.update, 20);
-}
-
-function SetDrawTextContext(color, size, bold ) {  
-    boldText = "";
-    if (bold)
-    {
-        boldText = "bold";
-    }
-    context.textBaseline = 'bottom';
-    context.font = boldText + (size.toString() + "px Arial");
-    context.fillStyle = color;
-}
-
-function DrawText(x, y, color, text, size, bold, width)     
-{
-    SetDrawTextContext(color, size, bold );
-    context.fillText(text, x, y, width );
-}
-
 </script>
 </head>
-<body onload="Init();">
 <canvas id="maincanvas" width="400" height="400"></canvas>
 <audio src='public/audio/click02.wav' id="click"></audio>
 </body>

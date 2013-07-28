@@ -26,10 +26,10 @@ Written by: Mark Busenitz, mbusenitz@gmail.com
       return this.dot( this ); 
     },
     length: function() {
-      return Math.sqrt( this.lengthSquared() ); 
+      return Math.sqrt( this.lengthSquare() ); 
     },
     normalize: function() {
-	  return this.mult( 1 / this.length() );
+	    return this.mult( 1 / this.length() );
 	  },
 	  dot: function( v ) { 
       return this.x * v.x + this.y * v.y;
@@ -42,7 +42,13 @@ Written by: Mark Busenitz, mbusenitz@gmail.com
     }
   };
   
+  Vec.Zero = new Vec();
+
   exports.Vec = Vec;
+
+  exports.$V = function( a ) {
+    return a instanceof Array ? new Vec( a[0], a[1] ) : Vec.Zero;
+  };
   
 } )();
   

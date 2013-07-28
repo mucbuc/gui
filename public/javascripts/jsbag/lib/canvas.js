@@ -40,6 +40,24 @@ var Canvas = function( docElement ) {
     return { x: result.x - bounds.left, y: result.y - bounds.top };
   };
  
+  this.setDrawTextContext = function(color, size, bold ) {  
+    
+    var boldText = "";
+    if (bold)
+    {
+        boldText = "bold";
+    }
+    context.textBaseline = 'bottom';
+    context.font = boldText + (size.toString() + "px Arial");
+    context.fillStyle = color;
+  }; 
+
+  this.drawText = function(x, y, color, text, size, bold, width)     
+  {
+    this.setDrawTextContext(color, size, bold );
+    context.fillText(text, x, y, width );
+  };
+
   this.__defineGetter__( 'width', function() {
     return width;
   } );
