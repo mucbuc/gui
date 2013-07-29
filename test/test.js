@@ -16,4 +16,5 @@ function check() {
   
   require( test + 'set' );
   require( test + 'vec' );
+  require( test + 'rect' );
 }
