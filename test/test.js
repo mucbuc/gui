@@ -15,4 +15,5 @@ function check() {
   console.log( 'running tests on ' + package.name + ' ' + package.version );
   
   require( test + 'set' );
+  require( test + 'vec' );
 }
