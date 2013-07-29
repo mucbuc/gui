@@ -5,7 +5,8 @@ Written by: Mark Busenitz, mbusenitz@gmail.com
 
 var assert = require( 'assert' )
   , lib = require( './config.json' ).lib
-  , Set = require( lib + 'set' ).Set
+  , jsbag = require( './config.json' ).jsbag
+  , Set = require( jsbag + 'set' ).Set
   , events = require( lib + 'eventstream' )
   , EventQueue = events.EventQueue
   , EventStream = events.EventStream;
@@ -163,7 +164,7 @@ function checkStream() {
 }
 
 function loadSet() {
-  require( lib + 'set' );
+  require( jsbag + 'set' );
   return Set;
 }
 

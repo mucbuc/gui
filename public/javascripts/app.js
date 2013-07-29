@@ -25,10 +25,11 @@ Written by: Mark Busenitz, mbusenitz@gmail.com
           language: 'en'
         };
  
-        if (!app.initialized) {
-          app.initialized = true;
-
+        if (  !app.initialized 
+            && typeof document !== 'undefined') {
+          
           var canvas = document.getElementById( 'maincanvas' );
+          app.initialized = true;
           canvas.addEventListener('mousedown', app.onMouseDown, false );
           canvas.addEventListener('mouseup', app.onMouseUp, false );  
           canvas.addEventListener('mousemove', app.onMouseMove, false );
@@ -67,7 +68,9 @@ Written by: Mark Busenitz, mbusenitz@gmail.com
       }, 
   };
 
-  window.addEventListener( 'load', app.init );
+  if (typeof window !== 'undefined') {
+    window.addEventListener( 'load', app.init );
+  }
 
   exports.app = app;
 

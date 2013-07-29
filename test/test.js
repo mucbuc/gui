@@ -26,9 +26,8 @@ check();
 function check() {
 
   console.log( 'running tests on ' + app.metaData.NAME + ' ' + app.metaData.VERSION );
-  
-  require( test + 'set' );
-  require( test + 'utils' ).checkUtils;
+
+//  require( test + 'utils' ).checkUtils;
   require( test + 'factory' ).checkFactory;
   require( test + 'eventstream' ).checkEvents;
   require( test + 'builder' ).checkBuilder;
