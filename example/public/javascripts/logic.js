@@ -37,7 +37,7 @@ Written by: Mark Busenitz, mbusenitz@gmail.com
 
   function pauseGame() {
   
-    var play = { onClick: 'resumeGame', text: strings.play, icon: 'public/images/icon.svg' }
+    var play = { onClick: 'resumeGame', text: strings.play, icon: 'images/icon.svg' }
       , reset = { onClick: 'resetGame', textBox: strings.reset }
       , language = { onClick: 'setLanguage', text: strings.language }
       , sound = { checkBox: { onClick: 'toggleSound' }, text: strings.sound }
