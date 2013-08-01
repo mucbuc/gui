@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /* 
-Written by: Mark Busenitz, mbusenitz@gmail.com
+Written by: Mark Busenitz, om636.mucbuc@gmail.com
 <om636/lib/
 
 objective: 

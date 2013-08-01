@@ -1,6 +1,5 @@
 /* 
-Written by: Mark Busenitz, mbusenitz@gmail.com
-<om636/lib/
+Written by: Mark Busenitz, om636.mucbuc@gmail.com
 */ 
 
 
