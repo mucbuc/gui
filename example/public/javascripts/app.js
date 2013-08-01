@@ -11,7 +11,7 @@ Written by: Mark Busenitz, mbusenitz@gmail.com
         
 
         app.metaData = {
-          NAME: 'GUIFramework',
+          NAME: 'gui',
           VERSION: '0.0.0',
           AUTHOR: 'Mark Busenitz',
         };
@@ -28,7 +28,7 @@ Written by: Mark Busenitz, mbusenitz@gmail.com
         if (  !app.initialized 
             && typeof document !== 'undefined') {
           
-          var canvas = document.getElementById( 'maincanvas' );
+          var canvas = document.getElementById( 'canvas' );
           app.initialized = true;
           canvas.addEventListener('mousedown', app.onMouseDown, false );
           canvas.addEventListener('mouseup', app.onMouseUp, false );  

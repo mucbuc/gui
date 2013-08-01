@@ -5,7 +5,7 @@ notes:
 - the EventStream is inspired by node.js's EventEmitter with following differences: 
 	1) events are queued 
 	2) listeners added while notifications do not get the current notification
-- all client side assets and code (except GUIFramework.html) are is in the public directory
+- all client side assets and code (except gui.html) are is in the public directory
 - the code inside node_modules is intended to be shared by client and server (if applies)
 - very rough and brute force testing in place. requires node.js
 - run test by command line: "node test.js"
