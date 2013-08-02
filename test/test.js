@@ -16,16 +16,14 @@ todo:
 */ 
 
 var assert = require( 'assert' )
-  , app = require( '../public/javascripts/app' ).app
+  , metaData = require( '../lib.json' ).metaData
   , test = '../test/';
-
-app.init();
 
 check();
 
 function check() {
 
-  console.log( 'running tests on ' + app.metaData.NAME + ' ' + app.metaData.VERSION );
+  console.log( 'running tests on ' + metaData.VERSION );
 
 //  require( test + 'utils' ).checkUtils;
   require( test + 'factory' ).checkFactory;

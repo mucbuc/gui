@@ -8,13 +8,6 @@ Written by: Mark Busenitz, om636.mucbuc@gmail.com
   var app = {
       initialized: false, 
       init: function() {
-        
-
-        app.metaData = {
-          NAME: 'gui',
-          VERSION: '0.0.0',
-          AUTHOR: 'Mark Busenitz',
-        };
 
         app.configuration = {
           DEBUG: false,

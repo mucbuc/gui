@@ -1,5 +1,0 @@
-{
-	"dependencies": [
-		{ "source": "https://github.com/mucbuc/jsbag.git", "target": "public/javascripts/jsbag" }
-	] 
-}

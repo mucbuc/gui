@@ -3,14 +3,12 @@ Written by: Mark Busenitz, om636.mucbuc@gmail.com
 */
 
 var assert = require( 'assert' )
-  , lib = require( './config.json' ).lib
-  , jsbag = require( './config.json' ).jsbag
-  , Set = require( jsbag + 'set' ).Set
-  , events = require( lib + 'eventstream' )
+  , config = require( './config.json' )
+  , path = require( 'path' )
+  , events = require( config.lib + 'eventstream' )
   , EventQueue = events.EventQueue
   , EventStream = events.EventStream;
 
-assert( Set !== 'undefined' );
 assert( EventQueue !== 'undefined' );
 assert( EventStream !== 'undefined' );
 
@@ -29,7 +27,7 @@ function checkEvents() {
 }
 
 function checkDetachWhileTraverse() {
-  var q = new EventStream( Set )
+  var q = new EventStream()
     , counter = 0;
   
   q.once( 'check', tickIt );
@@ -53,7 +51,7 @@ function checkDetachWhileTraverse() {
 }
 
 function checkAttachWhileTraverse() {
-  var q = new EventStream( Set )
+  var q = new EventStream()
     , counter = 0;
   
   q.once( 'push', pushIt );
@@ -101,7 +99,7 @@ function checkOnce() {
 
 function checkOn() {
 
-  var q = new EventStream( Set )
+  var q = new EventStream()
     , counter = 0; 
     
   q.on( 'count', inc ); 
@@ -139,7 +137,7 @@ function checkQueuePop() {
 
 function checkStream() {
   
-  var q = new EventStream( Set )
+  var q = new EventStream()
     , responded = false
     , interupted = false;
   
@@ -160,11 +158,6 @@ function checkStream() {
   }
   
   assert( interupted );
-}
-
-function loadSet() {
-  require( jsbag + 'set' );
-  return Set;
 }
 
 exports.checkEvents = checkEvents;

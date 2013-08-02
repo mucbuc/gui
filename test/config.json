@@ -1,4 +1,4 @@
 {
-  "lib": "../public/javascripts/node_modules/",
-  "jsbag": "./../public/javascripts/jsbag/lib/"
+  "lib": "../lib/node_modules/",
+  "jsbag": "../lib/jsbag/lib/"
 }
