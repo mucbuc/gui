@@ -4,6 +4,6 @@
 		"AUTHOR": "Mark Busenitz"
 	}, 
 	"dependencies": [
-		{ "source": "https://github.com/mucbuc/jsbag.git", "target": "public/javascripts/jsbag" }
+		{ "source": "https://github.com/mucbuc/jsbag.git", "target": "lib/jsbag" }
 	] 
 }
