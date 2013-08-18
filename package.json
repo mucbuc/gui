@@ -1,7 +1,6 @@
 {
-  "name": "gui",
-  "version": "0.0.1",
-  "private": true,
+  "name": "mucbuc-gui",
+  "version": "0.0.2",
   "scripts": {
     "start": "node app.js"
   },
