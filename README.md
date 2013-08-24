@@ -2,4 +2,4 @@ gui
 ===
 
 gui framework using html canvas  
-working example => github.com/mucbuc/gui-example
+[working example](http://github.com/mucbuc/gui-example)
