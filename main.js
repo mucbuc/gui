@@ -1,1 +1,1 @@
-exports.Processor = require( './lib/processor' ).Processor;
+exports.EventStream = require( './lib/eventstream' ).EventStream;

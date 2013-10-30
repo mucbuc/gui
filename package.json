@@ -1,9 +1,9 @@
 {
   "name": "mucbuc-jsbag",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "main": "main",
   "repository": {
     "type": "git",
     "url": "git://github.com/mucbuc/jsbag"
-  },
+  }
 }
