@@ -3,11 +3,10 @@
   function Batch() {
     
     var instance = this
-      , listeners = []
-      , toAdd = [];
+      , listeners = [];
 
     this.include = function( listener ) {
-      toAdd.push( listener );
+      listeners.push( listener );
     };
 
     this.exclude = function( listener ) {
@@ -27,8 +26,6 @@
       listeners = listeners.filter( function( listener ) {
         return listener !== stub;
       } );
-      listeners = listeners.concat( toAdd );
-      toAdd = [];
     }
 
     function stub() {}
