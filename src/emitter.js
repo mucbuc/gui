@@ -29,7 +29,7 @@ Written by: Mark Busenitz, om636.mucbuc@gmail.com
         for (var key in map)
           clearBatches( map[key] );
       else
-        clearBatches( event );
+        clearBatches( map[event] );
     };
   
     this.emit = function( event, args ) {
@@ -45,9 +45,9 @@ Written by: Mark Busenitz, om636.mucbuc@gmail.com
       }
     };
 
-    function clearBatches( event ) {
-      for (var batch in map[event])         
-        batch.map[event][batch].excludeAll();
+    function clearBatches( batches ) {
+      for (var batch in batches)         
+        batches[batch].excludeAll();
     }
 
     function addListener( batchName, event, call ) { 
