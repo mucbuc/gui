@@ -20,16 +20,8 @@ Written by: Mark Busenitz, om636.mucbuc@gmail.com
     };
   
     this.removeListener = function( event, call ) {
-      var batches = map[event]; 
-      if (batches) {
-        var repeat = batches.repeat
-          , singles = batches.singles;
-
-        if (repeat) 
-          repeat.exclude( call );
-        if (singles)
-          singles.exclude( call );
-      }
+      for (var batch in map[event])
+        map[event][batch].exclude( call );
     };
   
     this.removeAllListeners = function( event ) {
@@ -54,13 +46,8 @@ Written by: Mark Busenitz, om636.mucbuc@gmail.com
     };
 
     function clearBatches( event ) {
-      var batches = map[event];
-      if (batches) {
-        if (batches.repeat)
-          batches.repeat.excludeAll();
-        if (batches.singles)
-          batches.singles.excludeAll();
-      }
+      for (var batch in map[event])         
+        batch.map[event][batch].excludeAll();
     }
 
     function addListener( batchName, event, call ) { 
