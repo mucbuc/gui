@@ -4,77 +4,86 @@ Written by: Mark Busenitz, om636.mucbuc@gmail.com
 
 (function(){
 
- 
+  var assert = require( 'assert' )
+    , Batch = require( './batch' ).Batch;
+
   function EventStream() {
 
-    var events = new EventQueue()
-      , map = {}
-      , instance = this;
-  
-    this.tick = tick;
-  
+    var map = {};
+    
     this.on = function( event, call ) {
-      callsFor( event ).repeats.includeUnique( call );
+      addListener( 'repeat', event, call );
     };
  
     this.once = function( event, call ) {
-      callsFor( event ).singles.includeUnique( call );  
+      addListener( 'singles', event, call );
     };
   
     this.removeListener = function( event, call ) {
-      var calls = callsFor( event );
-      calls.repeats.exclude( call );
-      calls.singles.exclude( call );
+      var batches = map[event]; 
+      if (batches) {
+        var repeat = batches.repeat
+          , singles = batches.singles;
+
+        if (repeat) 
+          repeat.exclude( call );
+        if (singles)
+          singles.exclude( call );
+      }
     };
   
     this.removeAllListeners = function( event ) {
-      delete callsFor( event );
+      if (typeof event === 'undefined')
+        for (var key in map)
+          clearBatches( map[key] );
+      else
+        clearBatches( event );
     };
   
-    this.onTickEmit = function() {
-      events.pushBack( arguments );
+    this.emit = function( event, args ) {
+      var batches = map[event]; 
+      if (batches) {
+        if (batches.repeat)
+          batches.repeat.forEach( args );
+        if (batches.singles) {
+          var singles = batches.singles; 
+          batches.singles = new Batch(); 
+          singles.forEach( args );
+        }
+      }
     };
 
-    function emit( args ) {
-      var calls = callsFor( args[0] )
-        , repeats = calls.repeats
-        , singles = calls.singles
-        , m = createMap( args[0] );
-    
-      repeats.forEach( invoke ); 
-      singles.forEach( invoke ); 
-      
-      repeats.includeSet( m.repeats );
-      m.repeats = repeats;
+    function clearBatches( event ) {
+      var batches = map[event];
+      if (batches) {
+        if (batches.repeat)
+          batches.repeat.excludeAll();
+        if (batches.singles)
+          batches.singles.excludeAll();
+      }
+    }
 
-      function invoke( call ) { 
-        call( args[1] ); 
+    function addListener( batchName, event, call ) { 
+      var batches = map[event]
+        , batch;
+      if (!batches) {
+        batch = new Batch();
+        batches = {};
+        batches[batchName] = batch;
+        map[event] = batches;
       }
-    }
-  
-    function tick() {
-      this.tick = function() {};
-    
-      while( events.tryPop( function( event ) {
-        emit( event );
-      } ) );
-    
-      this.tick = tick;
-    }
-  
-    function createMap( event ) {
-      
-      return map[event] = { 
-          singles: new Array(), 
-          repeats: new Array(), 
-        };
-    }
-  
-    function callsFor() {
-      if (!map[arguments[0]]) {
-        return createMap(arguments[0]);
+      else {
+        batch = batches[batchName];
+
+        if (!batch) {
+          batch = new Batch();
+          batches[batchName] = batch;
+        }
       }
-      return map[arguments[0]];
+
+      assert( typeof batch !== 'undefined' ); 
+
+      batch.include( call );
     }
   }
 

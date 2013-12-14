@@ -19,33 +19,3 @@
   }
 
 
-
-
-
-/*
- function Batch() {
-    
-    var listeners = new Array();
-
-    this.exclude = function( listener ) {
-      var index = listeners.indexOf( listener );
-      if (index != -1) {
-        listeners[index] = stub;
-      }
-    };
-
-    this.purge = function() {
-      listeners = listeners.filter( function( elem ) {
-        return elem !== stub;
-      } );
-    };
-
-    this.include = function( elem ) {
-      listeners.push( elem );
-    };
-
-    this.forEach = listeners.forEach; 
-
-    function stub() {}
-  }
-*/

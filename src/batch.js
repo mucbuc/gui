@@ -15,6 +15,12 @@
         listeners[index] = stub;
     };
 
+    this.excludeAll = function() {
+      listeners.forEach( function( listener ) {
+        listener = stub();
+      } );
+    };
+
     this.forEach = function() {
       updateListeners();
       listeners.forEach( function( listener, index, listeners ) {
