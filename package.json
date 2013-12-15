@@ -1,11 +1,9 @@
 {
   "name": "event-stream",
-  "version": "0.0.0",
-  "main": "./src/squint",
-  "private": true,
+  "version": "0.0.1",
+  "main": "./src/main",
   "repository": {
     "type": "git",
     "url": "git://github.com/mucbuc/event-stream"
-  },
-  "dependencies": {}
+  }
 }

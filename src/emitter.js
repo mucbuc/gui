@@ -2,10 +2,11 @@
 Written by: Mark Busenitz, om636.mucbuc@gmail.com
 */
 
-(function(){
+if (typeof Batch === 'undefined') {
+  Batch = require( './batch' ).Batch;
+}
 
-  var assert = require( 'assert' )
-    , Batch = require( './batch' ).Batch;
+(function(Batch){
 
   function Emitter() {
 
@@ -68,12 +69,10 @@ Written by: Mark Busenitz, om636.mucbuc@gmail.com
         }
       }
 
-      assert( typeof batch !== 'undefined' ); 
-
       batch.include( call );
     }
   }
 
   exports.Emitter = Emitter;
 
-})();
+})(Batch);

@@ -2,14 +2,15 @@
 Written by: Mark Busenitz, om636.mucbuc@gmail.com
 */
 
-(function(){
+if (typeof Queue === 'undefined') {
+  Queue = require( './queue' ).Queue;
+}
 
-  var assert = require( 'assert' )
-    , Queue = require( './queue' ).Queue
-    , Emitter = require( './emitter' ).Emitter;
+if (typeof Emitter === 'undefined') {
+  Emitter = require( './emitter' ).Emitter;
+}
 
-  assert( typeof Queue !== 'undefined' );
-  assert( typeof Emitter !== 'undefined' );
+(function(Queue, Emitter){
 
   function Stream() {
 
@@ -39,4 +40,4 @@ Written by: Mark Busenitz, om636.mucbuc@gmail.com
 
   exports.Stream = Stream;
 
-})();
+})(Queue, Emitter);
