@@ -16,17 +16,15 @@ todo:
 */ 
 
 var assert = require( 'assert' )
-  , metaData = require( '../lib.json' ).metaData
+  , metaData = require( '../package.json' )
   , test = '../test/';
 
 check();
 
 function check() {
 
-  console.log( 'running tests on ' + metaData.VERSION );
+  console.log( 'running tests on version ' + metaData.version );
 
-//  require( test + 'utils' ).checkUtils;
   require( test + 'factory' ).checkFactory;
-  require( test + 'eventstream' ).checkEvents;
   require( test + 'builder' ).checkBuilder;
 }

@@ -16,7 +16,7 @@ checkBuilder();
 function checkBuilder() {
   checkEmpty();
   checkSingle();
-  //checkObject();
+  checkObject();
   
   console.log( 'builder ok' );
 }
