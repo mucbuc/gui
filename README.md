@@ -1,4 +1,4 @@
-event-stream
+events
 ============
 
-javascript event stream
+javascript server and browser events
