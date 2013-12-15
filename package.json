@@ -1,9 +1,12 @@
 {
-  "name": "event-stream",
-  "version": "0.0.1",
-  "main": "./src/main",
+  "name": "mucbuc-events",
+  "version": "0.0.3",
+  "main": "main",
   "repository": {
     "type": "git",
-    "url": "git://github.com/mucbuc/event-stream"
+    "url": "git://github.com/mucbuc/events"
+  },
+  "dependencies": {
+  	"chai": "*"
   }
 }

@@ -21,10 +21,10 @@
       } );
     };
 
-    this.forEach = function() {
+    this.forEach = function(args) {
       updateListeners();
-      listeners.forEach( function( listener, index, listeners ) {
-        listener(arguments);
+      listeners.forEach( function( listener ) {
+        listener(args);
       } );
     }; 
 

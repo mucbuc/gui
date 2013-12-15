@@ -1,4 +1,4 @@
-var assert = require( 'assert' )
+var assert = require( 'chai' ).assert
   , Batch = require( '../src/batch' ).Batch;
 
 assert( Batch !== 'undefined' ); 
@@ -14,6 +14,21 @@ function testBatch() {
 	test( basicBatch );
 	test( removeWhileTraverse );
 	test( addWhileTravese );
+	test( checkArgs ); 
+
+	function checkArgs() {
+		var batch = new Batch(); 
+
+		batch.include( function( obj ) {
+			assert.property( obj, 'x' );
+			assert.deepEqual( obj.x, 3 ); 
+
+			assert.property( obj, 'y' );
+			assert.deepEqual( obj.y, 5 ); 
+		} );
+
+		batch.forEach( { x: 3, y: 5 } );
+	}
 
 	function addWhileTravese() {
 		var batch = new Batch();
