@@ -5,10 +5,9 @@ Written by: Mark Busenitz, mbusenitz@gmail.com
 
 
 var assert = require( 'assert' )
-  , lib = require( './config.json' ).lib
-  , sign = require( lib + 'core' ).sign
-  , Vec = require( lib + 'vec' ).Vec
-  , Rect = require( lib + 'rect' ).Rect;
+  , sign = require( '../lib/core' ).sign
+  , Vec = require( '../lib/vec' ).Vec
+  , Rect = require( '../lib/rect' ).Rect;
   
 checkRect();
 
@@ -22,7 +21,7 @@ function checkRect() {
   assert( a.right == 3 );
   assert( a.bottom == 5 );
 
-  console.log( "rect ok" );
+  console.log( "rect passed" );
 }
 
 exports.checkRect = checkRect;
