@@ -1,1 +1,0 @@
-exports.EventStream = require( './lib/eventstream' ).EventStream;
