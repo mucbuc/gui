@@ -1,6 +1,9 @@
 {
   "name": "mucbuc-gui",
   "version": "0.0.5",
+  "scripts": {
+  	"test": "node test/test.js"
+  },
   "dependencies": {
     "mucbuc-jsbag": "*",
     "mucbuc-events": "*"
