@@ -1,27 +1,20 @@
 #!/usr/bin/env node
 
-var assert = require( 'assert' )
+var test = require( 'tape' )
   , requireLibFile = require( './base' ).requireLibFile
   , Factory = requireLibFile( 'factory.js' ).Factory;
   
-assert( Factory !== 'undefined' );  
 
-checkFactory();
-
-function checkFactory() {
+test( 'checkFactory', (t) => {
   
-  var f = new Factory()
-    , gotHit = false
-    , r = 0;
+  var f = new Factory();
   
   f.register( 'tester', Tester );
-  r = f.create( 'tester', true );
+  f.create( 'tester', true );
   
-  assert( gotHit ); 
-  
+  t.end();
+
   function Tester( v ) {
-    gotHit = v;
+    t.true( v );
   }
-  
-  console.log( 'factory ok' );
-}
+});
