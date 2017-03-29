@@ -1,6 +1,6 @@
 {
 	"example/public/lib": [
-		"https://github.com/mucbuc/jsbag.git"
+		"https://github.com/mucbuc/jsbag.git",
 		"https://github.com/mucbuc/events.git"
 	]
 }
