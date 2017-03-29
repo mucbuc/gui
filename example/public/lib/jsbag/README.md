@@ -1,4 +1,0 @@
-jsbag
-=====
-
-shared javascript code 
