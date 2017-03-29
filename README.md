@@ -7,8 +7,3 @@ gui framework using html canvas
 dependencies
 ------------
 [mucbuc/jsbag](http://github.com/mucbuc/jsbag)
-test
-test
-test
-test
-test
