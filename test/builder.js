@@ -1,12 +1,10 @@
-/* 
-Written by: Mark Busenitz, om636.mucbuc@gmail.com
-*/
+#!/usr/bin/env node
 
-var assert = require( 'assert' )
-  , lib = require( './config.json' ).lib
-  , Factory = require( lib + 'factory' ).Factory
-  , Builder = require( lib + 'builder' ).Builder
-  , Controller = require( lib + 'controller' ).Controller;
+const assert = require( 'assert' )
+  , requireLibFile = require( './base' ).requireLibFile
+  , Factory = requireLibFile( 'factory' ).Factory
+  , Builder = requireLibFile( 'builder' ).Builder
+  , Controller = requireLibFile( 'controller' ).Controller;
   
 assert( Factory !== 'undefined' );
 assert( Builder !== 'undefined' ); 
