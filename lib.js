@@ -14,6 +14,8 @@ let dependencies = {
 	index: 0
 };
 
+let EventStream;
+
 let scripts = {
 	sources: [
 		'../node_modules/mucbuc-gui/lib/controller.js',
@@ -39,32 +41,37 @@ let scripts = {
 	index: 0
 }
 
-loadContext( dependencies, () => {
+loadContext( dependencies )
+.then( () => {
+	EventStream = Stream;
+
 	loadContext( scripts );
 });
 
-function loadContext(context, cb) {
-	const sources = context.sources;
-	let index = context.index;
+function loadContext(context) {
+	return new Promise( (resolve, reject) => {
+		const sources = context.sources;
+		let index = context.index;
 
-	loadScripts();
+		loadScripts();
 
-	function loadScripts() {
+		function loadScripts() {
 
-		if (index != sources.length) {
-			loadScript( sources[index++] );
+			if (index != sources.length) {
+				loadScript( sources[index++] );
+			}
+			else {
+				resolve();
+			}
+
+			function loadScript(src) {
+
+				let script = document.createElement( 'script' );
+				document.head.appendChild(script);
+
+				script.onload = loadScripts;
+				script.src = src;
+			}
 		}
-		else if (typeof cb === 'function') {
-			cb();
-		}
-
-		function loadScript(src) {
-
-			let script = document.createElement( 'script' );
-			document.head.appendChild(script);
-
-			script.onload = loadScripts;
-			script.src = src;
-		}
-	}
+	} );
 }
