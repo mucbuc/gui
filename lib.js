@@ -2,14 +2,14 @@
 
 let dependencies = {
 	sources: [
-		'node_modules/mucbuc-jsbag/lib/core.js',
-		'node_modules/mucbuc-jsbag/lib/vec.js',
-		'node_modules/mucbuc-jsbag/lib/rect.js',
-		'node_modules/mucbuc-jsbag/lib/canvas.js',
-		'node_modules/mucbuc-events/src/batch.js',
-		'node_modules/mucbuc-events/src/emitter.js',
-		'node_modules/mucbuc-events/src/queue.js',
-		'node_modules/mucbuc-events/src/stream.js'
+		'javascripts/lib/jsbag/lib/core.js',
+		'javascripts/lib/jsbag/lib/vec.js',
+		'javascripts/lib/jsbag/lib/rect.js',
+		'javascripts/lib/jsbag/lib/canvas.js',
+		'javascripts/lib/events/src/batch.js',
+		'javascripts/lib/events/src/emitter.js',
+		'javascripts/lib/events/src/queue.js',
+		'javascripts/lib/events/src/stream.js'
 	],
 	index: 0
 };
@@ -18,25 +18,25 @@ let EventStream;
 
 let scripts = {
 	sources: [
-		'lib/controller.js',
-		'lib/factory.js',
-		'lib/builder.js',
-		'lib/element.js',
-		'lib/view.js',
-		'lib/gui.js',
+		'javascripts/lib/gui/lib/controller.js',
+		'javascripts/lib/gui/lib/factory.js',
+		'javascripts/lib/gui/lib/builder.js',
+		'javascripts/lib/gui/lib/element.js',
+		'javascripts/lib/gui/lib/view.js',
+		'javascripts/lib/gui/lib/gui.js',
 
-		'lib/elements/clickrect.js',
-		'lib/elements/label.js',
-		'lib/elements/icon.js',
-		'lib/elements/frame.js',
-		'lib/elements/textbox.js',
-		'lib/elements/checkbox.js',
+		'javascripts/lib/gui/lib/elements/clickrect.js',
+		'javascripts/lib/gui/lib/elements/label.js',
+		'javascripts/lib/gui/lib/elements/icon.js',
+		'javascripts/lib/gui/lib/elements/frame.js',
+		'javascripts/lib/gui/lib/elements/textbox.js',
+		'javascripts/lib/gui/lib/elements/checkbox.js',
 
-		'lib/views/stack.js',
-		'lib/views/button.js',
-		'lib/views/row.js',
-		'lib/views/debug.js',
-		'lib/views/pretty.js' 
+		'javascripts/lib/gui/lib/views/stack.js',
+		'javascripts/lib/gui/lib/views/button.js',
+		'javascripts/lib/gui/lib/views/row.js',
+		'javascripts/lib/gui/lib/views/debug.js',
+		'javascripts/lib/gui/lib/views/pretty.js' 
 	],
 	index: 0
 }
