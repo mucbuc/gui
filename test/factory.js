@@ -1,11 +1,8 @@
-/* 
-Written by: Mark Busenitz, om636.mucbuc@gmail.com
-*/
-
+#!/usr/bin/env node
 
 var assert = require( 'assert' )
-  , lib = require( './config.json' ).lib
-  , Factory = require( lib + 'factory.js' ).Factory;
+  , requireLibFile = require( './base' ).requireLibFile
+  , Factory = requireLibFile( 'factory.js' ).Factory;
   
 assert( Factory !== 'undefined' );  
 
@@ -28,5 +25,3 @@ function checkFactory() {
   
   console.log( 'factory ok' );
 }
-
-exports.checkFactory = checkFactory;
