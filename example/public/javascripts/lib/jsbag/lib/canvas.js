@@ -15,11 +15,11 @@
     }
 
     clearCanvas() { 
-      context.clearRect( 0, 0, width, height ); 
+      this.context.clearRect( 0, 0, width, height ); 
     }
 
     getContext() { 
-      return context;    
+      return this.context;    
     } 
 
     positionOnCanvas( e ) {
@@ -35,19 +35,19 @@
     }
 
     setDrawTextContext(color, size) {  
-      context.fillStyle = color;
-      context.font = size.toString() + 'px Comic sans ms';
-      context.textBaseline = 'bottom';
+      this.context.fillStyle = color;
+      this.context.font = size.toString() + 'px Comic sans ms';
+      this.context.textBaseline = 'bottom';
     } 
 
     drawText(x, y, color, text, size, width) {
       setDrawTextContext(color, size );
-      context.fillText(text, x, y, width );
+      this.context.fillText(text, x, y, width );
     }
 
     getTextWidth( text ) {
       if (!cache[text]) {
-        cache[text] = context.measureText( text ).width;
+        cache[text] = this.context.measureText( text ).width;
       }
 
       return cache[text];
