@@ -1,20 +1,15 @@
-/* 
-Written by: Mark Busenitz, mbusenitz@gmail.com
-*/ 
+'use strict';
 
-var assert = require( 'assert' )
-  , Vec = require( '../lib/vec' ).Vec;
+var Vec = require( '../lib/vec' ).Vec
+  , test = require( 'tape' );
 
-checkVec();
-
-function checkVec() {
+test( 'checkVec', (t) => {
   var a = new Vec( 0, 0 );
 
-  assert( a.x == 0 && a.y == 0 );
+  t.equal( a.x, 0 );
+  t.equal( a.y, 0 );
   a = a.add( new Vec( 2, 3 ) );
-  assert( a.x == 2 && a.y == 3 );
-
-  console.log( 'vec passed' );
-}
-
-exports.checkVec = checkVec;
+  t.equal( a.x, 2 );
+  t.equal( a.y, 3 );
+  t.end();
+});
