@@ -1,41 +1,47 @@
-/* 
-Written by: Mark Busenitz, mbusenitz@gmail.com
-*/ 
+'use strict';
 
-(function() {
+(function(exports) {
   
-  function Vec( x, y ) { 
-    this.x = typeof x === 'undefined' ? 0 : x;
-    this.y = typeof y === 'undefined' ? 0 : y; 
-  }
+  class Vec {
+
+    constructor( x = 0, y = 0 ) { 
+      this.x = x;
+      this.y = y; 
+    }
   
-  Vec.prototype = {
-  
-    add: function( v ) {
+    add( v ) {
       return new Vec( this.x + v.x, this.y + v.y );
-    },
-    sub: function( v ) {
+    }
+
+    sub( v ) {
       return new Vec( this.x - v.x, this.y - v.y );
-    },
-    scale: function( s ) { 
+    }
+
+    scale( s ) { 
       return new Vec( this.x * s, this.y * s );
-    },
-    lengthSquare: function() {
+    }
+
+    lengthSquare() {
       return this.dot( this ); 
-    },
-    length: function() {
+    }
+
+    length() {
       return Math.sqrt( this.lengthSquare() ); 
-    },
-    normalize: function() {
+    }
+
+    normalize() {
 	    return this.mult( 1 / this.length() );
-	  },
-	  dot: function( v ) { 
+	  }
+
+	  dot( v ) { 
       return this.x * v.x + this.y * v.y;
-    },
-    determinant: function( v ) {
+    }
+
+    determinant( v ) {
       return this.x * v.y - this.y * v.x;      
-    },
-    clone: function() {
+    }
+
+    clone() {
       return new Vec( this.x, this.y );
     }
   };
@@ -48,5 +54,5 @@ Written by: Mark Busenitz, mbusenitz@gmail.com
     return a instanceof Array ? new Vec( a[0], a[1] ) : Vec.Zero;
   };
   
-} )();
+})(exports);
   

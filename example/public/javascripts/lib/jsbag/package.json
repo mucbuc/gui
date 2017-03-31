@@ -4,5 +4,11 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/mucbuc/jsbag"
+  },
+  "scripts": {
+  	"test": "tape test/*.js"
+  },
+  "devDependencies": {
+  	"tape": "*"
   }
 }
