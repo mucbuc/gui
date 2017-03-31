@@ -5,7 +5,6 @@ Written by: Mark Busenitz, mbusenitz@gmail.com
 
 
 var assert = require( 'assert' )
-  , sign = require( '../lib/core' ).sign
   , Vec = require( '../lib/vec' ).Vec
   , Rect = require( '../lib/rect' ).Rect;
   
