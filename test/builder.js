@@ -1,30 +1,13 @@
-/* 
-Written by: Mark Busenitz, om636.mucbuc@gmail.com
-*/
+#!/usr/bin/env node
 
-var assert = require( 'assert' )
-  , lib = require( './config.json' ).lib
-  , Factory = require( lib + 'factory' ).Factory
-  , Builder = require( lib + 'builder' ).Builder
-  , Controller = require( lib + 'controller' ).Controller;
-  
-assert( Factory !== 'undefined' );
-assert( Builder !== 'undefined' ); 
+const test = require( 'tape' )
+  , requireLibFile = require( './base' ).requireLibFile
+  , Factory = requireLibFile( 'factory' ).Factory
+  , Builder = requireLibFile( 'builder' ).Builder
+  , Controller = requireLibFile( 'controller' ).Controller;
 
-checkBuilder();
-  
-function checkBuilder() {
-  checkEmpty();
-  checkSingle();
-  checkObject();
-  
-  console.log( 'builder ok' );
-}
-
-function checkObject() {
-  var controller = {
-        model: { 'label': 'abc', 'notLabel': 'cde' } }
-    , factory = new Factory()
+test( 'checkObject', (t) => {
+  var factory = new Factory()
     , builder = new Builder( factory )
     , labeled = false
     , notLabeled = false
@@ -33,47 +16,43 @@ function checkObject() {
   factory.register( 'label', Label );
   factory.register( 'notLabel', NoLabel );
 
-  composite = builder.buildComposite( controller );
+  t.plan( 4 );
 
-  assert( labeled && notLabeled );
-  assert( composite.label );
-  assert( composite.notLabel );
+  composite = builder.buildComposite( { model: { 'label': 'abc', 'notLabel': 'cde' } } );
+
+  t.true( composite.hasOwnProperty('label') );
+  t.true( composite.hasOwnProperty('notLabel') );
+  t.end();
 
   function Label() {
-    labeled = true;
+    t.pass();
   }
 
   function NoLabel() {
-    notLabeled = true;
+    t.pass();
   }
-}
+});
 
-function checkSingle() {
-  var controller = {
-        model: { 'Label': 'abc' } }
-    , factory = new Factory()
-    , builder = new Builder( factory )
-    , gotHit = false;
+test( 'checkSingle', (t) => {
+  const factory = new Factory()
+    , builder = new Builder( factory );
     
   factory.register( 'Label', Label );
-  
-  builder.buildComposite( controller );
-  
-  assert( gotHit );
+
+  builder.buildComposite( { model: { 'Label': 'abc' } } );
   
   function Label() {
-    gotHit = true;
+    t.pass();
+    t.end();
   }
-}
+});
 
-function checkEmpty() {
-  var controller = { model: {} }
-    , factory = new Factory()
-    , builder = new Builder( factory )
-    , composite = builder.buildComposite( controller );
-
-  assert( !Object.keys( composite ).length );
-}
+test( 'checkEmpty', (t) => {
   
-exports.checkBuilder = checkBuilder;
+  const factory = new Factory()
+    , builder = new Builder( factory )
+    , composite = builder.buildComposite( { model: {} } );
 
+  t.equal( Object.keys( composite ).length, 0 );
+  t.end();
+});

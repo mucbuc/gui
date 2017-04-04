@@ -1,0 +1,6 @@
+{
+	"example/public/javascripts/lib": [
+		"https://github.com/mucbuc/jsbag.git",
+		"https://github.com/mucbuc/events.git"
+	]
+}
